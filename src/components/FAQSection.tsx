@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ChevronDown, Mail, Phone } from "lucide-react";
-import { UGABYTE_CONTACT_EMAIL, UGABYTE_PHONE } from "../config/ugabyte";
+import { UGABYTE_CONTACT_EMAIL, UGABYTE_PHONE, UGABYTE_APP_META } from "../config/ugabyte";
 
 export const FAQSection: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -20,7 +20,7 @@ export const FAQSection: React.FC = () => {
     },
     {
       q: "Where can I download the Android app?",
-      a: "You can download the official Android APK directly from this website. The APK weighs approximately 13.8MB, runs on Android 8.0 and above, and is hosted on our secure local CDN.",
+      a: `You can download the official Android APK directly from this website. The APK weighs approximately ${UGABYTE_APP_META.fileSize}, runs on Android 8.0 and above, and is hosted with verified checksums.`,
     },
     {
       q: "Is UgaByte free?",

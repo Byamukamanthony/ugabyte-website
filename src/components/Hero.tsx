@@ -1,5 +1,5 @@
 import React from "react";
-import { BRAND_ASSETS, UGABYTE_APP_META } from "../config/ugabyte";
+import { BRAND_ASSETS, UGABYTE_APP_META, UGABYTE_WEB_APP_URL } from "../config/ugabyte";
 import { Download, ExternalLink, ShieldCheck, Flame, Rocket, Zap, CheckCircle2 } from "lucide-react";
 
 interface HeroProps {
@@ -85,13 +85,16 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadApk, onOpenWebApp }) => {
             <span>DOWNLOAD APK</span>
           </button>
 
-          <button
+          <a
+            href={UGABYTE_WEB_APP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={onOpenWebApp}
             className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#12151C] hover:bg-[#181C26] border border-[#232936] hover:border-[#323B4E] text-[#FFFFFF] text-[13px] font-bold tracking-wider active:scale-95 transition-all flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
           >
             <ExternalLink className="w-4 h-4 text-[#cef11c]" />
             <span>OPEN WEB APP</span>
-          </button>
+          </a>
         </div>
 
         {/* Small supporting indicator */}

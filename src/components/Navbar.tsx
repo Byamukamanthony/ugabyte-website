@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { UGABYTE_APK_URL, UGABYTE_WEB_APP_URL } from "../config/ugabyte";
+import { UGABYTE_APK_URL, UGABYTE_WEB_APP_URL, UGABYTE_APP_META } from "../config/ugabyte";
 import { UgaByteLogo } from "./UgaByteLogo";
 import { Download, ExternalLink, Menu, X, Zap } from "lucide-react";
 
@@ -83,13 +83,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onDownloadApk, onOpenWebApp }) =
 
           {/* Zone 3: Trailing Action Buttons */}
           <div className="flex items-center gap-2.5">
-            <button
+            <a
+              href={UGABYTE_WEB_APP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={onOpenWebApp}
               className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-[#232936] hover:border-[#323B4E] bg-[#12151C] hover:bg-[#181C26] text-[#e3e2e8] text-[12px] font-bold tracking-wide transition-all active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
             >
               <ExternalLink className="w-3.5 h-3.5 text-[#cef11c]" />
               <span>Open Web App</span>
-            </button>
+            </a>
 
             <button
               onClick={onDownloadApk}
@@ -167,10 +170,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onDownloadApk, onOpenWebApp }) =
             className="w-full py-3 rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2 shadow-md active:scale-95 transition-all"
           >
             <Download className="w-4 h-4" />
-            <span>Download APK (13.8MB)</span>
+            <span>Download APK ({UGABYTE_APP_META.fileSize})</span>
           </button>
 
-          <button
+          <a
+            href={UGABYTE_WEB_APP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => {
               setMobileMenuOpen(false);
               onOpenWebApp();
@@ -179,7 +185,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onDownloadApk, onOpenWebApp }) =
           >
             <ExternalLink className="w-3.5 h-3.5 text-[#cef11c]" />
             <span>Open Web App</span>
-          </button>
+          </a>
         </div>
       </aside>
     </>

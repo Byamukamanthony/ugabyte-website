@@ -4,10 +4,11 @@
  */
 
 export const UGABYTE_APK_URL =
-  import.meta.env.VITE_UGABYTE_APK_URL || "/ugabyte.apk";
+  import.meta.env.VITE_UGABYTE_APK_URL ||
+  "https://github.com/Byamukamanthony/ugabyte-website/raw/main/ugabyte.apk.apk";
 
 export const UGABYTE_WEB_APP_URL =
-  import.meta.env.VITE_UGABYTE_WEB_APP_URL || "https://app.ugabyte.tech";
+  import.meta.env.VITE_UGABYTE_WEB_APP_URL || "https://ugabyte.vercel.app/";
 
 export const UGABYTE_CONTACT_EMAIL = "partnerships@ugabyte.tech";
 
@@ -23,9 +24,9 @@ export const UGABYTE_SOCIALS = {
 } as const;
 
 export const UGABYTE_APP_META = {
-  version: "v1.2.0-STABLE",
-  fileSize: "13.8 MB",
-  sha256: "7f9a2c4e88be2387114c0049e29a99fd11802bb0234149811abecde9690d",
+  version: "v1.2.0",
+  fileSize: "14.1 MB",
+  sha256: "2f8338ca40c7f7d695eb584a7d8ffb9cd65396b0effe7e12a54a1fc178a2c3d7",
   targetSdk: "Android 34 (Android 14)",
   minSdk: "Android 26 (Android 8.0)",
   releaseDate: "October 2026",

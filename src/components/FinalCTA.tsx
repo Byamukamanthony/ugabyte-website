@@ -1,6 +1,6 @@
 import React from "react";
 import { Download, ExternalLink, Sparkles } from "lucide-react";
-import { UGABYTE_APP_META } from "../config/ugabyte";
+import { UGABYTE_APP_META, UGABYTE_WEB_APP_URL } from "../config/ugabyte";
 
 interface FinalCTAProps {
   onDownloadApk: () => void;
@@ -35,13 +35,16 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ onDownloadApk, onOpenWebApp 
             <span>DOWNLOAD UGABYTE ({UGABYTE_APP_META.fileSize})</span>
           </button>
 
-          <button
+          <a
+            href={UGABYTE_WEB_APP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={onOpenWebApp}
             className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#12151C] hover:bg-[#181C26] border border-[#232936] text-[#FFFFFF] text-[13px] font-bold tracking-wider active:scale-95 transition-all flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
           >
             <ExternalLink className="w-4 h-4 text-[#cef11c]" />
             <span>OPEN WEB APP</span>
-          </button>
+          </a>
         </div>
       </div>
     </section>

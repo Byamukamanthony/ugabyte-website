@@ -1,5 +1,6 @@
 import React from "react";
 import { Laptop, ExternalLink, WifiOff, RefreshCw, Zap } from "lucide-react";
+import { UGABYTE_WEB_APP_URL } from "../config/ugabyte";
 
 interface WebAppSectionProps {
   onOpenWebApp: () => void;
@@ -40,13 +41,16 @@ export const WebAppSection: React.FC<WebAppSectionProps> = ({ onOpenWebApp }) =>
         </div>
 
         <div className="shrink-0 w-full md:w-auto">
-          <button
+          <a
+            href={UGABYTE_WEB_APP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={onOpenWebApp}
             className="w-full md:w-auto px-8 py-3.5 rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-black uppercase tracking-wider hover:brightness-105 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
           >
-            <ExternalLink className="w-4 h-4" />
+            <ExternalLink className="w-4 h-4 stroke-[2.5]" />
             <span>OPEN WEB APP</span>
-          </button>
+          </a>
         </div>
       </div>
     </section>

@@ -1,13 +1,14 @@
 import React from "react";
 import { Download, KeyRound, MapPin, Sparkles } from "lucide-react";
+import { UGABYTE_APP_META } from "../config/ugabyte";
 
 export const HowItWorks: React.FC = () => {
   const steps = [
     {
       num: "01",
       title: "Download APK",
-      desc: "Grab the lightweight, optimized APK directly from our CDN or access the PWA via browser.",
-      meta: "Android 8.0+ · 13.8MB",
+      desc: "Grab the lightweight, optimized APK directly or access the web app via browser.",
+      meta: `Android 8.0+ · ${UGABYTE_APP_META.fileSize}`,
       icon: Download,
     },
     {

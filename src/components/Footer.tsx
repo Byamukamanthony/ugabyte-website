@@ -3,6 +3,7 @@ import {
   UGABYTE_CONTACT_EMAIL,
   UGABYTE_PHONE,
   UGABYTE_SOCIALS,
+  UGABYTE_WEB_APP_URL,
 } from "../config/ugabyte";
 import { UgaByteLogo } from "./UgaByteLogo";
 import { Mail, Phone, ExternalLink, Download } from "lucide-react";
@@ -104,13 +105,16 @@ export const Footer: React.FC<FooterProps> = ({
                 </button>
               </li>
               <li>
-                <button
+                <a
+                  href={UGABYTE_WEB_APP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={onOpenWebApp}
                   className="hover:text-[#cef11c] transition-colors flex items-center gap-1.5 focus:outline-none"
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
                   <span>Open Web App (PWA)</span>
-                </button>
+                </a>
               </li>
               <li>
                 <button
