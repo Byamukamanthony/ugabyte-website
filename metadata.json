@@ -1,0 +1,6 @@
+{
+  "name": "UgaByte — Your Campus. One App.",
+  "description": "Discover deals, events, products, opportunities and everything happening around your campus — all in one place.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
