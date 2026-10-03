@@ -1,6 +1,6 @@
 /**
  * Centralized Configuration for UgaByte
- * Source of truth for URLs, contact information, social links, and app metadata.
+ * Source of truth for URLs, social links, and app metadata.
  */
 
 export const UGABYTE_APK_URL =
@@ -10,17 +10,40 @@ export const UGABYTE_APK_URL =
 export const UGABYTE_WEB_APP_URL =
   import.meta.env.VITE_UGABYTE_WEB_APP_URL || "https://ugabyte.vercel.app/";
 
-export const UGABYTE_CONTACT_EMAIL = "partnerships@ugabyte.tech";
+export const UGABYTE_HANDLE = "@ugabyteinc";
 
-export const UGABYTE_PHONE = "+256 700 842 298";
-
-export const UGABYTE_PHONE_CLEAN = "256700842298";
+export const UGABYTE_PLATFORMS = [
+  {
+    name: "X (Twitter)",
+    handle: "@ugabyteinc",
+    url: "https://x.com/ugabyteinc",
+    id: "twitter",
+  },
+  {
+    name: "Instagram",
+    handle: "@ugabyteinc",
+    url: "https://instagram.com/ugabyteinc",
+    id: "instagram",
+  },
+  {
+    name: "TikTok",
+    handle: "@ugabyteinc",
+    url: "https://tiktok.com/@ugabyteinc",
+    id: "tiktok",
+  },
+  {
+    name: "Facebook",
+    handle: "@ugabyteinc",
+    url: "https://facebook.com/ugabyteinc",
+    id: "facebook",
+  },
+] as const;
 
 export const UGABYTE_SOCIALS = {
-  twitter: "https://x.com/ugabyte",
-  whatsapp: `https://wa.me/256700842298?text=Hello%20UgaByte%20Team!%20I%20am%20interested%20in%20learning%20more.`,
-  instagram: "https://instagram.com/ugabyte.tech",
-  linkedin: "https://linkedin.com/company/ugabyte",
+  twitter: "https://x.com/ugabyteinc",
+  instagram: "https://instagram.com/ugabyteinc",
+  tiktok: "https://tiktok.com/@ugabyteinc",
+  facebook: "https://facebook.com/ugabyteinc",
 } as const;
 
 export const UGABYTE_APP_META = {

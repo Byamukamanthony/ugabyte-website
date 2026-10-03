@@ -19,7 +19,7 @@ import { InstallGuideModal } from "./components/InstallGuideModal";
 import { PartnerInquiryModal } from "./components/PartnerInquiryModal";
 import { LegalModal } from "./components/LegalModal";
 import { DownloadToast } from "./components/DownloadToast";
-import { UGABYTE_APK_URL, UGABYTE_WEB_APP_URL, UGABYTE_PHONE_CLEAN } from "./config/ugabyte";
+import { UGABYTE_APK_URL, UGABYTE_WEB_APP_URL } from "./config/ugabyte";
 
 export default function App() {
   const [installGuideOpen, setInstallGuideOpen] = useState(false);
@@ -52,10 +52,7 @@ export default function App() {
   };
 
   const handleStudentChat = () => {
-    const message = encodeURIComponent(
-      "Hello! I saw your Anker Soundcore Q30 ANC listing on UgaByte Live Radar. Is it still available for pickup at Mitchell Hall?"
-    );
-    window.open(`https://wa.me/${UGABYTE_PHONE_CLEAN}?text=${message}`, "_blank");
+    handleOpenWebApp();
   };
 
   const handleSelectStudentAction = (actionKey: string) => {

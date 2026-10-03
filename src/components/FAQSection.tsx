@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { ChevronDown, Mail, Phone } from "lucide-react";
-import { UGABYTE_CONTACT_EMAIL, UGABYTE_PHONE, UGABYTE_APP_META } from "../config/ugabyte";
+import { ChevronDown } from "lucide-react";
+import { UGABYTE_APP_META, UGABYTE_HANDLE } from "../config/ugabyte";
 
 export const FAQSection: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -40,7 +40,7 @@ export const FAQSection: React.FC = () => {
     },
     {
       q: "How do I contact UgaByte?",
-      a: `You can reach our team via email at ${UGABYTE_CONTACT_EMAIL} or message our campus team directly on WhatsApp / Phone at ${UGABYTE_PHONE}.`,
+      a: `You can reach out or DM our team ${UGABYTE_HANDLE} across our official channels on X (Twitter), Instagram, TikTok, and Facebook.`,
     },
   ];
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { X, Shield, FileText, Cookie, RotateCcw } from "lucide-react";
-import { UGABYTE_CONTACT_EMAIL } from "../config/ugabyte";
+import { UGABYTE_HANDLE } from "../config/ugabyte";
 
 type LegalTab = "privacy" | "terms" | "cookie" | "refund";
 
@@ -132,10 +132,8 @@ export const LegalModal: React.FC<LegalModalProps> = ({
                 3. Contact for Inquiries
               </h5>
               <p>
-                For data access or account removal requests, contact{" "}
-                <a href={`mailto:${UGABYTE_CONTACT_EMAIL}`} className="text-[#cef11c] underline">
-                  {UGABYTE_CONTACT_EMAIL}
-                </a>.
+                For data access or account removal requests, contact our team{" "}
+                <span className="text-[#cef11c] font-semibold">{UGABYTE_HANDLE}</span> on our official platforms.
               </p>
             </div>
           )}

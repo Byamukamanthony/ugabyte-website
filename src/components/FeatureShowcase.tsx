@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BRAND_ASSETS, UGABYTE_PHONE_CLEAN } from "../config/ugabyte";
+import { BRAND_ASSETS } from "../config/ugabyte";
 import { UgaByteLogo } from "./UgaByteLogo";
 import {
   Smartphone,

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { X, Handshake, CheckCircle2, MessageCircle, Send } from "lucide-react";
-import { UGABYTE_PHONE, UGABYTE_PHONE_CLEAN } from "../config/ugabyte";
+import { X, Handshake, CheckCircle2, Send } from "lucide-react";
+import { UGABYTE_HANDLE } from "../config/ugabyte";
 
 interface PartnerInquiryModalProps {
   isOpen: boolean;
@@ -42,13 +42,6 @@ export const PartnerInquiryModal: React.FC<PartnerInquiryModalProps> = ({
     e.preventDefault();
     if (!businessName || !phone) return;
     setSubmitted(true);
-  };
-
-  const handleOpenWhatsAppDirect = () => {
-    const message = encodeURIComponent(
-      `Hello UgaByte Partnerships! My business is ${businessName} (${category}) at ${hub}. My contact is ${phone}. I would like to partner with UgaByte.`
-    );
-    window.open(`https://wa.me/${UGABYTE_PHONE_CLEAN}?text=${message}`, "_blank");
   };
 
   return (
@@ -185,23 +178,15 @@ export const PartnerInquiryModal: React.FC<PartnerInquiryModalProps> = ({
             </h3>
 
             <p className="text-xs sm:text-sm text-[#8E98A8] leading-relaxed max-w-sm mx-auto">
-              Thank you for reaching out, <strong className="text-[#FFFFFF]">{businessName}</strong>. Our campus field lead for <strong className="text-[#cef11c]">{hub}</strong> will review your details and reach out on WhatsApp ({phone}) within 2 hours.
+              Thank you for reaching out, <strong className="text-[#FFFFFF]">{businessName}</strong>. Our campus field team for <strong className="text-[#cef11c]">{hub}</strong> will review your details and reach out to your business ({phone}) shortly.
             </p>
 
-            <div className="pt-3 space-y-2">
-              <button
-                onClick={handleOpenWhatsAppDirect}
-                className="w-full py-3 rounded-full bg-[#25D366] text-black text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 hover:brightness-105 transition-all"
-              >
-                <MessageCircle className="w-4 h-4 fill-black" />
-                <span>Chat on WhatsApp Directly</span>
-              </button>
-
+            <div className="pt-3">
               <button
                 onClick={onClose}
-                className="w-full py-2.5 rounded-full bg-[#181C26] text-[#8E98A8] hover:text-[#FFFFFF] text-xs font-semibold"
+                className="w-full py-2.5 rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-black uppercase tracking-wider hover:brightness-105 active:scale-95 transition-all"
               >
-                Close Window
+                Understood &amp; Close
               </button>
             </div>
           </div>
