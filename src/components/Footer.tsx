@@ -5,7 +5,17 @@ import {
   UGABYTE_WEB_APP_URL,
 } from "../config/ugabyte";
 import { UgaByteLogo } from "./UgaByteLogo";
-import { ExternalLink, Download, AtSign } from "lucide-react";
+import {
+  ExternalLink,
+  Download,
+  AtSign,
+  Globe,
+  HelpCircle,
+  Shield,
+  FileText,
+  Cookie,
+  RotateCcw,
+} from "lucide-react";
 
 interface FooterProps {
   onOpenLegal: (type: "privacy" | "terms" | "cookie" | "refund") => void;
@@ -82,75 +92,40 @@ export const Footer: React.FC<FooterProps> = ({
   onOpenWebApp,
 }) => {
   return (
-    <footer className="w-full bg-[#090A0E] border-t border-[#232936] pt-16 pb-12">
+    <footer className="w-full bg-[#090A0E] border-t border-[#232936] pt-14 pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-[#232936]/80">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-10 border-b border-[#232936]/80">
           {/* Brand Column */}
-          <div className="md:col-span-4 space-y-4">
+          <div className="md:col-span-5 space-y-3">
             <a href="#" className="inline-block hover:brightness-110 transition-all">
               <UgaByteLogo className="h-8" />
             </a>
             <p className="text-xs sm:text-sm text-[#8E98A8] max-w-sm leading-relaxed">
-              Your campus. One app. Discover deals, buy &amp; sell with peer trust, attend campus events, and connect with verified student businesses across Kampala.
+              Your campus. One app. Verified deals, zero-fee student marketplace, and events across Kampala.
             </p>
-            <div className="pt-2 text-xs text-[#8E98A8]">
+            <div className="pt-1 text-xs text-[#8E98A8]">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#12151C] border border-[#232936]">
                 <AtSign className="w-3.5 h-3.5 text-[#cef11c]" />
                 <span className="text-[#FFFFFF] font-mono font-semibold">
                   {UGABYTE_HANDLE}
                 </span>
-                <span className="text-[#8E98A8] text-[11px]">· Official Socials</span>
               </div>
             </div>
           </div>
 
-          {/* Navigation Column */}
-          <div className="md:col-span-2 space-y-3">
-            <h5 className="text-[11px] font-black uppercase tracking-wider text-[#FFFFFF]">
-              Navigation
-            </h5>
-            <ul className="space-y-2 text-xs text-[#8E98A8]">
-              <li>
-                <a href="#features" className="hover:text-[#cef11c] transition-colors">
-                  Features
-                </a>
-              </li>
-              <li>
-                <a href="#how-it-works" className="hover:text-[#cef11c] transition-colors">
-                  How It Works
-                </a>
-              </li>
-              <li>
-                <a href="#students" className="hover:text-[#cef11c] transition-colors">
-                  For Students
-                </a>
-              </li>
-              <li>
-                <a href="#sellers" className="hover:text-[#cef11c] transition-colors">
-                  For Businesses
-                </a>
-              </li>
-              <li>
-                <a href="#about" className="hover:text-[#cef11c] transition-colors">
-                  About Mission
-                </a>
-              </li>
-            </ul>
-          </div>
-
           {/* Product Column */}
-          <div className="md:col-span-3 space-y-3">
+          <div className="md:col-span-4 space-y-3">
             <h5 className="text-[11px] font-black uppercase tracking-wider text-[#FFFFFF]">
-              Product Access
+              Get the App
             </h5>
             <ul className="space-y-2 text-xs text-[#8E98A8]">
               <li>
                 <button
                   onClick={onDownloadApk}
-                  className="hover:text-[#cef11c] transition-colors flex items-center gap-1.5 focus:outline-none"
+                  className="hover:text-[#cef11c] transition-colors flex items-center gap-2 focus:outline-none"
                 >
-                  <Download className="w-3.5 h-3.5" />
-                  <span>Download Android APK</span>
+                  <Download className="w-3.5 h-3.5 text-[#cef11c]" />
+                  <span>Android APK</span>
                 </button>
               </li>
               <li>
@@ -159,18 +134,19 @@ export const Footer: React.FC<FooterProps> = ({
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={onOpenWebApp}
-                  className="hover:text-[#cef11c] transition-colors flex items-center gap-1.5 focus:outline-none"
+                  className="hover:text-[#cef11c] transition-colors flex items-center gap-2 focus:outline-none"
                 >
-                  <ExternalLink className="w-3.5 h-3.5" />
-                  <span>Open Web App (PWA)</span>
+                  <Globe className="w-3.5 h-3.5 text-[#cef11c]" />
+                  <span>Web App (PWA)</span>
                 </a>
               </li>
               <li>
                 <button
                   onClick={onOpenInstallGuide}
-                  className="hover:text-[#cef11c] transition-colors focus:outline-none"
+                  className="hover:text-[#cef11c] transition-colors flex items-center gap-2 focus:outline-none"
                 >
-                  APK Installation Guide
+                  <HelpCircle className="w-3.5 h-3.5 text-[#cef11c]" />
+                  <span>Install Guide</span>
                 </button>
               </li>
             </ul>
@@ -185,33 +161,37 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <button
                   onClick={() => onOpenLegal("privacy")}
-                  className="hover:text-[#cef11c] transition-colors focus:outline-none"
+                  className="hover:text-[#cef11c] transition-colors flex items-center gap-2 focus:outline-none"
                 >
-                  Privacy Policy
+                  <Shield className="w-3.5 h-3.5 text-[#cef11c]" />
+                  <span>Privacy</span>
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => onOpenLegal("terms")}
-                  className="hover:text-[#cef11c] transition-colors focus:outline-none"
+                  className="hover:text-[#cef11c] transition-colors flex items-center gap-2 focus:outline-none"
                 >
-                  Terms &amp; Conditions
+                  <FileText className="w-3.5 h-3.5 text-[#cef11c]" />
+                  <span>Terms</span>
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => onOpenLegal("cookie")}
-                  className="hover:text-[#cef11c] transition-colors focus:outline-none"
+                  className="hover:text-[#cef11c] transition-colors flex items-center gap-2 focus:outline-none"
                 >
-                  Cookie Policy
+                  <Cookie className="w-3.5 h-3.5 text-[#cef11c]" />
+                  <span>Cookies</span>
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => onOpenLegal("refund")}
-                  className="hover:text-[#cef11c] transition-colors focus:outline-none"
+                  className="hover:text-[#cef11c] transition-colors flex items-center gap-2 focus:outline-none"
                 >
-                  Refund Policy
+                  <RotateCcw className="w-3.5 h-3.5 text-[#cef11c]" />
+                  <span>Refunds</span>
                 </button>
               </li>
             </ul>
@@ -219,23 +199,7 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Official Platforms with Custom Icons (@ugabyteinc) */}
-        <div className="py-8 border-b border-[#232936]/80">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-black uppercase tracking-wider text-[#FFFFFF]">
-                  Connect with us
-                </span>
-                <span className="px-2 py-0.5 rounded-full bg-[#cef11c]/10 text-[#cef11c] text-[11px] font-mono font-bold border border-[#cef11c]/30">
-                  {UGABYTE_HANDLE}
-                </span>
-              </div>
-              <p className="text-xs text-[#8E98A8] mt-1">
-                Reach out, tag us, and follow updates across our official social channels
-              </p>
-            </div>
-          </div>
-
+        <div className="py-7 border-b border-[#232936]/80">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {UGABYTE_PLATFORMS.map((platform) => (
               <a
@@ -243,9 +207,9 @@ export const Footer: React.FC<FooterProps> = ({
                 href={platform.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3.5 rounded-xl bg-[#12151C] hover:bg-[#181C26] border border-[#232936] hover:border-[#cef11c]/50 transition-all flex items-center justify-between group"
+                className="p-3 rounded-xl bg-[#12151C] hover:bg-[#181C26] border border-[#232936] hover:border-[#cef11c]/50 transition-all flex items-center justify-between group"
               >
-                <div className="flex items-center gap-3 min-w-0">
+                <div className="flex items-center gap-2.5 min-w-0">
                   <div className="w-8 h-8 rounded-lg bg-[#181C26] group-hover:bg-[#cef11c]/10 text-[#8E98A8] group-hover:text-[#cef11c] border border-[#232936] group-hover:border-[#cef11c]/30 flex items-center justify-center shrink-0 transition-colors">
                     <PlatformIcon id={platform.id} className="w-4 h-4" />
                   </div>
@@ -265,13 +229,9 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Bottom copyright & attribution */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#8E98A8]/80 gap-3 text-center sm:text-left">
-          <div>
-            &copy; 2026 UgaByte Technologies. Built for campus hustlers. All rights reserved.
-          </div>
-          <div>
-            Active in Kampala: Makerere University, MUBS Nakawa &amp; Kyambogo.
-          </div>
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#8E98A8]/80 gap-2 text-center sm:text-left">
+          <div>&copy; 2026 UgaByte Technologies. All rights reserved.</div>
+          <div>Makerere · MUBS · Kyambogo</div>
         </div>
       </div>
     </footer>

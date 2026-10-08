@@ -1,14 +1,33 @@
 import React, { useState, useEffect } from "react";
-import { UGABYTE_APK_URL, UGABYTE_WEB_APP_URL, UGABYTE_APP_META } from "../config/ugabyte";
+import { UGABYTE_WEB_APP_URL, UGABYTE_APP_META } from "../config/ugabyte";
 import { UgaByteLogo } from "./UgaByteLogo";
-import { Download, ExternalLink, Menu, X, Zap } from "lucide-react";
+import {
+  Download,
+  Globe,
+  Menu,
+  X,
+  Zap,
+  Sun,
+  Moon,
+  Flame,
+  Smartphone,
+  Store,
+  HelpCircle,
+} from "lucide-react";
 
 interface NavbarProps {
   onDownloadApk: () => void;
   onOpenWebApp: () => void;
+  theme: "dark" | "light";
+  onToggleTheme: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onDownloadApk, onOpenWebApp }) => {
+export const Navbar: React.FC<NavbarProps> = ({
+  onDownloadApk,
+  onOpenWebApp,
+  theme,
+  onToggleTheme,
+}) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -20,7 +39,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onDownloadApk, onOpenWebApp }) =
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close menu on escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") setMobileMenuOpen(false);
@@ -29,7 +47,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onDownloadApk, onOpenWebApp }) =
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  // Prevent scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -39,11 +56,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onDownloadApk, onOpenWebApp }) =
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { label: "Features", href: "#features" },
-    { label: "How It Works", href: "#how-it-works" },
-    { label: "For Students", href: "#students" },
-    { label: "For Businesses", href: "#sellers" },
-    { label: "About", href: "#about" },
+    { label: "Pillars", href: "#features", icon: Flame },
+    { label: "Live App", href: "#live-radar", icon: Smartphone },
+    { label: "Sell", href: "#sellers", icon: Store },
+    { label: "Download", href: "#download", icon: Download },
+    { label: "FAQ", href: "#faq", icon: HelpCircle },
   ];
 
   return (
@@ -51,12 +68,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onDownloadApk, onOpenWebApp }) =
       <header
         className={`fixed top-0 left-0 w-full z-40 transition-all duration-200 ${
           scrolled
-            ? "bg-[#090A0E]/95 backdrop-blur-md border-b border-[#232936] shadow-lg shadow-black/40"
+            ? "bg-[#090A0E]/95 backdrop-blur-md border-b border-[#232936] shadow-lg shadow-black/10"
             : "bg-[#090A0E]/80 backdrop-blur-sm border-b border-[#232936]/60"
         } h-16`}
       >
         <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          {/* Zone 1: Brand Wordmark / Logo */}
+          {/* Zone 1: Official Favicon Logo */}
           <a
             href="#"
             className="flex items-center gap-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c] rounded"
@@ -65,33 +82,52 @@ export const Navbar: React.FC<NavbarProps> = ({ onDownloadApk, onOpenWebApp }) =
             <UgaByteLogo className="h-8 md:h-9 hover:brightness-110 transition-all" />
           </a>
 
-          {/* Zone 2: Desktop Navigation Links */}
+          {/* Zone 2: Icon + Label Navigation */}
           <nav
-            className="hidden md:flex items-center gap-7 text-[12px] font-bold tracking-wider uppercase text-[#8E98A8]"
+            className="hidden md:flex items-center gap-6 text-[12px] font-bold tracking-wider uppercase text-[#8E98A8]"
             aria-label="Primary Navigation"
           >
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="hover:text-[#cef11c] transition-colors focus:outline-none focus-visible:text-[#cef11c]"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const Icon = link.icon;
+              return (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="inline-flex items-center gap-1.5 hover:text-[#cef11c] transition-colors focus:outline-none focus-visible:text-[#cef11c]"
+                >
+                  <Icon className="w-3.5 h-3.5 text-[#cef11c]" />
+                  <span>{link.label}</span>
+                </a>
+              );
+            })}
           </nav>
 
-          {/* Zone 3: Trailing Action Buttons */}
-          <div className="flex items-center gap-2.5">
+          {/* Zone 3: Theme Switcher & Action Buttons */}
+          <div className="flex items-center gap-2">
+            {/* Light / Dark Mode Toggle */}
+            <button
+              onClick={onToggleTheme}
+              className="p-2 rounded-full border border-[#232936] hover:border-[#323B4E] bg-[#12151C] hover:bg-[#181C26] text-[#e3e2e8] transition-all active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
+              title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
+              aria-label={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            >
+              {theme === "dark" ? (
+                <Sun className="w-4 h-4 text-[#cef11c]" />
+              ) : (
+                <Moon className="w-4 h-4 text-[#0F172A]" />
+              )}
+            </button>
+
             <a
               href={UGABYTE_WEB_APP_URL}
               target="_blank"
               rel="noopener noreferrer"
               onClick={onOpenWebApp}
+              title="Open Web App"
               className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-[#232936] hover:border-[#323B4E] bg-[#12151C] hover:bg-[#181C26] text-[#e3e2e8] text-[12px] font-bold tracking-wide transition-all active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
             >
-              <ExternalLink className="w-3.5 h-3.5 text-[#cef11c]" />
-              <span>Open Web App</span>
+              <Globe className="w-3.5 h-3.5 text-[#cef11c]" />
+              <span>Web App</span>
             </a>
 
             <button
@@ -99,7 +135,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onDownloadApk, onOpenWebApp }) =
               className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#cef11c] text-[#090A0E] text-[12px] font-black uppercase tracking-wider hover:brightness-105 active:scale-95 transition-all shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
             >
               <Zap className="w-3.5 h-3.5 fill-[#090A0E]" />
-              <span>Download APK</span>
+              <span>Get APK</span>
             </button>
 
             {/* Mobile Hamburger Toggle */}
@@ -118,7 +154,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onDownloadApk, onOpenWebApp }) =
       {/* Mobile Backdrop */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 md:hidden transition-opacity"
+          className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 md:hidden transition-opacity"
           onClick={() => setMobileMenuOpen(false)}
           aria-hidden="true"
         />
@@ -144,24 +180,25 @@ export const Navbar: React.FC<NavbarProps> = ({ onDownloadApk, onOpenWebApp }) =
             </button>
           </div>
 
-          <nav className="flex flex-col gap-2 mt-6">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-3 py-2.5 rounded-lg text-[#e3e2e8] hover:bg-[#181C26] hover:text-[#cef11c] text-sm font-semibold transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
+          <nav className="flex flex-col gap-1.5 mt-6">
+            {navLinks.map((link) => {
+              const Icon = link.icon;
+              return (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="px-3 py-2.5 rounded-lg text-[#e3e2e8] hover:bg-[#181C26] hover:text-[#cef11c] text-sm font-semibold transition-colors flex items-center gap-2.5"
+                >
+                  <Icon className="w-4 h-4 text-[#cef11c]" />
+                  <span>{link.label}</span>
+                </a>
+              );
+            })}
           </nav>
         </div>
 
-        <div className="pt-6 border-t border-[#232936] space-y-3">
-          <div className="text-xs text-[#8E98A8]">
-            Active at Makerere, MUBS &amp; Kyambogo.
-          </div>
+        <div className="pt-6 border-t border-[#232936] space-y-2.5">
           <button
             onClick={() => {
               setMobileMenuOpen(false);
@@ -170,7 +207,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onDownloadApk, onOpenWebApp }) =
             className="w-full py-3 rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2 shadow-md active:scale-95 transition-all"
           >
             <Download className="w-4 h-4" />
-            <span>Download APK ({UGABYTE_APP_META.fileSize})</span>
+            <span>APK ({UGABYTE_APP_META.fileSize})</span>
           </button>
 
           <a
@@ -183,8 +220,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onDownloadApk, onOpenWebApp }) =
             }}
             className="w-full py-2.5 rounded-full bg-[#181C26] border border-[#232936] text-[#e3e2e8] text-xs font-bold tracking-wide flex items-center justify-center gap-2 active:scale-95 transition-all"
           >
-            <ExternalLink className="w-3.5 h-3.5 text-[#cef11c]" />
-            <span>Open Web App</span>
+            <Globe className="w-3.5 h-3.5 text-[#cef11c]" />
+            <span>Web App</span>
           </a>
         </div>
       </aside>

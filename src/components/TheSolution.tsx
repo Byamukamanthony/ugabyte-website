@@ -1,11 +1,27 @@
 import React, { useState } from "react";
-import { Flame, Store, Calendar, Briefcase, MapPin, Check, ArrowRight } from "lucide-react";
+import {
+  Flame,
+  Store,
+  Calendar,
+  Briefcase,
+  MapPin,
+  Check,
+  ExternalLink,
+  RefreshCw,
+} from "lucide-react";
+import { LiveFeedPayload, VERIFIED_APP_FEED } from "../services/liveFeed";
 
 interface TheSolutionProps {
   onClaimDrop?: () => void;
+  onOpenWebApp?: () => void;
+  feed?: LiveFeedPayload;
 }
 
-export const TheSolution: React.FC<TheSolutionProps> = ({ onClaimDrop }) => {
+export const TheSolution: React.FC<TheSolutionProps> = ({
+  onClaimDrop,
+  onOpenWebApp,
+  feed = VERIFIED_APP_FEED,
+}) => {
   const [claimed, setClaimed] = useState(false);
 
   const handleClaim = () => {
@@ -13,18 +29,21 @@ export const TheSolution: React.FC<TheSolutionProps> = ({ onClaimDrop }) => {
     if (onClaimDrop) onClaimDrop();
   };
 
+  const featuredDeal = feed.listings.food;
+
   return (
-    <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-[#232936]" id="features">
-      <div className="text-center max-w-3xl mx-auto mb-16">
-        <span className="text-[11px] font-black text-[#cef11c] uppercase tracking-wider">
-          Engineered for Hustlers
+    <section
+      className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-[#232936]"
+      id="features"
+    >
+      <div className="text-center max-w-2xl mx-auto mb-12">
+        <span className="inline-flex items-center gap-1.5 text-[11px] font-black text-[#cef11c] uppercase tracking-wider">
+          <RefreshCw className="w-3 h-3" />
+          <span>Synced from the UgaByte App</span>
         </span>
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#FFFFFF] mt-1 tracking-tight">
-          Four Core Pillars Powering Campus Daily
+          Four Core Pillars. One App.
         </h2>
-        <p className="text-sm sm:text-base text-[#8E98A8] mt-2.5 leading-relaxed">
-          From lunch discounts on the Kikoni strip to peer trading and career stepping stones, UgaByte turns campus chaos into immediate leverage.
-        </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
@@ -36,48 +55,50 @@ export const TheSolution: React.FC<TheSolutionProps> = ({ onClaimDrop }) => {
                 <Flame className="w-5 h-5 text-[#cef11c]" />
               </div>
               <span className="text-[11px] font-black uppercase bg-[#181C26] border border-[#232936] px-3 py-1 rounded-full text-[#cef11c]">
-                Live Timers
+                {featuredDeal.discount || "Live Drop"}
               </span>
             </div>
 
-            <h3 className="text-lg sm:text-xl font-bold text-[#FFFFFF] mb-1.5">
-              Flash Deals &amp; Everyday Campus Drops
+            <h3 className="text-lg sm:text-xl font-bold text-[#FFFFFF] mb-1">
+              Flash Deals &amp; Student Drops
             </h3>
-            <p className="text-xs sm:text-sm text-[#8E98A8] leading-relaxed mb-6">
-              Score partner food discounts, rolex combos, high-speed report printing in Wandegeya, and late-night coffee vouchers negotiated exclusively for university students.
+            <p className="text-xs sm:text-sm text-[#8E98A8] leading-relaxed mb-5">
+              Exclusive partner food, printing, and hostel discounts verified by Student ID.
             </p>
           </div>
 
-          {/* Live Deal Card simulation */}
+          {/* Live Deal Card synced from App */}
           <div className="bg-[#181C26] border border-[#232936] rounded-xl p-4 sm:p-5 relative mt-2">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <span className="text-[10px] font-black text-[#FFA800] uppercase tracking-wider flex items-center gap-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#FFA800] animate-pulse" />
-                  14 Left
+                  {featuredDeal.stockLeft ? `${featuredDeal.stockLeft} Left` : "Active in App"}
                 </span>
                 <h4 className="text-sm sm:text-base font-bold text-[#FFFFFF] mt-1">
-                  The Triple-Deck Rolex + Spiced Chai
+                  {featuredDeal.title}
                 </h4>
                 <div className="flex items-center gap-1.5 text-xs text-[#8E98A8] mt-1">
                   <MapPin className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                  <span>Wandegeya Food Alley · Stall 12</span>
+                  <span>{featuredDeal.location}</span>
                 </div>
               </div>
 
               <div className="text-right shrink-0">
                 <div className="text-lg sm:text-xl font-black text-[#cef11c] tabular-nums">
-                  UGX 4,000
+                  {featuredDeal.price}
                 </div>
-                <div className="text-xs line-through text-[#8E98A8] tabular-nums">
-                  UGX 6,500
-                </div>
+                {featuredDeal.originalPrice && (
+                  <div className="text-xs line-through text-[#8E98A8] tabular-nums">
+                    {featuredDeal.originalPrice}
+                  </div>
+                )}
               </div>
             </div>
 
             <div className="mt-4 flex items-center justify-between border-t border-[#232936] pt-3">
               <span className="text-[11px] text-[#8E98A8]">
-                Makerere Student Pass required
+                Student ID Pass
               </span>
               <button
                 onClick={handleClaim}
@@ -90,10 +111,10 @@ export const TheSolution: React.FC<TheSolutionProps> = ({ onClaimDrop }) => {
               >
                 {claimed ? (
                   <span className="flex items-center gap-1">
-                    <Check className="w-3.5 h-3.5" /> Claimed! Check App
+                    <Check className="w-3.5 h-3.5" /> Open in App
                   </span>
                 ) : (
-                  "Claim Drop"
+                  "Claim in App"
                 )}
               </button>
             </div>
@@ -112,27 +133,32 @@ export const TheSolution: React.FC<TheSolutionProps> = ({ onClaimDrop }) => {
               </span>
             </div>
 
-            <h3 className="text-lg sm:text-xl font-bold text-[#FFFFFF] mb-1.5">
-              Campus Marketplace
+            <h3 className="text-lg sm:text-xl font-bold text-[#FFFFFF] mb-1">
+              Peer Marketplace
             </h3>
-            <p className="text-xs sm:text-sm text-[#8E98A8] leading-relaxed mb-6">
-              Buy and sell engineering calculators, textbooks, monitors, beds, and semester hostel essentials directly with peers you can meet at University gates.
+            <p className="text-xs sm:text-sm text-[#8E98A8] leading-relaxed mb-5">
+              Trade electronics, calculators, and hostel essentials directly at campus gates.
             </p>
           </div>
 
           <div className="space-y-2 border-t border-[#232936] pt-4">
-            <div className="flex items-center justify-between text-xs py-1">
-              <span className="text-[#FFFFFF]">Casio fx-991EX Scientific Calc</span>
-              <span className="font-bold text-[#cef11c] tabular-nums">UGX 75,000</span>
-            </div>
-            <div className="flex items-center justify-between text-xs py-1 border-t border-[#232936]/40">
-              <span className="text-[#FFFFFF]">Hostel Single Mattress (4x6)</span>
-              <span className="font-bold text-[#cef11c] tabular-nums">UGX 90,000</span>
-            </div>
-            <div className="flex items-center justify-between text-xs py-1 border-t border-[#232936]/40">
-              <span className="text-[#FFFFFF]">Dell 24" IPS Desk Monitor</span>
-              <span className="font-bold text-[#cef11c] tabular-nums">UGX 260,000</span>
-            </div>
+            {feed.marketItems.map((item, i) => (
+              <button
+                key={item.title}
+                onClick={onOpenWebApp}
+                className={`w-full flex items-center justify-between text-xs py-1.5 text-left hover:opacity-80 transition-opacity ${
+                  i > 0 ? "border-t border-[#232936]/40" : ""
+                }`}
+              >
+                <span className="text-[#FFFFFF] font-medium truncate pr-2">
+                  {item.title}
+                </span>
+                <span className="font-bold text-[#cef11c] tabular-nums shrink-0 flex items-center gap-1">
+                  {item.price}
+                  <ExternalLink className="w-3 h-3 opacity-60" />
+                </span>
+              </button>
+            ))}
           </div>
         </div>
 
@@ -144,32 +170,40 @@ export const TheSolution: React.FC<TheSolutionProps> = ({ onClaimDrop }) => {
                 <Calendar className="w-5 h-5 text-[#cef11c]" />
               </div>
               <span className="text-[11px] font-black uppercase bg-[#181C26] border border-[#232936] px-3 py-1 rounded-full text-[#8E98A8]">
-                Live Calendar
+                QR Pass
               </span>
             </div>
 
-            <h3 className="text-lg sm:text-xl font-bold text-[#FFFFFF] mb-1.5">
-              Campus Events &amp; Culture
+            <h3 className="text-lg sm:text-xl font-bold text-[#FFFFFF] mb-1">
+              Campus Events
             </h3>
-            <p className="text-xs sm:text-sm text-[#8E98A8] leading-relaxed mb-6">
-              Guild elections, Inter-Hall Sports Galas, Lumumba Hall Nights, tech meetups, and open-mic sessions with digital pass check-in.
+            <p className="text-xs sm:text-sm text-[#8E98A8] leading-relaxed mb-5">
+              Hackathons, hall nights, and inter-university sports with instant QR check-in.
             </p>
           </div>
 
-          <div className="bg-[#181C26] p-3.5 rounded-xl border border-[#232936] flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-lg bg-[#12151C] flex flex-col items-center justify-center border border-[#232936] text-[#cef11c] shrink-0">
-              <span className="text-[10px] font-black uppercase">FRI</span>
-              <span className="text-lg font-black leading-none">24</span>
-            </div>
-            <div>
-              <div className="text-xs sm:text-sm font-bold text-[#FFFFFF]">
-                Inter-University FinTech Hackathon
-              </div>
-              <span className="text-[11px] text-[#8E98A8]">
-                Main Hall Makerere · 500+ Participants
+          <button
+            onClick={onOpenWebApp}
+            className="w-full text-left bg-[#181C26] p-3.5 rounded-xl border border-[#232936] hover:border-[#cef11c]/50 flex items-center gap-3.5 transition-colors"
+          >
+            <div className="w-11 h-11 rounded-lg bg-[#12151C] flex flex-col items-center justify-center border border-[#232936] text-[#cef11c] shrink-0">
+              <span className="text-[10px] font-black uppercase">
+                {feed.featuredEvent.day}
+              </span>
+              <span className="text-base font-black leading-none">
+                {feed.featuredEvent.date}
               </span>
             </div>
-          </div>
+            <div className="min-w-0 flex-1">
+              <div className="text-xs sm:text-sm font-bold text-[#FFFFFF] truncate">
+                {feed.featuredEvent.title}
+              </div>
+              <span className="text-[11px] text-[#8E98A8] truncate block">
+                {feed.featuredEvent.venue}
+              </span>
+            </div>
+            <ExternalLink className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
+          </button>
         </div>
 
         {/* Pillar 4: Internships & Freelance Gigs (Col-Span 7) */}
@@ -180,38 +214,40 @@ export const TheSolution: React.FC<TheSolutionProps> = ({ onClaimDrop }) => {
                 <Briefcase className="w-5 h-5 text-[#cef11c]" />
               </div>
               <span className="text-[11px] font-black uppercase bg-[#cef11c]/10 border border-[#cef11c]/30 px-3 py-1 rounded-full text-[#cef11c]">
-                Earn &amp; Grow
+                Verified Roles
               </span>
             </div>
 
-            <h3 className="text-lg sm:text-xl font-bold text-[#FFFFFF] mb-1.5">
-              Internships &amp; Freelance Gigs
+            <h3 className="text-lg sm:text-xl font-bold text-[#FFFFFF] mb-1">
+              Internships &amp; Campus Gigs
             </h3>
-            <p className="text-xs sm:text-sm text-[#8E98A8] leading-relaxed mb-6">
-              Vetted campus ambassador programs, weekend graphic design gigs, data entry for local startups, and software engineering internships with African tech ventures.
+            <p className="text-xs sm:text-sm text-[#8E98A8] leading-relaxed mb-5">
+              Vetted brand ambassador roles, tech internships, and paid student tasks.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 border-t border-[#232936] pt-4">
-            <div className="p-3.5 rounded-xl bg-[#181C26] border border-[#232936]">
-              <span className="text-[10px] text-[#cef11c] font-black uppercase tracking-wider">
-                Tech Ambassador
-              </span>
-              <h5 className="text-xs sm:text-sm font-bold text-[#FFFFFF] mt-1">
-                Flutterwave Campus Lead
-              </h5>
-              <p className="text-[11px] text-[#8E98A8] mt-1">Stipend: UGX 450k/mo + Merch</p>
-            </div>
-
-            <div className="p-3.5 rounded-xl bg-[#181C26] border border-[#232936]">
-              <span className="text-[10px] text-[#FFA800] font-black uppercase tracking-wider">
-                Freelance Task
-              </span>
-              <h5 className="text-xs sm:text-sm font-bold text-[#FFFFFF] mt-1">
-                Event Photography (2 Days)
-              </h5>
-              <p className="text-[11px] text-[#8E98A8] mt-1">Pay: UGX 200,000 on completion</p>
-            </div>
+            {feed.featuredGigs.map((gig, idx) => (
+              <button
+                key={gig.title}
+                onClick={onOpenWebApp}
+                className="p-3.5 rounded-xl bg-[#181C26] border border-[#232936] hover:border-[#cef11c]/50 text-left transition-colors"
+              >
+                <span
+                  className={`text-[10px] font-black uppercase tracking-wider ${
+                    idx === 0 ? "text-[#cef11c]" : "text-[#FFA800]"
+                  }`}
+                >
+                  {gig.role}
+                </span>
+                <h5 className="text-xs sm:text-sm font-bold text-[#FFFFFF] mt-0.5 truncate">
+                  {gig.title}
+                </h5>
+                <p className="text-[11px] text-[#8E98A8] mt-0.5 font-mono">
+                  {gig.pay}
+                </p>
+              </button>
+            ))}
           </div>
         </div>
       </div>

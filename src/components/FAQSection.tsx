@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, HelpCircle } from "lucide-react";
 import { UGABYTE_APP_META, UGABYTE_HANDLE } from "../config/ugabyte";
 
 export const FAQSection: React.FC = () => {
@@ -8,39 +8,19 @@ export const FAQSection: React.FC = () => {
   const faqs = [
     {
       q: "What is UgaByte?",
-      a: "UgaByte is a campus-focused digital platform built for university students and the businesses around them. It brings together campus deals, peer marketplace trading, event discovery, student gigs, and local business offers into one unified application.",
+      a: "UgaByte is the all-in-one campus super-app for Ugandan university students—combining verified student deals, a 0% fee peer marketplace, campus events, and gigs.",
     },
     {
-      q: "Who is UgaByte for?",
-      a: "UgaByte is built for undergraduate and postgraduate university students, student entrepreneurs, campus creators, and local businesses operating in and around Ugandan university campuses.",
+      q: "Which universities are supported?",
+      a: "Active across Makerere University, MUBS Nakawa, and Kyambogo University, with UCU and MUST rolling out next.",
     },
     {
-      q: "Can I use UgaByte without downloading the app?",
-      a: "Yes. You can access the official UgaByte Web App directly in any browser on your phone, tablet, or laptop. It works as a lightweight Progressive Web App (PWA) with zero mandatory install.",
+      q: "Is the Android APK safe to install?",
+      a: `Yes. The official ${UGABYTE_APP_META.version} APK (${UGABYTE_APP_META.fileSize}) is signed and verified via SHA-256 checksum, or you can use the Web App instantly in any browser.`,
     },
     {
-      q: "Where can I download the Android app?",
-      a: `You can download the official Android APK directly from this website. The APK weighs approximately ${UGABYTE_APP_META.fileSize}, runs on Android 8.0 and above, and is hosted with verified checksums.`,
-    },
-    {
-      q: "Is UgaByte free?",
-      a: "Yes. Creating an account, browsing campus deals, listing items in the peer marketplace, and accessing campus event passes is completely free for students. We charge zero percent listing fees on personal student trades.",
-    },
-    {
-      q: "What can I do on UgaByte?",
-      a: "On UgaByte, you can discover flash food and service drops, buy and sell textbooks, electronics, and hostel items, discover and RSVP to campus events, find student freelance gigs, and connect with trusted peers.",
-    },
-    {
-      q: "Can I sell products as a student?",
-      a: "Absolutely. Student-to-student commerce is one of UgaByte's core pillars. You can list your unused electronics, textbooks, room appliances, or student services in seconds.",
-    },
-    {
-      q: "Can businesses and campus stalls promote themselves?",
-      a: "Yes! Campus-area food stalls, bookstores, tech repair shops, and commercial service providers can partner with UgaByte to publish verified campus drops and connect directly with student customers.",
-    },
-    {
-      q: "How do I contact UgaByte?",
-      a: `You can reach out or DM our team ${UGABYTE_HANDLE} across our official channels on X (Twitter), Instagram, TikTok, and Facebook.`,
+      q: "How do I reach the UgaByte team?",
+      a: `Connect with us via ${UGABYTE_HANDLE} on X (Twitter), Instagram, TikTok, and Facebook.`,
     },
   ];
 
@@ -49,13 +29,14 @@ export const FAQSection: React.FC = () => {
   };
 
   return (
-    <section className="py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="text-center mb-16">
-        <span className="text-[11px] font-black text-[#cef11c] uppercase tracking-wider">
-          Common Questions
+    <section className="py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" id="faq">
+      <div className="text-center mb-12">
+        <span className="inline-flex items-center gap-1.5 text-[11px] font-black text-[#cef11c] uppercase tracking-wider">
+          <HelpCircle className="w-3.5 h-3.5" />
+          <span>FAQ</span>
         </span>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#FFFFFF] mt-1 tracking-tight">
-          Everything You Need to Know
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-[#FFFFFF] mt-1 tracking-tight">
+          Quick Answers
         </h2>
       </div>
 
@@ -69,7 +50,7 @@ export const FAQSection: React.FC = () => {
             >
               <button
                 onClick={() => toggle(idx)}
-                className="w-full p-5 sm:p-6 text-left flex items-center justify-between text-sm sm:text-base font-bold text-[#FFFFFF] focus:outline-none focus-visible:bg-[#181C26]"
+                className="w-full p-5 text-left flex items-center justify-between text-sm sm:text-base font-bold text-[#FFFFFF] focus:outline-none focus-visible:bg-[#181C26]"
                 aria-expanded={isOpen}
               >
                 <span>{faq.q}</span>
@@ -81,7 +62,7 @@ export const FAQSection: React.FC = () => {
               </button>
 
               {isOpen && (
-                <div className="px-5 sm:px-6 pb-6 text-xs sm:text-sm text-[#8E98A8] border-t border-[#232936]/60 pt-3 leading-relaxed">
+                <div className="px-5 pb-5 text-xs sm:text-sm text-[#8E98A8] border-t border-[#232936]/60 pt-3 leading-relaxed">
                   {faq.a}
                 </div>
               )}

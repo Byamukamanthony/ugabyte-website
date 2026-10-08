@@ -1,35 +1,71 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
 import { CampusTicker } from "./components/CampusTicker";
-import { TheProblem } from "./components/TheProblem";
 import { TheSolution } from "./components/TheSolution";
 import { FeatureShowcase } from "./components/FeatureShowcase";
-import { ForStudents } from "./components/ForStudents";
 import { ForBusinesses } from "./components/ForBusinesses";
-import { HowItWorks } from "./components/HowItWorks";
 import { DownloadSection } from "./components/DownloadSection";
-import { WebAppSection } from "./components/WebAppSection";
-import { WhyUgaByte } from "./components/WhyUgaByte";
-import { EcosystemSection } from "./components/EcosystemSection";
 import { FAQSection } from "./components/FAQSection";
-import { FinalCTA } from "./components/FinalCTA";
 import { Footer } from "./components/Footer";
 import { InstallGuideModal } from "./components/InstallGuideModal";
 import { PartnerInquiryModal } from "./components/PartnerInquiryModal";
 import { LegalModal } from "./components/LegalModal";
 import { DownloadToast } from "./components/DownloadToast";
 import { UGABYTE_APK_URL, UGABYTE_WEB_APP_URL } from "./config/ugabyte";
+import {
+  fetchLiveAppFeed,
+  VERIFIED_APP_FEED,
+  LiveFeedPayload,
+} from "./services/liveFeed";
 
 export default function App() {
   const [installGuideOpen, setInstallGuideOpen] = useState(false);
   const [partnerModalOpen, setPartnerModalOpen] = useState(false);
   const [legalTab, setLegalTab] = useState<"privacy" | "terms" | "cookie" | "refund" | null>(null);
   const [downloadToastOpen, setDownloadToastOpen] = useState(false);
+  const [liveFeed, setLiveFeed] = useState<LiveFeedPayload>(VERIFIED_APP_FEED);
+
+  const [theme, setTheme] = useState<"dark" | "light">(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("ugabyte_theme");
+      if (saved === "light" || saved === "dark") return saved;
+    }
+    return "dark";
+  });
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === "light") {
+      root.classList.remove("dark");
+      root.classList.add("light");
+    } else {
+      root.classList.remove("light");
+      root.classList.add("dark");
+    }
+    localStorage.setItem("ugabyte_theme", theme);
+  }, [theme]);
+
+  useEffect(() => {
+    let active = true;
+    const syncFeed = async () => {
+      const payload = await fetchLiveAppFeed();
+      if (active) setLiveFeed(payload);
+    };
+    syncFeed();
+    const interval = setInterval(syncFeed, 60000);
+    return () => {
+      active = false;
+      clearInterval(interval);
+    };
+  }, []);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+  };
 
   const handleDownloadApk = () => {
     setDownloadToastOpen(true);
-    // Trigger download of the configured APK URL
     const link = document.createElement("a");
     link.href = UGABYTE_APK_URL;
     link.setAttribute("download", "ugabyte-v1.2.0-release.apk");
@@ -51,90 +87,56 @@ export default function App() {
     }
   };
 
-  const handleStudentChat = () => {
-    handleOpenWebApp();
-  };
-
-  const handleSelectStudentAction = (actionKey: string) => {
-    // Smooth scroll to relevant preview or download
-    if (actionKey === "discover" || actionKey === "buy") {
-      const el = document.getElementById("features");
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    } else if (actionKey === "sell") {
-      setPartnerModalOpen(true);
-    } else {
-      const el = document.getElementById("download");
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-[#090A0E] text-[#e3e2e8] flex flex-col font-sans selection:bg-[#cef11c] selection:text-[#090A0E]">
-      {/* Sticky Navbar */}
+    <div className="min-h-screen bg-[#090A0E] text-[#e3e2e8] flex flex-col font-sans selection:bg-[#cef11c] selection:text-[#090A0E] transition-colors duration-200">
+      {/* Sticky Navbar with Theme Switcher */}
       <Navbar
         onDownloadApk={handleDownloadApk}
         onOpenWebApp={handleOpenWebApp}
+        theme={theme}
+        onToggleTheme={toggleTheme}
       />
 
-      {/* Main Content Flow */}
+      {/* Streamlined High-Converting Main Content Flow */}
       <main className="flex-1">
-        {/* Hero Section */}
+        {/* 1. Hero Section */}
         <Hero
           onDownloadApk={handleDownloadApk}
           onOpenWebApp={handleOpenWebApp}
         />
 
-        {/* Live Campus Marquee Strip */}
+        {/* 2. Live Campus Marquee Strip */}
         <CampusTicker />
 
-        {/* Problem Section: Campus Friction & Fragmented Info */}
-        <TheProblem />
-
-        {/* Solution Section: 4 Core Pillars Bento Grid */}
-        <TheSolution onClaimDrop={handleDownloadApk} />
-
-        {/* Feature Showcase: Mobile Architecture & Live App HUD Preview */}
-        <FeatureShowcase
-          onInspectApk={handleInspectApk}
-          onStudentChat={handleStudentChat}
+        {/* 3. Four Core Pillars Bento Grid (Synced with App Feed) */}
+        <TheSolution
+          onClaimDrop={handleDownloadApk}
+          onOpenWebApp={handleOpenWebApp}
+          feed={liveFeed}
         />
 
-        {/* For Students: 5 Action Vectors */}
-        <ForStudents onSelectAction={handleSelectStudentAction} />
+        {/* 4. Live App Radar & Mobile Architecture */}
+        <FeatureShowcase
+          onInspectApk={handleInspectApk}
+          onStudentChat={handleOpenWebApp}
+          feed={liveFeed}
+        />
 
-        {/* For Campus Businesses & Sellers */}
+        {/* 5. For Campus Businesses & Sellers */}
         <ForBusinesses onOpenPartnerModal={() => setPartnerModalOpen(true)} />
 
-        {/* How It Works: 4 Steps */}
-        <HowItWorks />
-
-        {/* Dedicated APK Download Section */}
+        {/* 6. Direct APK & Web App Download Section */}
         <DownloadSection
           onDownloadApk={handleDownloadApk}
           onOpenWebApp={handleOpenWebApp}
           onOpenInstallGuide={() => setInstallGuideOpen(true)}
         />
 
-        {/* Web App Section */}
-        <WebAppSection onOpenWebApp={handleOpenWebApp} />
-
-        {/* Why UgaByte: Product Philosophy */}
-        <WhyUgaByte />
-
-        {/* UgaByte Ecosystem: The Mission & Digital Layer */}
-        <EcosystemSection />
-
-        {/* Common Questions & Verified FAQ */}
+        {/* 7. Quick FAQ */}
         <FAQSection />
-
-        {/* Final Conversion CTA */}
-        <FinalCTA
-          onDownloadApk={handleDownloadApk}
-          onOpenWebApp={handleOpenWebApp}
-        />
       </main>
 
-      {/* Footer with Legal & Contact links */}
+      {/* Footer with Official Favicon Logo, @ugabyteinc Icon Cards & Legal Links */}
       <Footer
         onOpenLegal={(tab) => setLegalTab(tab)}
         onOpenInstallGuide={() => setInstallGuideOpen(true)}

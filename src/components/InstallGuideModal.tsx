@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { X, Smartphone, Download, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { X, Smartphone, Download } from "lucide-react";
 import { UGABYTE_APP_META } from "../config/ugabyte";
 
 interface InstallGuideModalProps {
@@ -31,85 +31,86 @@ export const InstallGuideModal: React.FC<InstallGuideModalProps> = ({
 
   if (!isOpen) return null;
 
+  const steps = [
+    {
+      num: "1",
+      title: "Download APK",
+      desc: `Save the ${UGABYTE_APP_META.fileSize} package to your Android device.`,
+    },
+    {
+      num: "2",
+      title: "Allow Installation",
+      desc: "Toggle 'Allow from this source' if prompted by your browser.",
+    },
+    {
+      num: "3",
+      title: "Open UgaByte",
+      desc: "Tap the downloaded file in your notifications to launch.",
+    },
+  ];
+
   return (
     <div
-      className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="install-guide-title"
     >
       <div
-        className="bg-[#12151C] border border-[#232936] rounded-2xl max-w-lg w-full p-6 sm:p-7 shadow-2xl relative"
+        className="bg-card border border-subtle rounded-2xl max-w-md w-full p-6 relative"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 text-[#8E98A8] hover:text-[#FFFFFF] p-1 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
+          className="absolute top-5 right-5 text-secondary-ink hover:text-primary-ink p-1 rounded-lg focus:outline-none"
           aria-label="Close dialog"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <div className="flex items-center gap-2.5 mb-5 text-[#cef11c]">
-          <Smartphone className="w-5 h-5" />
-          <h3
-            id="install-guide-title"
-            className="text-lg font-bold text-[#FFFFFF]"
-          >
-            How to Install UgaByte APK
+        <div className="flex items-center gap-2.5 mb-5">
+          <div className="w-8 h-8 rounded-lg bg-accent-soft flex items-center justify-center text-accent">
+            <Smartphone className="w-4 h-4" />
+          </div>
+          <h3 id="install-guide-title" className="text-base font-bold text-primary-ink">
+            Android Install Guide
           </h3>
         </div>
 
-        <div className="space-y-4 text-xs sm:text-sm text-[#8E98A8] leading-relaxed">
-          <div className="flex items-start gap-3.5 p-3 rounded-xl bg-[#181C26] border border-[#232936]">
-            <span className="w-6 h-6 rounded-full bg-[#cef11c] text-[#090A0E] flex items-center justify-center font-black text-xs shrink-0 mt-0.5">
-              1
-            </span>
-            <div>
-              <strong className="text-[#FFFFFF] block mb-0.5">Download the APK:</strong>
-              Tap "Download APK" to save the official {UGABYTE_APP_META.fileSize} package to your phone's storage.
+        <div className="space-y-2.5 text-sm">
+          {steps.map((s) => (
+            <div
+              key={s.num}
+              className="flex items-start gap-3 p-3 rounded-xl bg-surface border border-subtle"
+            >
+              <span className="w-6 h-6 rounded-full btn-primary-lime flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
+                {s.num}
+              </span>
+              <div>
+                <div className="font-bold text-primary-ink text-xs">{s.title}</div>
+                <div className="text-xs text-secondary-ink mt-0.5">{s.desc}</div>
+              </div>
             </div>
-          </div>
-
-          <div className="flex items-start gap-3.5 p-3 rounded-xl bg-[#181C26] border border-[#232936]">
-            <span className="w-6 h-6 rounded-full bg-[#cef11c] text-[#090A0E] flex items-center justify-center font-black text-xs shrink-0 mt-0.5">
-              2
-            </span>
-            <div>
-              <strong className="text-[#FFFFFF] block mb-0.5">Enable "Install Unknown Apps":</strong>
-              If prompted by Chrome or your file manager, toggle "Allow from this source" in settings. UgaByte is verified safe and malware-free.
-            </div>
-          </div>
-
-          <div className="flex items-start gap-3.5 p-3 rounded-xl bg-[#181C26] border border-[#232936]">
-            <span className="w-6 h-6 rounded-full bg-[#cef11c] text-[#090A0E] flex items-center justify-center font-black text-xs shrink-0 mt-0.5">
-              3
-            </span>
-            <div>
-              <strong className="text-[#FFFFFF] block mb-0.5">Complete Installation:</strong>
-              Open your phone notification shade or Downloads folder and tap <code className="text-[#cef11c] bg-[#090A0E] px-1.5 py-0.5 rounded font-mono">ugabyte-v1.2.0.apk</code>.
-            </div>
-          </div>
+          ))}
         </div>
 
-        <div className="mt-6 pt-4 border-t border-[#232936] flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="mt-6 pt-4 border-t border-subtle flex items-center justify-end gap-2.5">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 rounded-lg bg-surface border border-subtle text-primary-ink text-xs font-semibold hover:bg-elevated transition-colors"
+          >
+            Close
+          </button>
           <button
             onClick={() => {
               onClose();
               onDownloadApk();
             }}
-            className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2 hover:brightness-105 transition-all"
+            className="px-5 py-2 rounded-lg btn-primary-lime text-xs font-bold flex items-center gap-1.5"
           >
-            <Download className="w-4 h-4" />
-            <span>Download APK Now</span>
-          </button>
-
-          <button
-            onClick={onClose}
-            className="w-full sm:w-auto px-5 py-2.5 rounded-full bg-[#181C26] border border-[#232936] text-[#e3e2e8] text-xs font-bold hover:bg-[#232936] transition-all"
-          >
-            Understood
+            <Download className="w-3.5 h-3.5" />
+            <span>Download APK</span>
           </button>
         </div>
       </div>
