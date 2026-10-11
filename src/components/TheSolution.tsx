@@ -37,7 +37,7 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
           <span>Live Supabase Feed · {feed.stats.lastSynced}</span>
         </span>
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#FFFFFF] mt-1 tracking-tight">
-          Four Core Pillars by UgaByte Inc.
+          Four Core Pillars. One App.
         </h2>
       </div>
 

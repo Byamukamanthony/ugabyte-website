@@ -7,13 +7,16 @@ export const EcosystemSection: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <div className="lg:col-span-5 space-y-6">
           <span className="text-[11px] font-black text-[#cef11c] uppercase tracking-wider">
-            About UgaByte Inc.
+            The Mission
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#FFFFFF] tracking-tight leading-tight">
-            Building digital products and platforms that connect people with opportunities, services, deals, and commerce.
+            More than a marketplace: building the digital layer for African campus life.
           </h2>
           <p className="text-sm sm:text-base text-[#8E98A8] leading-relaxed">
-            UgaByte Inc. engineers high-speed digital products tailored for real-world communities, combining verified local commerce, peer-to-peer marketplaces, live events, and career opportunities in one unified ecosystem.
+            Universities across Africa are densely populated micro-cities with distinct economies, languages, and logistical challenges. Mainstream Big Tech platforms ignore these nuanced hyper-local dynamics.
+          </p>
+          <p className="text-sm sm:text-base text-[#8E98A8] leading-relaxed">
+            UgaByte is purpose-built to empower the next generation of East African leaders with the economic tools, peer security, and digital infrastructure required to build financial independence right from lecture halls.
           </p>
         </div>
 

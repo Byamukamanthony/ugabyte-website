@@ -64,7 +64,7 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadApk, onOpenWebApp }) => {
         {/* Eyebrow */}
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#12151C] border border-[#232936] text-[#cef11c] text-[11px] font-extrabold uppercase tracking-widest mb-4">
           <Zap className="w-3 h-3 fill-[#cef11c]" />
-          <span>UGABYTE INC.</span>
+          <span>YOUR CAMPUS. ONE APP.</span>
         </div>
 
         {/* Main Display Headline */}

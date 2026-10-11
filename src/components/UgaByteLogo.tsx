@@ -46,14 +46,11 @@ export const UgaByteLogo: React.FC<UgaByteLogoProps> = ({
         <polygon points="700,266 796,100 796,729 700,673" fill="#a3cc00" />
       </svg>
 
-      {/* Brand Name Typography: UgaByte Inc. */}
+      {/* Brand Name Typography */}
       {showWordmark && (
-        <span className={`${wordmarkClassName} inline-flex items-baseline gap-1`}>
-          <span>
-            <span className="text-[#FFFFFF]">Uga</span>
-            <span className="text-[#cef11c] logo-accent">Byte</span>
-          </span>
-          <span className="text-[#FFFFFF]">Inc.</span>
+        <span className={`${wordmarkClassName} inline-flex items-baseline`}>
+          <span className="text-[#FFFFFF]">Uga</span>
+          <span className="text-[#cef11c] logo-accent">Byte</span>
         </span>
       )}
     </div>

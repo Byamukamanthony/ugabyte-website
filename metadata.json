@@ -1,6 +1,6 @@
 {
-  "name": "UgaByte Inc. | Official Website",
-  "description": "UgaByte Inc. builds digital products and platforms that connect people with opportunities, services, deals, and commerce.",
+  "name": "UgaByte — Your Campus. One App.",
+  "description": "Discover deals, events, products, opportunities and everything happening around your campus — all in one place.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
