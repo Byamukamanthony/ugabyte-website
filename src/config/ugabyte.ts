@@ -1,6 +1,6 @@
 /**
  * Centralized Configuration for UgaByte
- * Source of truth for URLs, social links, and app metadata.
+ * Source of truth for URLs, Supabase connection, social links, and app metadata.
  */
 
 export const UGABYTE_APK_URL =
@@ -9,6 +9,14 @@ export const UGABYTE_APK_URL =
 
 export const UGABYTE_WEB_APP_URL =
   import.meta.env.VITE_UGABYTE_WEB_APP_URL || "https://ugabyte.vercel.app/";
+
+export const SUPABASE_URL =
+  import.meta.env.VITE_SUPABASE_URL ||
+  "https://kojhndxcclkwrxulwfsk.supabase.co";
+
+export const SUPABASE_ANON_KEY =
+  import.meta.env.VITE_SUPABASE_ANON_KEY ||
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtvamhuZHhjY2xrd3J4dWx3ZnNrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5NjAyOTAsImV4cCI6MjA5NjUzNjI5MH0.oNbW4niZFedxsWC6xYFoLMOwJDWAnppeCmvflkCrUCU";
 
 export const UGABYTE_HANDLE = "@ugabyteinc";
 
@@ -58,8 +66,8 @@ export const UGABYTE_APP_META = {
 } as const;
 
 export const BRAND_ASSETS = {
-  icon: "/ugabyte-icon.svg",
-  logo: "/ugabyte-icon.svg",
+  icon: "/favicon.svg",
+  logo: "/favicon.svg",
   heroPortrait:
     "https://lh3.googleusercontent.com/aida-public/AB6AXuAtXafFzie9FAs8hKzkGlirs1SPP9pgnFYSn27AQEhT7YXYx53Nmke5BmxJ4LDUVCzuc72Z3f22NKVbxsbBJPVfei4NayASOL7xVXm_inNEmrlR4634T_Go_iYjmZmCK86NAtUB2mdCSjiQ84jlza0o_nHZYYS4PQ3WqXEXTs7NWBGrmJOA2S8FyqqHKUPafDCwvcN3Lda8a1j5dDa92N_xRHuVe2r3rH6_2jJoBmgqNaRN4XfJbT6j",
   headphonesProduct:

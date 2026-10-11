@@ -14,8 +14,8 @@ import { LegalModal } from "./components/LegalModal";
 import { DownloadToast } from "./components/DownloadToast";
 import { UGABYTE_APK_URL, UGABYTE_WEB_APP_URL } from "./config/ugabyte";
 import {
-  fetchLiveAppFeed,
-  VERIFIED_APP_FEED,
+  subscribeToLiveAppFeed,
+  EMPTY_LIVE_FEED,
   LiveFeedPayload,
 } from "./services/liveFeed";
 
@@ -24,7 +24,7 @@ export default function App() {
   const [partnerModalOpen, setPartnerModalOpen] = useState(false);
   const [legalTab, setLegalTab] = useState<"privacy" | "terms" | "cookie" | "refund" | null>(null);
   const [downloadToastOpen, setDownloadToastOpen] = useState(false);
-  const [liveFeed, setLiveFeed] = useState<LiveFeedPayload>(VERIFIED_APP_FEED);
+  const [liveFeed, setLiveFeed] = useState<LiveFeedPayload>(EMPTY_LIVE_FEED);
 
   const [theme, setTheme] = useState<"dark" | "light">(() => {
     if (typeof window !== "undefined") {
@@ -47,17 +47,10 @@ export default function App() {
   }, [theme]);
 
   useEffect(() => {
-    let active = true;
-    const syncFeed = async () => {
-      const payload = await fetchLiveAppFeed();
-      if (active) setLiveFeed(payload);
-    };
-    syncFeed();
-    const interval = setInterval(syncFeed, 60000);
-    return () => {
-      active = false;
-      clearInterval(interval);
-    };
+    const unsubscribe = subscribeToLiveAppFeed((payload) => {
+      setLiveFeed(payload);
+    });
+    return () => unsubscribe();
   }, []);
 
   const toggleTheme = () => {
@@ -108,7 +101,7 @@ export default function App() {
         {/* 2. Live Campus Marquee Strip */}
         <CampusTicker />
 
-        {/* 3. Four Core Pillars Bento Grid (Synced with App Feed) */}
+        {/* 3. Four Core Pillars Bento Grid (Synced with Supabase) */}
         <TheSolution
           onClaimDrop={handleDownloadApk}
           onOpenWebApp={handleOpenWebApp}
