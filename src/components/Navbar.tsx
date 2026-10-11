@@ -59,6 +59,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { label: "Pillars", href: "#features", icon: Flame },
     { label: "Live App", href: "#live-radar", icon: Smartphone },
     { label: "Sell", href: "#sellers", icon: Store },
+    { label: "About", href: "#about", icon: Zap },
     { label: "Download", href: "#download", icon: Download },
     { label: "FAQ", href: "#faq", icon: HelpCircle },
   ];
@@ -77,7 +78,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <a
             href="#"
             className="flex items-center gap-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c] rounded"
-            aria-label="UgaByte Home"
+            aria-label="UgaByte Inc. Home"
           >
             <UgaByteLogo className="h-8 md:h-9 hover:brightness-110 transition-all" />
           </a>

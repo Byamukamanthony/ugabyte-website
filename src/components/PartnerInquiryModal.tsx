@@ -42,19 +42,20 @@ export const PartnerInquiryModal: React.FC<PartnerInquiryModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="partner-modal-title"
     >
       <div
-        className="bg-card border border-subtle rounded-2xl max-w-md w-full p-6 relative"
+        className="bg-[#12151C] border border-[#232936] rounded-2xl max-w-md w-full p-6 relative shadow-elegant"
         onClick={(e) => e.stopPropagation()}
       >
         <button
+          type="button"
           onClick={onClose}
-          className="absolute top-5 right-5 text-secondary-ink hover:text-primary-ink p-1 rounded-lg focus:outline-none"
+          className="absolute top-5 right-5 text-[#8E98A8] hover:text-[#FFFFFF] p-1 rounded-lg focus:outline-none"
           aria-label="Close dialog"
         >
           <X className="w-5 h-5" />
@@ -63,17 +64,20 @@ export const PartnerInquiryModal: React.FC<PartnerInquiryModalProps> = ({
         {!submitted ? (
           <>
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-accent-soft flex items-center justify-center text-accent">
+              <div className="w-8 h-8 rounded-lg bg-[#cef11c]/15 border border-[#cef11c]/30 flex items-center justify-center text-[#cef11c]">
                 <Store className="w-4 h-4" />
               </div>
-              <h3 id="partner-modal-title" className="text-base font-bold text-primary-ink">
+              <h3
+                id="partner-modal-title"
+                className="font-serif text-lg font-bold text-[#FFFFFF]"
+              >
                 Become a Campus Seller
               </h3>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-3.5">
               <div>
-                <label className="block text-xs font-semibold text-secondary-ink mb-1">
+                <label className="block text-xs font-semibold text-[#8E98A8] mb-1">
                   Business / Store Name *
                 </label>
                 <input
@@ -82,12 +86,12 @@ export const PartnerInquiryModal: React.FC<PartnerInquiryModalProps> = ({
                   value={businessName}
                   onChange={(e) => setBusinessName(e.target.value)}
                   placeholder="e.g. Kikoni Grill Hub"
-                  className="w-full bg-surface border border-subtle rounded-xl px-3.5 py-2.5 text-xs text-primary-ink focus:outline-none focus:border-strong"
+                  className="w-full bg-[#181C26] border border-[#232936] rounded-xl px-3.5 py-2.5 text-xs text-[#FFFFFF] focus:outline-none focus:border-[#cef11c]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-secondary-ink mb-1">
+                <label className="block text-xs font-semibold text-[#8E98A8] mb-1">
                   Contact Number *
                 </label>
                 <input
@@ -96,19 +100,19 @@ export const PartnerInquiryModal: React.FC<PartnerInquiryModalProps> = ({
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="+256 7XX XXX XXX"
-                  className="w-full bg-surface border border-subtle rounded-xl px-3.5 py-2.5 text-xs text-primary-ink focus:outline-none focus:border-strong"
+                  className="w-full bg-[#181C26] border border-[#232936] rounded-xl px-3.5 py-2.5 text-xs text-[#FFFFFF] focus:outline-none focus:border-[#cef11c]"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-semibold text-secondary-ink mb-1">
+                  <label className="block text-xs font-semibold text-[#8E98A8] mb-1">
                     Campus Hub
                   </label>
                   <select
                     value={hub}
                     onChange={(e) => setHub(e.target.value)}
-                    className="w-full bg-surface border border-subtle rounded-xl px-2.5 py-2.5 text-xs text-primary-ink focus:outline-none"
+                    className="w-full bg-[#181C26] border border-[#232936] rounded-xl px-2.5 py-2.5 text-xs text-[#FFFFFF] focus:outline-none focus:border-[#cef11c]"
                   >
                     <option value="Makerere University">Makerere</option>
                     <option value="MUBS Nakawa">MUBS Nakawa</option>
@@ -117,13 +121,13 @@ export const PartnerInquiryModal: React.FC<PartnerInquiryModalProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-secondary-ink mb-1">
+                  <label className="block text-xs font-semibold text-[#8E98A8] mb-1">
                     Category
                   </label>
                   <select
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
-                    className="w-full bg-surface border border-subtle rounded-xl px-2.5 py-2.5 text-xs text-primary-ink focus:outline-none"
+                    className="w-full bg-[#181C26] border border-[#232936] rounded-xl px-2.5 py-2.5 text-xs text-[#FFFFFF] focus:outline-none focus:border-[#cef11c]"
                   >
                     <option value="Food & Snacks">Food &amp; Snacks</option>
                     <option value="Electronics & Tech">Electronics</option>
@@ -136,7 +140,7 @@ export const PartnerInquiryModal: React.FC<PartnerInquiryModalProps> = ({
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full py-3 rounded-xl btn-primary-lime text-xs font-bold flex items-center justify-center gap-2 transition-transform active:scale-95"
+                  className="w-full py-3 rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-bold flex items-center justify-center gap-2 transition-transform active:scale-95 hover:brightness-105"
                 >
                   <Send className="w-3.5 h-3.5" />
                   <span>Submit Seller Application</span>
@@ -146,25 +150,26 @@ export const PartnerInquiryModal: React.FC<PartnerInquiryModalProps> = ({
           </>
         ) : (
           <div className="text-center py-4 space-y-3">
-            <div className="w-12 h-12 rounded-full bg-accent-soft text-accent flex items-center justify-center mx-auto">
+            <div className="w-12 h-12 rounded-full bg-[#cef11c]/15 text-[#cef11c] flex items-center justify-center mx-auto">
               <CheckCircle2 className="w-6 h-6" />
             </div>
 
-            <h3 className="text-base font-bold text-primary-ink">
+            <h3 className="font-serif text-lg font-bold text-[#FFFFFF]">
               Application Received
             </h3>
 
-            <p className="text-xs text-secondary-ink leading-relaxed max-w-xs mx-auto">
-              Thank you, <strong className="text-primary-ink">{businessName}</strong>. Our <strong className="text-accent">{hub}</strong> team will review your store and reach out to {phone}.
+            <p className="text-xs text-[#8E98A8] leading-relaxed max-w-xs mx-auto">
+              Thank you, <strong className="text-[#FFFFFF]">{businessName}</strong>. Our <strong className="text-[#cef11c]">{hub}</strong> team will review your store and reach out to {phone}.
             </p>
 
             <div className="pt-2">
               <button
+                type="button"
                 onClick={() => {
                   setSubmitted(false);
                   onClose();
                 }}
-                className="w-full py-2.5 rounded-xl btn-primary-lime text-xs font-bold"
+                className="w-full py-2.5 rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-bold"
               >
                 Done
               </button>

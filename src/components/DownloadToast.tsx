@@ -26,22 +26,23 @@ export const DownloadToast: React.FC<DownloadToastProps> = ({
 
   return (
     <div
-      className="fixed bottom-5 right-5 z-50 max-w-xs w-full bg-card border border-subtle rounded-2xl p-4 shadow-xl flex items-start gap-3"
+      className="fixed bottom-5 right-5 z-50 max-w-xs w-full bg-[#12151C] border border-[#cef11c]/40 rounded-2xl p-4 shadow-elegant flex items-start gap-3"
       role="status"
       aria-live="polite"
     >
-      <div className="w-8 h-8 rounded-lg btn-primary-lime flex items-center justify-center shrink-0 mt-0.5">
+      <div className="w-8 h-8 rounded-lg bg-[#cef11c] text-[#090A0E] flex items-center justify-center shrink-0 mt-0.5">
         <Download className="w-4 h-4 stroke-[2.25]" />
       </div>
 
       <div className="flex-1 min-w-0">
         <div className="flex items-center justify-between">
-          <h4 className="text-xs font-bold text-primary-ink">
+          <h4 className="text-xs font-bold text-[#FFFFFF]">
             Downloading APK ({UGABYTE_APP_META.fileSize})
           </h4>
           <button
+            type="button"
             onClick={onClose}
-            className="text-secondary-ink hover:text-primary-ink p-0.5"
+            className="text-[#8E98A8] hover:text-[#FFFFFF] p-0.5"
             aria-label="Dismiss alert"
           >
             <X className="w-3.5 h-3.5" />
@@ -49,11 +50,12 @@ export const DownloadToast: React.FC<DownloadToastProps> = ({
         </div>
 
         <button
+          type="button"
           onClick={() => {
             onClose();
             onOpenGuide();
           }}
-          className="mt-1.5 text-xs text-accent font-semibold hover:underline"
+          className="mt-1.5 text-xs text-[#cef11c] font-semibold hover:underline"
         >
           View Install Guide &rarr;
         </button>
