@@ -2,13 +2,11 @@ import React, { useEffect } from "react";
 import { X, Shield, FileText, Cookie, RotateCcw } from "lucide-react";
 import { UGABYTE_HANDLE } from "../config/ugabyte";
 
-type LegalTab = "privacy" | "terms" | "cookie" | "refund";
-
 interface LegalModalProps {
   isOpen: boolean;
-  activeTab: LegalTab;
+  activeTab: "privacy" | "terms" | "cookie" | "refund";
   onClose: () => void;
-  onSelectTab: (tab: LegalTab) => void;
+  onSelectTab: (tab: "privacy" | "terms" | "cookie" | "refund") => void;
 }
 
 export const LegalModal: React.FC<LegalModalProps> = ({
@@ -35,77 +33,78 @@ export const LegalModal: React.FC<LegalModalProps> = ({
 
   if (!isOpen) return null;
 
-  const tabs: { key: LegalTab; label: string; icon: React.ElementType }[] = [
-    { key: "privacy", label: "Privacy", icon: Shield },
-    { key: "terms", label: "Terms", icon: FileText },
-    { key: "cookie", label: "Cookies", icon: Cookie },
-    { key: "refund", label: "Refunds", icon: RotateCcw },
+  const tabs = [
+    { id: "privacy" as const, label: "Privacy", icon: Shield },
+    { id: "terms" as const, label: "Terms", icon: FileText },
+    { id: "cookie" as const, label: "Cookies", icon: Cookie },
+    { id: "refund" as const, label: "Refunds", icon: RotateCcw },
   ];
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-end sm:items-center justify-center p-3 sm:p-4"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="legal-modal-title"
     >
       <div
-        className="bg-card border border-subtle rounded-2xl max-w-lg w-full p-6 relative max-h-[85vh] flex flex-col"
+        className="bg-[#12151C] border border-[#232936] rounded-2xl max-w-lg w-full p-4 sm:p-6 relative shadow-2xl max-h-[85vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between pb-4 border-b border-subtle">
-          <h3 id="legal-modal-title" className="text-base font-bold text-primary-ink">
-            Legal &amp; Compliance
+        <div className="flex items-center justify-between pb-3 sm:pb-4 border-b border-[#232936]">
+          <h3 id="legal-modal-title" className="text-sm sm:text-base font-bold text-[#FFFFFF]">
+            UgaByte Inc. Policies
           </h3>
           <button
             onClick={onClose}
-            className="text-secondary-ink hover:text-primary-ink p-1 rounded-lg focus:outline-none"
+            className="text-[#8E98A8] hover:text-[#FFFFFF] p-1.5 rounded-lg focus:outline-none min-w-[36px] min-h-[36px] flex items-center justify-center"
             aria-label="Close dialog"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        <div className="grid grid-cols-4 gap-1.5 p-1 bg-surface rounded-xl my-4 border border-subtle">
+        {/* Horizontal Tab Selector (Touch-friendly on mobile) */}
+        <div className="flex items-center gap-1.5 my-3 sm:my-4 p-1 rounded-xl bg-[#181C26] border border-[#232936] overflow-x-auto no-scrollbar">
           {tabs.map((t) => {
             const Icon = t.icon;
-            const active = activeTab === t.key;
+            const active = activeTab === t.id;
             return (
               <button
-                key={t.key}
-                onClick={() => onSelectTab(t.key)}
-                className={`py-2 px-2 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors whitespace-nowrap ${
+                key={t.id}
+                onClick={() => onSelectTab(t.id)}
+                className={`flex-1 min-h-[38px] py-1.5 px-2.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all whitespace-nowrap active:scale-95 ${
                   active
-                    ? "bg-card text-primary-ink border border-subtle"
-                    : "text-secondary-ink hover:text-primary-ink"
+                    ? "bg-[#12151C] text-[#FFFFFF] border border-[#232936] shadow-sm text-[#cef11c]"
+                    : "text-[#8E98A8] hover:text-[#FFFFFF]"
                 }`}
               >
-                <Icon className={`w-3.5 h-3.5 ${active ? "text-accent" : ""}`} />
+                <Icon className={`w-3.5 h-3.5 ${active ? "text-[#cef11c]" : ""}`} />
                 <span>{t.label}</span>
               </button>
             );
           })}
         </div>
 
-        <div className="overflow-y-auto text-xs text-secondary-ink space-y-3 leading-relaxed pr-1">
+        <div className="overflow-y-auto text-xs text-[#8E98A8] space-y-3 leading-relaxed pr-1 flex-1">
           {activeTab === "privacy" && (
             <>
-              <h4 className="text-sm font-bold text-primary-ink">Privacy Policy</h4>
+              <h4 className="text-xs sm:text-sm font-bold text-[#FFFFFF]">Privacy Policy</h4>
               <p>
-                UgaByte collects only essential account and campus hub preferences to match students with verified local sellers and hostels.
+                UgaByte Inc. collects only essential account and campus hub preferences to match students with verified local sellers and hostels.
               </p>
               <p>
-                We never sell personal student data to third-party advertisers. For account removal requests, message our official team <strong className="text-accent">{UGABYTE_HANDLE}</strong>.
+                We never sell personal student data to third-party advertisers. For account removal requests, message our official team <strong className="text-[#cef11c]">{UGABYTE_HANDLE}</strong>.
               </p>
             </>
           )}
 
           {activeTab === "terms" && (
             <>
-              <h4 className="text-sm font-bold text-primary-ink">Terms of Use</h4>
+              <h4 className="text-xs sm:text-sm font-bold text-[#FFFFFF]">Terms of Use</h4>
               <p>
-                All listings on UgaByte must represent genuine goods, food, or hostel accommodations around verified university hubs.
+                All listings on UgaByte Inc. platforms must represent genuine goods, food, or hostel accommodations around verified university hubs.
               </p>
               <p>
                 Peer-to-peer pickups should take place at designated public university halls or campus gates.
@@ -115,16 +114,16 @@ export const LegalModal: React.FC<LegalModalProps> = ({
 
           {activeTab === "cookie" && (
             <>
-              <h4 className="text-sm font-bold text-primary-ink">Cookie Policy</h4>
+              <h4 className="text-xs sm:text-sm font-bold text-[#FFFFFF]">Cookie Policy</h4>
               <p>
-                UgaByte uses lightweight local storage strictly to remember your preferred campus hub, saved items, and Light/Dark theme setting.
+                UgaByte Inc. uses lightweight local storage strictly to remember your preferred campus hub, saved items, and Light/Dark theme setting.
               </p>
             </>
           )}
 
           {activeTab === "refund" && (
             <>
-              <h4 className="text-sm font-bold text-primary-ink">Dispute &amp; Refund Policy</h4>
+              <h4 className="text-xs sm:text-sm font-bold text-[#FFFFFF]">Dispute &amp; Refund Policy</h4>
               <p>
                 Student buyers are encouraged to inspect peer-to-peer items upon campus pickup before completing mobile money or cash payment.
               </p>
@@ -132,10 +131,10 @@ export const LegalModal: React.FC<LegalModalProps> = ({
           )}
         </div>
 
-        <div className="mt-5 pt-4 border-t border-subtle flex justify-end">
+        <div className="mt-4 pt-3 border-t border-[#232936] flex justify-end">
           <button
             onClick={onClose}
-            className="px-5 py-2 rounded-lg btn-primary-lime text-xs font-bold"
+            className="w-full sm:w-auto px-5 py-2.5 min-h-[44px] rounded-lg bg-[#cef11c] text-[#090A0E] text-xs font-bold active:scale-95 transition-all text-center"
           >
             Done
           </button>

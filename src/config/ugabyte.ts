@@ -1,5 +1,5 @@
 /**
- * Centralized Configuration for UgaByte
+ * Centralized Configuration for UgaByte Inc.
  * Source of truth for URLs, Supabase connection, social links, and app metadata.
  */
 

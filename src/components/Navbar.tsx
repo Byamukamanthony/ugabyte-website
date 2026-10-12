@@ -10,7 +10,6 @@ import {
   Sun,
   Moon,
   Flame,
-  Smartphone,
   Store,
   HelpCircle,
 } from "lucide-react";
@@ -28,8 +27,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   theme,
   onToggleTheme,
 }) => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,14 +36,6 @@ export const Navbar: React.FC<NavbarProps> = ({
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMobileMenuOpen(false);
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   useEffect(() => {
@@ -57,7 +48,6 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const navLinks = [
     { label: "Pillars", href: "#features", icon: Flame },
-    { label: "Live App", href: "#live-radar", icon: Smartphone },
     { label: "Sell", href: "#sellers", icon: Store },
     { label: "Download", href: "#download", icon: Download },
     { label: "FAQ", href: "#faq", icon: HelpCircle },
@@ -68,21 +58,21 @@ export const Navbar: React.FC<NavbarProps> = ({
       <header
         className={`fixed top-0 left-0 w-full z-40 transition-all duration-200 ${
           scrolled
-            ? "bg-[#090A0E]/95 backdrop-blur-md border-b border-[#232936] shadow-lg shadow-black/10"
+            ? "bg-[#090A0E]/95 backdrop-blur-md border-b border-[#232936] shadow-lg"
             : "bg-[#090A0E]/80 backdrop-blur-sm border-b border-[#232936]/60"
-        } h-16`}
+        } h-14 sm:h-16`}
       >
-        <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto h-full px-3.5 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Zone 1: Official Favicon Logo */}
           <a
             href="#"
-            className="flex items-center gap-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c] rounded"
-            aria-label="UgaByte Home"
+            className="flex items-center gap-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c] rounded min-h-[44px]"
+            aria-label="UgaByte Inc. Home"
           >
-            <UgaByteLogo className="h-8 md:h-9 hover:brightness-110 transition-all" />
+            <UgaByteLogo className="h-7 sm:h-8 md:h-9 hover:brightness-110 transition-all" />
           </a>
 
-          {/* Zone 2: Icon + Label Navigation */}
+          {/* Zone 2: Icon + Label Navigation (Desktop) */}
           <nav
             className="hidden md:flex items-center gap-6 text-[12px] font-bold tracking-wider uppercase text-[#8E98A8]"
             aria-label="Primary Navigation"
@@ -103,11 +93,11 @@ export const Navbar: React.FC<NavbarProps> = ({
           </nav>
 
           {/* Zone 3: Theme Switcher & Action Buttons */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             {/* Light / Dark Mode Toggle */}
             <button
               onClick={onToggleTheme}
-              className="p-2 rounded-full border border-[#232936] hover:border-[#323B4E] bg-[#12151C] hover:bg-[#181C26] text-[#e3e2e8] transition-all active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-[#232936] hover:border-[#323B4E] bg-[#12151C] hover:bg-[#181C26] text-[#e3e2e8] transition-all active:scale-95 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
               title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
               aria-label={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
             >
@@ -132,20 +122,20 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             <button
               onClick={onDownloadApk}
-              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#cef11c] text-[#090A0E] text-[12px] font-black uppercase tracking-wider hover:brightness-105 active:scale-95 transition-all shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
+              className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 min-h-[36px] sm:min-h-[38px] rounded-full bg-[#cef11c] text-[#090A0E] text-[11px] sm:text-[12px] font-black uppercase tracking-wider hover:brightness-105 active:scale-95 transition-all shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
             >
-              <Zap className="w-3.5 h-3.5 fill-[#090A0E]" />
+              <Zap className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-[#090A0E]" />
               <span>Get APK</span>
             </button>
 
             {/* Mobile Hamburger Toggle */}
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className="md:hidden p-2 rounded-lg text-[#8E98A8] hover:text-[#cef11c] hover:bg-[#12151C] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
+              className="md:hidden w-10 h-10 rounded-lg text-[#8E98A8] hover:text-[#cef11c] hover:bg-[#12151C] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
               aria-label="Open mobile menu"
               aria-expanded={mobileMenuOpen}
             >
-              <Menu className="w-6 h-6" />
+              <Menu className="w-5 h-5" />
             </button>
           </div>
         </div>
@@ -154,7 +144,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* Mobile Backdrop */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 md:hidden transition-opacity"
+          className="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 md:hidden transition-opacity"
           onClick={() => setMobileMenuOpen(false)}
           aria-hidden="true"
         />
@@ -164,7 +154,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       <aside
         id="mobile-drawer"
         aria-label="Mobile Navigation"
-        className={`fixed inset-y-0 right-0 z-50 w-72 max-w-[85vw] bg-[#12151C] border-l border-[#232936] shadow-2xl p-6 flex flex-col justify-between transform transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed inset-y-0 right-0 z-50 w-72 max-w-[82vw] bg-[#12151C] border-l border-[#232936] shadow-2xl p-5 sm:p-6 flex flex-col justify-between transform transition-transform duration-300 ease-in-out md:hidden ${
           mobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -173,14 +163,14 @@ export const Navbar: React.FC<NavbarProps> = ({
             <UgaByteLogo className="h-7" />
             <button
               onClick={() => setMobileMenuOpen(false)}
-              className="p-1.5 text-[#8E98A8] hover:text-[#FFFFFF] rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
+              className="w-9 h-9 flex items-center justify-center text-[#8E98A8] hover:text-[#FFFFFF] rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
               aria-label="Close mobile menu"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
 
-          <nav className="flex flex-col gap-1.5 mt-6">
+          <nav className="flex flex-col gap-1 mt-5">
             {navLinks.map((link) => {
               const Icon = link.icon;
               return (
@@ -188,7 +178,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-3 py-2.5 rounded-lg text-[#e3e2e8] hover:bg-[#181C26] hover:text-[#cef11c] text-sm font-semibold transition-colors flex items-center gap-2.5"
+                  className="px-3 py-3 min-h-[44px] rounded-xl text-[#e3e2e8] hover:bg-[#181C26] hover:text-[#cef11c] text-sm font-semibold transition-colors flex items-center gap-2.5 active:bg-[#181C26]"
                 >
                   <Icon className="w-4 h-4 text-[#cef11c]" />
                   <span>{link.label}</span>
@@ -198,15 +188,15 @@ export const Navbar: React.FC<NavbarProps> = ({
           </nav>
         </div>
 
-        <div className="pt-6 border-t border-[#232936] space-y-2.5">
+        <div className="pt-5 border-t border-[#232936] space-y-2.5 pb-safe">
           <button
             onClick={() => {
               setMobileMenuOpen(false);
               onDownloadApk();
             }}
-            className="w-full py-3 rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2 shadow-md active:scale-95 transition-all"
+            className="w-full py-3 min-h-[46px] rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2 shadow-md active:scale-95 transition-all"
           >
-            <Download className="w-4 h-4" />
+            <Download className="w-4 h-4 stroke-[2.5]" />
             <span>APK ({UGABYTE_APP_META.fileSize})</span>
           </button>
 
@@ -218,9 +208,9 @@ export const Navbar: React.FC<NavbarProps> = ({
               setMobileMenuOpen(false);
               onOpenWebApp();
             }}
-            className="w-full py-2.5 rounded-full bg-[#181C26] border border-[#232936] text-[#e3e2e8] text-xs font-bold tracking-wide flex items-center justify-center gap-2 active:scale-95 transition-all"
+            className="w-full py-3 min-h-[46px] rounded-full bg-[#181C26] border border-[#232936] text-[#e3e2e8] text-xs font-bold tracking-wide flex items-center justify-center gap-2 active:scale-95 transition-all"
           >
-            <Globe className="w-3.5 h-3.5 text-[#cef11c]" />
+            <Globe className="w-4 h-4 text-[#cef11c]" />
             <span>Web App</span>
           </a>
         </div>

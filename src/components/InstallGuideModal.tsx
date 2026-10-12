@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { X, Smartphone, Download } from "lucide-react";
-import { UGABYTE_APP_META } from "../config/ugabyte";
 
 interface InstallGuideModalProps {
   isOpen: boolean;
@@ -34,8 +33,8 @@ export const InstallGuideModal: React.FC<InstallGuideModalProps> = ({
   const steps = [
     {
       num: "1",
-      title: "Download APK",
-      desc: `Save the ${UGABYTE_APP_META.fileSize} package to your Android device.`,
+      title: "Download the APK",
+      desc: "Tap the download button to grab the official 14.1 MB file.",
     },
     {
       num: "2",
@@ -44,36 +43,36 @@ export const InstallGuideModal: React.FC<InstallGuideModalProps> = ({
     },
     {
       num: "3",
-      title: "Open UgaByte",
+      title: "Launch UgaByte App",
       desc: "Tap the downloaded file in your notifications to launch.",
     },
   ];
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-end sm:items-center justify-center p-3 sm:p-4"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="install-guide-title"
     >
       <div
-        className="bg-card border border-subtle rounded-2xl max-w-md w-full p-6 relative"
+        className="bg-[#12151C] border border-[#232936] rounded-2xl max-w-md w-full p-4 sm:p-6 relative shadow-2xl max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 text-secondary-ink hover:text-primary-ink p-1 rounded-lg focus:outline-none"
+          className="absolute top-4 right-4 text-[#8E98A8] hover:text-[#FFFFFF] p-1.5 rounded-lg focus:outline-none min-w-[36px] min-h-[36px] flex items-center justify-center"
           aria-label="Close dialog"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <div className="flex items-center gap-2.5 mb-5">
-          <div className="w-8 h-8 rounded-lg bg-accent-soft flex items-center justify-center text-accent">
+        <div className="flex items-center gap-2.5 mb-4 sm:mb-5">
+          <div className="w-8 h-8 rounded-lg bg-[#cef11c]/15 border border-[#cef11c]/30 flex items-center justify-center text-[#cef11c]">
             <Smartphone className="w-4 h-4" />
           </div>
-          <h3 id="install-guide-title" className="text-base font-bold text-primary-ink">
+          <h3 id="install-guide-title" className="text-base font-bold text-[#FFFFFF]">
             Android Install Guide
           </h3>
         </div>
@@ -82,23 +81,23 @@ export const InstallGuideModal: React.FC<InstallGuideModalProps> = ({
           {steps.map((s) => (
             <div
               key={s.num}
-              className="flex items-start gap-3 p-3 rounded-xl bg-surface border border-subtle"
+              className="flex items-start gap-3 p-3 rounded-xl bg-[#181C26] border border-[#232936]"
             >
-              <span className="w-6 h-6 rounded-full btn-primary-lime flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
+              <span className="w-6 h-6 rounded-full bg-[#cef11c] text-[#090A0E] flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
                 {s.num}
               </span>
               <div>
-                <div className="font-bold text-primary-ink text-xs">{s.title}</div>
-                <div className="text-xs text-secondary-ink mt-0.5">{s.desc}</div>
+                <div className="font-bold text-[#FFFFFF] text-xs">{s.title}</div>
+                <div className="text-xs text-[#8E98A8] mt-0.5">{s.desc}</div>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="mt-6 pt-4 border-t border-subtle flex items-center justify-end gap-2.5">
+        <div className="mt-5 pt-4 border-t border-[#232936] flex flex-col-reverse xs:flex-row items-stretch xs:items-center justify-end gap-2.5">
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-lg bg-surface border border-subtle text-primary-ink text-xs font-semibold hover:bg-elevated transition-colors"
+            className="w-full xs:w-auto px-4 py-2.5 min-h-[44px] rounded-lg bg-[#181C26] border border-[#232936] text-[#FFFFFF] text-xs font-semibold hover:bg-[#232936] transition-colors"
           >
             Close
           </button>
@@ -107,9 +106,9 @@ export const InstallGuideModal: React.FC<InstallGuideModalProps> = ({
               onClose();
               onDownloadApk();
             }}
-            className="px-5 py-2 rounded-lg btn-primary-lime text-xs font-bold flex items-center gap-1.5"
+            className="w-full xs:w-auto px-5 py-2.5 min-h-[44px] rounded-lg bg-[#cef11c] text-[#090A0E] text-xs font-bold flex items-center justify-center gap-1.5 active:scale-95 transition-all"
           >
-            <Download className="w-3.5 h-3.5" />
+            <Download className="w-3.5 h-3.5 stroke-[2.5]" />
             <span>Download APK</span>
           </button>
         </div>

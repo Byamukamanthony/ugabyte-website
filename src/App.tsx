@@ -3,7 +3,6 @@ import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
 import { CampusTicker } from "./components/CampusTicker";
 import { TheSolution } from "./components/TheSolution";
-import { FeatureShowcase } from "./components/FeatureShowcase";
 import { ForBusinesses } from "./components/ForBusinesses";
 import { DownloadSection } from "./components/DownloadSection";
 import { FAQSection } from "./components/FAQSection";
@@ -12,6 +11,7 @@ import { InstallGuideModal } from "./components/InstallGuideModal";
 import { PartnerInquiryModal } from "./components/PartnerInquiryModal";
 import { LegalModal } from "./components/LegalModal";
 import { DownloadToast } from "./components/DownloadToast";
+import { MobileThumbBar } from "./components/MobileThumbBar";
 import { UGABYTE_APK_URL, UGABYTE_WEB_APP_URL } from "./config/ugabyte";
 import {
   subscribeToLiveAppFeed,
@@ -73,13 +73,6 @@ export default function App() {
     window.open(UGABYTE_WEB_APP_URL, "_blank", "noopener,noreferrer");
   };
 
-  const handleInspectApk = () => {
-    const el = document.getElementById("download");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <div className="min-h-screen bg-[#090A0E] text-[#e3e2e8] flex flex-col font-sans selection:bg-[#cef11c] selection:text-[#090A0E] transition-colors duration-200">
       {/* Sticky Navbar with Theme Switcher */}
@@ -108,14 +101,7 @@ export default function App() {
           feed={liveFeed}
         />
 
-        {/* 4. Live App Radar & Mobile Architecture */}
-        <FeatureShowcase
-          onInspectApk={handleInspectApk}
-          onStudentChat={handleOpenWebApp}
-          feed={liveFeed}
-        />
-
-        {/* 5. For Campus Businesses & Sellers */}
+        {/* 4. For Campus Businesses & Sellers */}
         <ForBusinesses onOpenPartnerModal={() => setPartnerModalOpen(true)} />
 
         {/* 6. Direct APK & Web App Download Section */}
@@ -161,6 +147,12 @@ export default function App() {
         show={downloadToastOpen}
         onClose={() => setDownloadToastOpen(false)}
         onOpenGuide={() => setInstallGuideOpen(true)}
+      />
+
+      {/* Floating Ergonomic Mobile Thumb Dock for Smartphones */}
+      <MobileThumbBar
+        onDownloadApk={handleDownloadApk}
+        onOpenWebApp={handleOpenWebApp}
       />
     </div>
   );
