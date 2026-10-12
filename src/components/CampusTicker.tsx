@@ -15,8 +15,8 @@ export const CampusTicker: React.FC = () => {
   return (
     <div className="w-full border-b border-[#232936] bg-[#121317] py-2 sm:py-2.5 overflow-hidden select-none relative">
       {/* Edge gradient masks for smartphone screens */}
-      <div className="absolute left-0 top-0 bottom-0 w-6 sm:w-12 bg-gradient-to-r from-[#121317] to-transparent z-10 pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 w-6 sm:w-12 bg-gradient-to-l from-[#121317] to-transparent z-10 pointer-events-none" />
+      <div className="ticker-mask-left absolute left-0 top-0 bottom-0 w-6 sm:w-12 bg-gradient-to-r from-[#121317] to-transparent z-10 pointer-events-none" />
+      <div className="ticker-mask-right absolute right-0 top-0 bottom-0 w-6 sm:w-12 bg-gradient-to-l from-[#121317] to-transparent z-10 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto flex items-center">
         <div

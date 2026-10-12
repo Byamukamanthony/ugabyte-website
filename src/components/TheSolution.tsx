@@ -6,7 +6,6 @@ import {
   Briefcase,
   MapPin,
   ExternalLink,
-  RefreshCw,
   PlusCircle,
 } from "lucide-react";
 import { LiveFeedPayload, EMPTY_LIVE_FEED } from "../services/liveFeed";
@@ -32,11 +31,7 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
       id="features"
     >
       <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
-        <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-black text-[#cef11c] uppercase tracking-wider">
-          <RefreshCw className="w-3 h-3" />
-          <span>Live Supabase Feed · {feed.stats.lastSynced}</span>
-        </span>
-        <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#FFFFFF] mt-1 tracking-tight text-balance">
+        <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#FFFFFF] tracking-tight text-balance">
           Four Core Pillars by UgaByte Inc.
         </h2>
       </div>

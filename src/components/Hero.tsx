@@ -4,9 +4,6 @@ import {
   Download,
   Globe,
   ShieldCheck,
-  Flame,
-  Rocket,
-  Zap,
   MapPin,
   Tag,
 } from "lucide-react";
@@ -18,7 +15,7 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onDownloadApk, onOpenWebApp }) => {
   return (
-    <section className="relative min-h-[82vh] sm:min-h-[88vh] flex items-center justify-center overflow-hidden border-b border-[#232936] pt-20 sm:pt-24 pb-12 sm:pb-16">
+    <section className="relative min-h-[82vh] sm:min-h-[86vh] flex items-center justify-center overflow-hidden border-b border-[#232936] pt-18 sm:pt-22 pb-12 sm:pb-16">
       {/* Cinematic Portrait Backdrop with Organic Glow */}
       <div className="absolute inset-0 z-0 pointer-events-none select-none">
         <img
@@ -28,43 +25,17 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadApk, onOpenWebApp }) => {
           loading="eager"
         />
         {/* Gradients layering dark onyx aesthetic with subtle lime tint */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#090A0E]/40 via-[#090A0E]/85 to-[#090A0E]" />
-        <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[320px] sm:w-[650px] h-[320px] sm:h-[450px] bg-[#cef11c]/12 rounded-full blur-[100px] sm:blur-[140px]" />
+        <div className="hero-scrim absolute inset-0 bg-gradient-to-b from-[#090A0E]/40 via-[#090A0E]/85 to-[#090A0E]" />
+        <div className="hero-radial-glow absolute -top-24 left-1/2 -translate-x-1/2 w-[320px] sm:w-[650px] h-[320px] sm:h-[450px] bg-[#cef11c]/12 rounded-full blur-[100px] sm:blur-[140px]" />
       </div>
 
       {/* Main Hero Container */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center w-full">
-        {/* Clean, Proportionate Feature Badges Cluster */}
-        <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 mb-4 sm:mb-5 max-w-lg">
-          <div className="bg-[#12151C]/90 backdrop-blur-md border border-[#232936] text-[#e3e2e8] px-3 py-1 rounded-full text-[11px] font-bold tracking-wide flex items-center gap-1.5 shadow-sm">
-            <Zap className="w-3.5 h-3.5 text-[#cef11c] fill-[#cef11c]" />
-            <span>Instant Access</span>
-          </div>
-
-          <div className="bg-[#12151C]/90 backdrop-blur-md border border-[#cef11c]/40 text-[#e3e2e8] px-3 py-1 rounded-full text-[11px] font-bold tracking-wide flex items-center gap-1.5 shadow-sm">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#cef11c]" />
-            <span>ID Verified</span>
-          </div>
-
-          <div className="bg-[#181C26]/90 backdrop-blur-md border border-[#232936] text-[#cef11c] px-3 py-1 rounded-full text-[11px] font-bold tracking-wide flex items-center gap-1.5 shadow-sm">
-            <Flame className="w-3.5 h-3.5 text-[#FFA800]" />
-            <span className="text-[#FFFFFF]">Live Drops</span>
-          </div>
-
-          <div className="bg-[#12151C]/90 backdrop-blur-md border border-[#232936] text-[#e3e2e8] px-3 py-1 rounded-full text-[11px] font-bold tracking-wide flex items-center gap-1.5 shadow-sm">
-            <Rocket className="w-3.5 h-3.5 text-[#cef11c]" />
-            <span>Zero Fees</span>
-          </div>
-        </div>
-
-        {/* Eyebrow Label */}
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#12151C] border border-[#232936] text-[#cef11c] text-[10px] sm:text-[11px] font-extrabold uppercase tracking-widest mb-3 sm:mb-4">
-          <Zap className="w-3 h-3 fill-[#cef11c]" />
-          <span>UGABYTE INC.</span>
-        </div>
-
         {/* Smartphone-Optimized Display Headline */}
-        <h1 className="text-[28px] xs:text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-[#FFFFFF] max-w-4xl mb-3 sm:mb-4 leading-[1.12] sm:leading-[1.08] text-balance">
+        <h1 className="text-[32px] xs:text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-[#FFFFFF] max-w-4xl mb-3 sm:mb-4 leading-[1.12] sm:leading-[1.08] text-balance">
+          <span className="block text-xl xs:text-2xl sm:text-3xl md:text-4xl font-black tracking-tight hero-gradient-text text-transparent bg-clip-text bg-gradient-to-r from-white via-[#e3e2e8] to-[#cef11c] mb-1.5 sm:mb-2.5 select-none">
+            UgaByte Inc.
+          </span>
           Deals, Market &amp; Events.{" "}
           <br className="hidden sm:inline" />
           <span className="hero-gradient-text text-transparent bg-clip-text bg-gradient-to-r from-white via-[#e3e2e8] to-[#cef11c]">
