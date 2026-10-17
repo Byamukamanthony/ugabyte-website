@@ -1,6 +1,6 @@
 {
-  "name": "UgaByte Inc. | Official Website",
-  "description": "UgaByte Inc. builds digital products and platforms that connect people with opportunities, services, deals, and commerce.",
+  "name": "Ugabyte | Official Website",
+  "description": "Ugabyte connects students with campus flash deals, 0% fee peer marketplace, live campus events, and opportunities.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

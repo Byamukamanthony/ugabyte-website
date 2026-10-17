@@ -1,11 +1,15 @@
-import React from "react";
-import { BRAND_ASSETS, UGABYTE_APP_META, UGABYTE_WEB_APP_URL } from "../config/ugabyte";
+import { BRAND_ASSETS, UGABYTE_APP_META, UGABYTE_WEB_APP_URL, UGABYTE_APP_LINKS } from "../config/ugabyte";
 import {
   Download,
   Globe,
   ShieldCheck,
   MapPin,
   Tag,
+  Flame,
+  Store,
+  Calendar,
+  Briefcase,
+  ExternalLink,
 } from "lucide-react";
 
 interface HeroProps {
@@ -49,7 +53,7 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadApk, onOpenWebApp }) => {
         </p>
 
         {/* Dual Primary & Secondary Action CTAs (Touch-first on smartphones) */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full max-w-md sm:max-w-none justify-center mb-8 sm:mb-10 px-2 sm:px-0">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full max-w-md sm:max-w-none justify-center mb-5 sm:mb-6 px-2 sm:px-0">
           <button
             onClick={onDownloadApk}
             className="w-full sm:w-auto px-7 py-3.5 sm:py-3.5 min-h-[48px] rounded-full bg-[#cef11c] text-[#090A0E] text-xs sm:text-[13px] font-black uppercase tracking-wider glow-lime hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#cef11c]"
@@ -67,6 +71,57 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadApk, onOpenWebApp }) => {
           >
             <Globe className="w-4 h-4 text-[#cef11c]" />
             <span>OPEN WEB APP</span>
+          </a>
+        </div>
+
+        {/* Direct Web App Hub Quick-Access Chips */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-8 sm:mb-10 w-full max-w-2xl px-2">
+          <a
+            href={UGABYTE_APP_LINKS.deals}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#12151C] hover:bg-[#181C26] border border-[#232936] hover:border-[#cef11c]/50 text-xs text-[#e3e2e8] hover:text-[#cef11c] font-semibold transition-all active:scale-95"
+            title="Open Deals in Web App"
+          >
+            <Flame className="w-3.5 h-3.5 text-[#cef11c]" />
+            <span>Open Deals</span>
+            <ExternalLink className="w-3 h-3 opacity-60" />
+          </a>
+
+          <a
+            href={UGABYTE_APP_LINKS.marketplace}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#12151C] hover:bg-[#181C26] border border-[#232936] hover:border-[#cef11c]/50 text-xs text-[#e3e2e8] hover:text-[#cef11c] font-semibold transition-all active:scale-95"
+            title="View Marketplace in Web App"
+          >
+            <Store className="w-3.5 h-3.5 text-[#cef11c]" />
+            <span>View Marketplace</span>
+            <ExternalLink className="w-3 h-3 opacity-60" />
+          </a>
+
+          <a
+            href={UGABYTE_APP_LINKS.events}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#12151C] hover:bg-[#181C26] border border-[#232936] hover:border-[#cef11c]/50 text-xs text-[#e3e2e8] hover:text-[#cef11c] font-semibold transition-all active:scale-95"
+            title="Live Campus Events in Web App"
+          >
+            <Calendar className="w-3.5 h-3.5 text-[#cef11c]" />
+            <span>Live Campus Events</span>
+            <ExternalLink className="w-3 h-3 opacity-60" />
+          </a>
+
+          <a
+            href={UGABYTE_APP_LINKS.opportunities}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#12151C] hover:bg-[#181C26] border border-[#232936] hover:border-[#cef11c]/50 text-xs text-[#e3e2e8] hover:text-[#cef11c] font-semibold transition-all active:scale-95"
+            title="Campus Opportunities in Web App"
+          >
+            <Briefcase className="w-3.5 h-3.5 text-[#cef11c]" />
+            <span>Opportunities</span>
+            <ExternalLink className="w-3 h-3 opacity-60" />
           </a>
         </div>
 

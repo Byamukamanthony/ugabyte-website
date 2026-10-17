@@ -10,6 +10,18 @@ export const UGABYTE_APK_URL =
 export const UGABYTE_WEB_APP_URL =
   import.meta.env.VITE_UGABYTE_WEB_APP_URL || "https://ugabyte.vercel.app/";
 
+const rawBaseAppUrl = (
+  import.meta.env.VITE_UGABYTE_WEB_APP_URL || "https://ugabyte.vercel.app"
+).replace(/\/$/, "");
+
+export const UGABYTE_APP_LINKS = {
+  home: `${rawBaseAppUrl}/`,
+  deals: `${rawBaseAppUrl}/campus-deals`,
+  marketplace: `${rawBaseAppUrl}/marketplace`,
+  events: `${rawBaseAppUrl}/events`,
+  opportunities: `${rawBaseAppUrl}/opportunities`,
+} as const;
+
 export const SUPABASE_URL =
   import.meta.env.VITE_SUPABASE_URL ||
   "https://kojhndxcclkwrxulwfsk.supabase.co";

@@ -1,8 +1,8 @@
-import React from "react";
 import {
   UGABYTE_HANDLE,
   UGABYTE_PLATFORMS,
   UGABYTE_WEB_APP_URL,
+  UGABYTE_APP_LINKS,
 } from "../config/ugabyte";
 import { UgaByteLogo } from "./UgaByteLogo";
 import {
@@ -15,6 +15,10 @@ import {
   FileText,
   Cookie,
   RotateCcw,
+  Flame,
+  Store,
+  Calendar,
+  Briefcase,
 } from "lucide-react";
 
 interface FooterProps {
@@ -96,7 +100,7 @@ export const Footer: React.FC<FooterProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-6 sm:gap-8 pb-8 sm:pb-10 border-b border-[#232936]/80">
           {/* Brand Column */}
-          <div className="sm:col-span-2 md:col-span-5 space-y-3">
+          <div className="sm:col-span-2 md:col-span-4 space-y-3">
             <a href="#" className="inline-block hover:brightness-110 transition-all">
               <UgaByteLogo className="h-7 sm:h-8" />
             </a>
@@ -113,8 +117,65 @@ export const Footer: React.FC<FooterProps> = ({
             </div>
           </div>
 
+          {/* Web App Modules Column */}
+          <div className="col-span-1 md:col-span-3 space-y-3">
+            <h5 className="text-[11px] font-black uppercase tracking-wider text-[#FFFFFF]">
+              Web App Hubs
+            </h5>
+            <ul className="space-y-1 sm:space-y-2 text-xs text-[#8E98A8]">
+              <li>
+                <a
+                  href={UGABYTE_APP_LINKS.deals}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[36px] py-1 focus:outline-none"
+                >
+                  <Flame className="w-3.5 h-3.5 text-[#cef11c]" />
+                  <span>Open Deals</span>
+                  <ExternalLink className="w-3 h-3 opacity-60" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href={UGABYTE_APP_LINKS.marketplace}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[36px] py-1 focus:outline-none"
+                >
+                  <Store className="w-3.5 h-3.5 text-[#cef11c]" />
+                  <span>View Marketplace</span>
+                  <ExternalLink className="w-3 h-3 opacity-60" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href={UGABYTE_APP_LINKS.events}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[36px] py-1 focus:outline-none"
+                >
+                  <Calendar className="w-3.5 h-3.5 text-[#cef11c]" />
+                  <span>Live Campus Events</span>
+                  <ExternalLink className="w-3 h-3 opacity-60" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href={UGABYTE_APP_LINKS.opportunities}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[36px] py-1 focus:outline-none"
+                >
+                  <Briefcase className="w-3.5 h-3.5 text-[#cef11c]" />
+                  <span>Campus Opportunities</span>
+                  <ExternalLink className="w-3 h-3 opacity-60" />
+                </a>
+              </li>
+            </ul>
+          </div>
+
           {/* Product Column */}
-          <div className="col-span-1 md:col-span-4 space-y-3">
+          <div className="col-span-1 md:col-span-3 space-y-3">
             <h5 className="text-[11px] font-black uppercase tracking-wider text-[#FFFFFF]">
               Get the App
             </h5>
@@ -153,7 +214,7 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           {/* Legal Column */}
-          <div className="col-span-1 md:col-span-3 space-y-3">
+          <div className="col-span-1 md:col-span-2 space-y-3">
             <h5 className="text-[11px] font-black uppercase tracking-wider text-[#FFFFFF]">
               Legal
             </h5>
