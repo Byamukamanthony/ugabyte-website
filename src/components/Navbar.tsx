@@ -108,25 +108,29 @@ export const Navbar: React.FC<NavbarProps> = ({
               )}
             </button>
 
+            {/* Desktop secondary APK button */}
+            <button
+              onClick={onDownloadApk}
+              title={`Download Android APK (${UGABYTE_APP_META.fileSize})`}
+              className="hidden lg:inline-flex items-center gap-1.5 px-3 py-1.5 min-h-[36px] rounded-full border border-[#232936] hover:border-[#323B4E] bg-[#12151C] hover:bg-[#181C26] text-[#8E98A8] hover:text-[#FFFFFF] text-[11px] font-bold tracking-wide transition-all active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
+            >
+              <Download className="w-3.5 h-3.5 text-[#cef11c]" />
+              <span>APK</span>
+            </button>
+
+            {/* Primary Action in Top Right: Open Web App */}
             <a
               href={UGABYTE_WEB_APP_URL}
               target="_blank"
               rel="noopener noreferrer"
               onClick={onOpenWebApp}
+              className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 min-h-[36px] sm:min-h-[38px] rounded-full bg-[#cef11c] text-[#090A0E] text-[11px] sm:text-[12px] font-black uppercase tracking-wider hover:brightness-105 active:scale-95 transition-all shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
               title="Open Web App"
-              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-[#232936] hover:border-[#323B4E] bg-[#12151C] hover:bg-[#181C26] text-[#e3e2e8] text-[12px] font-bold tracking-wide transition-all active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
             >
-              <Globe className="w-3.5 h-3.5 text-[#cef11c]" />
-              <span>Web App</span>
+              <Globe className="w-3.5 h-3.5 stroke-[2.5]" />
+              <span className="hidden xs:inline">Open Web App</span>
+              <span className="xs:hidden">Web App</span>
             </a>
-
-            <button
-              onClick={onDownloadApk}
-              className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 min-h-[36px] sm:min-h-[38px] rounded-full bg-[#cef11c] text-[#090A0E] text-[11px] sm:text-[12px] font-black uppercase tracking-wider hover:brightness-105 active:scale-95 transition-all shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
-            >
-              <Zap className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-[#090A0E]" />
-              <span>Get APK</span>
-            </button>
 
             {/* Mobile Hamburger Toggle */}
             <button
@@ -189,17 +193,6 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
 
         <div className="pt-5 border-t border-[#232936] space-y-2.5 pb-safe">
-          <button
-            onClick={() => {
-              setMobileMenuOpen(false);
-              onDownloadApk();
-            }}
-            className="w-full py-3 min-h-[46px] rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2 shadow-md active:scale-95 transition-all"
-          >
-            <Download className="w-4 h-4 stroke-[2.5]" />
-            <span>APK ({UGABYTE_APP_META.fileSize})</span>
-          </button>
-
           <a
             href={UGABYTE_WEB_APP_URL}
             target="_blank"
@@ -208,11 +201,22 @@ export const Navbar: React.FC<NavbarProps> = ({
               setMobileMenuOpen(false);
               onOpenWebApp();
             }}
+            className="w-full py-3 min-h-[46px] rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2 shadow-md active:scale-95 transition-all"
+          >
+            <Globe className="w-4 h-4 stroke-[2.5]" />
+            <span>Open Web App</span>
+          </a>
+
+          <button
+            onClick={() => {
+              setMobileMenuOpen(false);
+              onDownloadApk();
+            }}
             className="w-full py-3 min-h-[46px] rounded-full bg-[#181C26] border border-[#232936] text-[#e3e2e8] text-xs font-bold tracking-wide flex items-center justify-center gap-2 active:scale-95 transition-all"
           >
-            <Globe className="w-4 h-4 text-[#cef11c]" />
-            <span>Web App</span>
-          </a>
+            <Download className="w-4 h-4 text-[#cef11c]" />
+            <span>Download APK ({UGABYTE_APP_META.fileSize})</span>
+          </button>
         </div>
       </aside>
     </>

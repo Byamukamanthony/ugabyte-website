@@ -259,31 +259,25 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
         </div>
 
-        {/* Official Platforms with Custom Icons (@ugabyteinc) */}
-        <div className="py-6 sm:py-7 border-b border-[#232936]/80">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
+        {/* Official Social Media Platforms (Icons Only) */}
+        <div className="py-5 sm:py-6 border-b border-[#232936]/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="text-xs text-[#8E98A8] flex items-center gap-2">
+            <span>Official Community</span>
+            <span className="text-[#cef11c] font-mono font-semibold">{UGABYTE_HANDLE}</span>
+          </div>
+
+          <div className="flex items-center gap-2.5 sm:gap-3">
             {UGABYTE_PLATFORMS.map((platform) => (
               <a
                 key={platform.id}
                 href={platform.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 sm:p-3 rounded-xl bg-[#12151C] hover:bg-[#181C26] border border-[#232936] hover:border-[#cef11c]/50 transition-all flex items-center justify-between group active:scale-[0.98]"
+                aria-label={platform.name}
+                title={platform.name}
+                className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#12151C] hover:bg-[#181C26] border border-[#232936] hover:border-[#cef11c] text-[#8E98A8] hover:text-[#cef11c] flex items-center justify-center transition-all active:scale-95 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
               >
-                <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#181C26] group-hover:bg-[#cef11c]/10 text-[#8E98A8] group-hover:text-[#cef11c] border border-[#232936] group-hover:border-[#cef11c]/30 flex items-center justify-center shrink-0 transition-colors">
-                    <PlatformIcon id={platform.id} className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                  </div>
-                  <div className="min-w-0">
-                    <div className="text-xs font-bold text-[#FFFFFF] group-hover:text-[#cef11c] transition-colors truncate">
-                      {platform.name}
-                    </div>
-                    <div className="text-[10px] sm:text-[11px] font-mono text-[#8E98A8] truncate">
-                      {platform.handle}
-                    </div>
-                  </div>
-                </div>
-                <ExternalLink className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#8E98A8] group-hover:text-[#cef11c] transition-colors shrink-0 ml-1.5 opacity-60 group-hover:opacity-100" />
+                <PlatformIcon id={platform.id} className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
             ))}
           </div>

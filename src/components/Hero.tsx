@@ -52,26 +52,26 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadApk, onOpenWebApp }) => {
           Claim student discounts, trade peer-to-peer with zero commission, and unlock campus events across Kampala.
         </p>
 
-        {/* Dual Primary & Secondary Action CTAs (Touch-first on smartphones) */}
+        {/* Dual Primary & Secondary Action CTAs (Web App Primary, Touch-first on smartphones) */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full max-w-md sm:max-w-none justify-center mb-5 sm:mb-6 px-2 sm:px-0">
-          <button
-            onClick={onDownloadApk}
-            className="w-full sm:w-auto px-7 py-3.5 sm:py-3.5 min-h-[48px] rounded-full bg-[#cef11c] text-[#090A0E] text-xs sm:text-[13px] font-black uppercase tracking-wider glow-lime hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#cef11c]"
-          >
-            <Download className="w-4 h-4 stroke-[2.5]" />
-            <span>DOWNLOAD APK ({UGABYTE_APP_META.fileSize})</span>
-          </button>
-
           <a
             href={UGABYTE_WEB_APP_URL}
             target="_blank"
             rel="noopener noreferrer"
             onClick={onOpenWebApp}
-            className="w-full sm:w-auto px-7 py-3.5 sm:py-3.5 min-h-[48px] rounded-full bg-[#12151C] hover:bg-[#181C26] border border-[#232936] hover:border-[#323B4E] text-[#FFFFFF] text-xs sm:text-[13px] font-bold tracking-wider active:scale-[0.98] transition-all flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
+            className="w-full sm:w-auto px-8 py-3.5 sm:py-4 min-h-[48px] rounded-full bg-[#cef11c] text-[#090A0E] text-xs sm:text-[13px] font-black uppercase tracking-wider glow-lime hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#cef11c] shadow-lg"
           >
-            <Globe className="w-4 h-4 text-[#cef11c]" />
+            <Globe className="w-4 h-4 stroke-[2.5]" />
             <span>OPEN WEB APP</span>
           </a>
+
+          <button
+            onClick={onDownloadApk}
+            className="w-full sm:w-auto px-7 py-3.5 sm:py-3.5 min-h-[48px] rounded-full bg-[#12151C] hover:bg-[#181C26] border border-[#232936] hover:border-[#323B4E] text-[#FFFFFF] text-xs sm:text-[13px] font-bold tracking-wider active:scale-[0.98] transition-all flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
+          >
+            <Download className="w-4 h-4 text-[#cef11c]" />
+            <span>DOWNLOAD APK ({UGABYTE_APP_META.fileSize})</span>
+          </button>
         </div>
 
         {/* Direct Web App Hub Quick-Access Chips */}

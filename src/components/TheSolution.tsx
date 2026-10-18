@@ -46,7 +46,7 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
                   <Flame className="w-4 h-4 sm:w-5 sm:h-5 text-[#cef11c]" />
                 </div>
                 <span className="text-[10px] sm:text-[11px] font-black uppercase bg-[#181C26] border border-[#232936] px-2.5 sm:px-3 py-1 rounded-full text-[#cef11c] shrink-0">
-                  {feed.deals.length} Live
+                  Flash Drops
                 </span>
               </div>
 
@@ -148,7 +148,7 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
                   <Store className="w-4 h-4 sm:w-5 sm:h-5 text-[#cef11c]" />
                 </div>
                 <span className="text-[10px] sm:text-[11px] font-black uppercase bg-[#181C26] border border-[#232936] px-2.5 sm:px-3 py-1 rounded-full text-[#8E98A8] shrink-0">
-                  0% Fee · {feed.products.length} Live
+                  0% Fee
                 </span>
               </div>
 
@@ -237,7 +237,7 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
                   <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-[#cef11c]" />
                 </div>
                 <span className="text-[10px] sm:text-[11px] font-black uppercase bg-[#181C26] border border-[#232936] px-2.5 sm:px-3 py-1 rounded-full text-[#8E98A8] shrink-0">
-                  {feed.events.length} Live
+                  Events Hub
                 </span>
               </div>
 
@@ -298,7 +298,7 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
                   <Briefcase className="w-4 h-4 sm:w-5 sm:h-5 text-[#cef11c]" />
                 </div>
                 <span className="text-[10px] sm:text-[11px] font-black uppercase bg-[#cef11c]/10 border border-[#cef11c]/30 px-2.5 sm:px-3 py-1 rounded-full text-[#cef11c] shrink-0">
-                  {feed.gigs.length} Live
+                  Campus Gigs
                 </span>
               </div>
 

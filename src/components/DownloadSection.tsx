@@ -45,26 +45,26 @@ export const DownloadSection: React.FC<DownloadSectionProps> = ({
             Install the native Android APK for instant campus alerts, or run the web app in any browser.
           </p>
 
-          {/* Action Buttons (Touch-first stacked on smartphone) */}
+          {/* Action Buttons (Web App Primary, Touch-first stacked on smartphone) */}
           <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">
-            <button
-              onClick={onDownloadApk}
-              className="w-full sm:w-auto px-7 py-3.5 min-h-[48px] rounded-full bg-[#cef11c] text-[#090A0E] text-xs sm:text-[13px] font-black uppercase tracking-wider glow-lime hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
-            >
-              <Download className="w-4 h-4 stroke-[2.5]" />
-              <span>DOWNLOAD APK ({UGABYTE_APP_META.fileSize})</span>
-            </button>
-
             <a
               href={UGABYTE_WEB_APP_URL}
               target="_blank"
               rel="noopener noreferrer"
               onClick={onOpenWebApp}
-              className="w-full sm:w-auto px-7 py-3.5 min-h-[48px] rounded-full bg-[#12151C] border border-[#232936] hover:border-[#323B4E] text-[#FFFFFF] text-xs sm:text-[13px] font-bold tracking-wider hover:bg-[#181C26] active:scale-[0.98] transition-all flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
+              className="w-full sm:w-auto px-8 py-3.5 min-h-[48px] rounded-full bg-[#cef11c] text-[#090A0E] text-xs sm:text-[13px] font-black uppercase tracking-wider glow-lime hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c] order-1"
             >
-              <Globe className="w-4 h-4 text-[#cef11c]" />
+              <Globe className="w-4 h-4 stroke-[2.5]" />
               <span>LAUNCH WEB APP</span>
             </a>
+
+            <button
+              onClick={onDownloadApk}
+              className="w-full sm:w-auto px-7 py-3.5 min-h-[48px] rounded-full bg-[#12151C] border border-[#232936] hover:border-[#323B4E] text-[#FFFFFF] text-xs sm:text-[13px] font-bold tracking-wider hover:bg-[#181C26] active:scale-[0.98] transition-all flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c] order-2"
+            >
+              <Download className="w-4 h-4 text-[#cef11c]" />
+              <span>DOWNLOAD APK ({UGABYTE_APP_META.fileSize})</span>
+            </button>
           </div>
 
           {/* Verification Controls (Proportionate on mobile) */}
