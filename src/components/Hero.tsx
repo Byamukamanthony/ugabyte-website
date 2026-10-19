@@ -37,7 +37,7 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadApk, onOpenWebApp }) => {
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center w-full">
         {/* Smartphone-Optimized Display Headline */}
         <h1 className="text-[32px] xs:text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-[#FFFFFF] max-w-4xl mb-3 sm:mb-4 leading-[1.12] sm:leading-[1.08] text-balance">
-          <span className="block text-xl xs:text-2xl sm:text-3xl md:text-4xl font-black tracking-tight hero-gradient-text text-transparent bg-clip-text bg-gradient-to-r from-white via-[#e3e2e8] to-[#cef11c] mb-1.5 sm:mb-2.5 select-none">
+          <span className="block text-xl xs:text-2xl sm:text-3xl md:text-4xl font-black tracking-tight hero-gradient-text text-transparent bg-clip-text bg-gradient-to-r from-white via-[#e3e2e8] to-[#cef11c] mb-1 sm:mb-2 select-none transform -translate-y-1 sm:-translate-y-1.5 pb-1 sm:pb-1.5 leading-normal">
             UgaByte
           </span>
           Deals, Market &amp; Events.{" "}
