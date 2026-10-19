@@ -92,7 +92,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({
             <>
               <h4 className="text-xs sm:text-sm font-bold text-[#FFFFFF]">Privacy Policy</h4>
               <p>
-                UgaByte Inc. collects only essential account and campus hub preferences to match students with verified local sellers and hostels.
+                UgaByte collects only essential account and campus hub preferences to match students with verified local sellers and hostels.
               </p>
               <p>
                 We never sell personal student data to third-party advertisers. For account removal requests, message our official team <strong className="text-[#cef11c]">{UGABYTE_HANDLE}</strong>.
@@ -104,7 +104,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({
             <>
               <h4 className="text-xs sm:text-sm font-bold text-[#FFFFFF]">Terms of Use</h4>
               <p>
-                All listings on UgaByte Inc. platforms must represent genuine goods, food, or hostel accommodations around verified university hubs.
+                All listings on UgaByte platforms must represent genuine goods, food, or hostel accommodations around verified university hubs.
               </p>
               <p>
                 Peer-to-peer pickups should take place at designated public university halls or campus gates.
@@ -116,7 +116,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({
             <>
               <h4 className="text-xs sm:text-sm font-bold text-[#FFFFFF]">Cookie Policy</h4>
               <p>
-                UgaByte Inc. uses lightweight local storage strictly to remember your preferred campus hub, saved items, and Light/Dark theme setting.
+                UgaByte uses lightweight local storage strictly to remember your preferred campus hub, saved items, and Light/Dark theme setting.
               </p>
             </>
           )}

@@ -67,7 +67,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <a
             href="#"
             className="flex items-center gap-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c] rounded min-h-[44px]"
-            aria-label="UgaByte Inc. Home"
+            aria-label="UgaByte Home"
           >
             <UgaByteLogo showWordmark={false} className="h-8 sm:h-9 md:h-10 hover:brightness-110 transition-all" />
           </a>

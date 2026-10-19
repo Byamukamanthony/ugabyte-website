@@ -32,7 +32,7 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
     >
       <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
         <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#FFFFFF] tracking-tight text-balance">
-          Four Core Pillars by UgaByte Inc.
+          Four Core Pillars by UgaByte
         </h2>
       </div>
 

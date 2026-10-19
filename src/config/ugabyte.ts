@@ -78,8 +78,8 @@ export const UGABYTE_APP_META = {
 } as const;
 
 export const BRAND_ASSETS = {
-  icon: "/favicon.svg",
-  logo: "/favicon.svg",
+  icon: "/favicon.png",
+  logo: "/favicon.png",
   heroPortrait:
     "https://lh3.googleusercontent.com/aida-public/AB6AXuAtXafFzie9FAs8hKzkGlirs1SPP9pgnFYSn27AQEhT7YXYx53Nmke5BmxJ4LDUVCzuc72Z3f22NKVbxsbBJPVfei4NayASOL7xVXm_inNEmrlR4634T_Go_iYjmZmCK86NAtUB2mdCSjiQ84jlza0o_nHZYYS4PQ3WqXEXTs7NWBGrmJOA2S8FyqqHKUPafDCwvcN3Lda8a1j5dDa92N_xRHuVe2r3rH6_2jJoBmgqNaRN4XfJbT6j",
   headphonesProduct:

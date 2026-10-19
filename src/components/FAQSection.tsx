@@ -7,8 +7,8 @@ export const FAQSection: React.FC = () => {
 
   const faqs = [
     {
-      q: "What is UgaByte Inc.?",
-      a: "UgaByte Inc. builds digital products and platforms that connect people with opportunities, services, deals, and commerce—empowering students and campus communities across Uganda.",
+      q: "What is UgaByte?",
+      a: "UgaByte builds digital products and platforms that connect students with opportunities, services, deals, and commerce—empowering campus communities across Uganda.",
     },
     {
       q: "Which universities are supported?",
@@ -19,7 +19,7 @@ export const FAQSection: React.FC = () => {
       a: `Yes. The official ${UGABYTE_APP_META.version} APK (${UGABYTE_APP_META.fileSize}) is signed and verified via SHA-256 checksum, or you can use the Web App instantly in any browser.`,
     },
     {
-      q: "How do I reach the UgaByte Inc. team?",
+      q: "How do I reach the UgaByte team?",
       a: `Connect with us via ${UGABYTE_HANDLE} on X (Twitter), Instagram, TikTok, and Facebook.`,
     },
   ];

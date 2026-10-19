@@ -1,6 +1,6 @@
 {
-  "name": "Ugabyte | Official Website",
-  "description": "Ugabyte connects students with campus flash deals, 0% fee peer marketplace, live campus events, and opportunities.",
+  "name": "UgaByte — Student Deals, Events & Opportunities",
+  "description": "Discover verified campus student discounts, buy and sell peer-to-peer with zero fees, and explore live university events and gigs on UgaByte across Uganda.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

@@ -105,7 +105,7 @@ export const Footer: React.FC<FooterProps> = ({
               <UgaByteLogo className="h-7 sm:h-8" />
             </a>
             <p className="text-xs sm:text-sm text-[#8E98A8] max-w-sm leading-relaxed">
-              UgaByte Inc. builds digital products and platforms that connect people with opportunities, services, deals, and commerce.
+              UgaByte builds digital products and platforms that connect students with opportunities, services, deals, and commerce.
             </p>
             <div className="pt-1 text-xs text-[#8E98A8]">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#12151C] border border-[#232936]">
@@ -285,7 +285,7 @@ export const Footer: React.FC<FooterProps> = ({
 
         {/* Bottom copyright & attribution */}
         <div className="pt-5 sm:pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#8E98A8]/80 gap-2 text-center sm:text-left">
-          <div>&copy; 2026 UgaByte Inc. All rights reserved.</div>
+          <div>&copy; 2026 UgaByte. All rights reserved.</div>
           <div>Makerere · MUBS · Kyambogo</div>
         </div>
       </div>
