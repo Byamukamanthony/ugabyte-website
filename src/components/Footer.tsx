@@ -1,6 +1,8 @@
 import {
   UGABYTE_HANDLE,
   UGABYTE_PLATFORMS,
+  UGABYTE_APK_URL,
+  UGABYTE_APP_META,
   UGABYTE_WEB_APP_URL,
   UGABYTE_APP_LINKS,
 } from "../config/ugabyte";
@@ -24,8 +26,8 @@ import {
 interface FooterProps {
   onOpenLegal: (type: "privacy" | "terms" | "cookie" | "refund") => void;
   onOpenInstallGuide: () => void;
-  onDownloadApk: () => void;
-  onOpenWebApp: () => void;
+  onDownloadApk: (e?: React.MouseEvent) => void;
+  onOpenWebApp: (e?: React.MouseEvent) => void;
 }
 
 // Crisp, dedicated SVG icons for the 4 official platforms
@@ -181,13 +183,16 @@ export const Footer: React.FC<FooterProps> = ({
             </h5>
             <ul className="space-y-1 sm:space-y-2 text-xs text-[#8E98A8]">
               <li>
-                <button
+                <a
+                  href={UGABYTE_APK_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={onDownloadApk}
                   className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[36px] py-1 focus:outline-none"
                 >
                   <Download className="w-3.5 h-3.5 text-[#cef11c]" />
-                  <span>Android APK</span>
-                </button>
+                  <span>Android APK ({UGABYTE_APP_META.fileSize})</span>
+                </a>
               </li>
               <li>
                 <a

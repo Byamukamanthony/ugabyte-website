@@ -100,11 +100,13 @@ export default function App() {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
 
-  const handleDownloadApk = () => {
+  const handleDownloadApk = (e?: React.MouseEvent) => {
     setDownloadToastOpen(true);
+    if (e?.currentTarget instanceof HTMLAnchorElement) {
+      return;
+    }
     const link = document.createElement("a");
     link.href = UGABYTE_APK_URL;
-    link.setAttribute("download", "ugabyte-v1.2.0-release.apk");
     link.setAttribute("target", "_blank");
     link.setAttribute("rel", "noopener noreferrer");
     document.body.appendChild(link);
@@ -112,8 +114,17 @@ export default function App() {
     document.body.removeChild(link);
   };
 
-  const handleOpenWebApp = () => {
-    window.open(UGABYTE_WEB_APP_URL, "_blank", "noopener,noreferrer");
+  const handleOpenWebApp = (e?: React.MouseEvent) => {
+    if (e?.currentTarget instanceof HTMLAnchorElement) {
+      return;
+    }
+    const link = document.createElement("a");
+    link.href = UGABYTE_WEB_APP_URL;
+    link.setAttribute("target", "_blank");
+    link.setAttribute("rel", "noopener noreferrer");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (

@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { X, Smartphone, Download } from "lucide-react";
+import { UGABYTE_APK_URL, UGABYTE_APP_META } from "../config/ugabyte";
 
 interface InstallGuideModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onDownloadApk: () => void;
+  onDownloadApk: (e?: React.MouseEvent) => void;
 }
 
 export const InstallGuideModal: React.FC<InstallGuideModalProps> = ({
@@ -33,18 +34,18 @@ export const InstallGuideModal: React.FC<InstallGuideModalProps> = ({
   const steps = [
     {
       num: "1",
-      title: "Download the APK",
-      desc: "Tap the download button to grab the official 14.1 MB file.",
+      title: `Download ${UGABYTE_APP_META.fileName}`,
+      desc: `Tap Download APK to open the official link and save ${UGABYTE_APP_META.fileName} (${UGABYTE_APP_META.fileSize}, ${UGABYTE_APP_META.version}).`,
     },
     {
       num: "2",
       title: "Allow Installation",
-      desc: "Toggle 'Allow from this source' if prompted by your browser.",
+      desc: "Toggle 'Allow from this source' if prompted by your Android browser.",
     },
     {
       num: "3",
       title: "Launch UgaByte App",
-      desc: "Tap the downloaded file in your notifications to launch.",
+      desc: `Open ${UGABYTE_APP_META.fileName} in your downloads to install (${UGABYTE_APP_META.minSdk}).`,
     },
   ];
 
@@ -101,16 +102,19 @@ export const InstallGuideModal: React.FC<InstallGuideModalProps> = ({
           >
             Close
           </button>
-          <button
-            onClick={() => {
+          <a
+            href={UGABYTE_APK_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => {
+              onDownloadApk(e);
               onClose();
-              onDownloadApk();
             }}
             className="w-full xs:w-auto px-5 py-2.5 min-h-[44px] rounded-lg bg-[#cef11c] text-[#090A0E] text-xs font-bold flex items-center justify-center gap-1.5 active:scale-95 transition-all"
           >
             <Download className="w-3.5 h-3.5 stroke-[2.5]" />
-            <span>Download APK</span>
-          </button>
+            <span>Download APK ({UGABYTE_APP_META.fileSize})</span>
+          </a>
         </div>
       </div>
     </div>

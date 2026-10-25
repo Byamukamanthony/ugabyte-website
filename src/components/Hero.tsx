@@ -1,4 +1,4 @@
-import { BRAND_ASSETS, UGABYTE_APP_META, UGABYTE_WEB_APP_URL, UGABYTE_APP_LINKS } from "../config/ugabyte";
+import { BRAND_ASSETS, UGABYTE_APK_URL, UGABYTE_APP_META, UGABYTE_WEB_APP_URL, UGABYTE_APP_LINKS } from "../config/ugabyte";
 import {
   Download,
   Globe,
@@ -13,8 +13,8 @@ import {
 } from "lucide-react";
 
 interface HeroProps {
-  onDownloadApk: () => void;
-  onOpenWebApp: () => void;
+  onDownloadApk: (e?: React.MouseEvent) => void;
+  onOpenWebApp: (e?: React.MouseEvent) => void;
 }
 
 export const Hero: React.FC<HeroProps> = ({ onDownloadApk, onOpenWebApp }) => {
@@ -65,13 +65,17 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadApk, onOpenWebApp }) => {
             <span>OPEN WEB APP</span>
           </a>
 
-          <button
+          <a
+            href={UGABYTE_APK_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={onDownloadApk}
+            title={`Download ${UGABYTE_APP_META.fileName} (${UGABYTE_APP_META.version} · ${UGABYTE_APP_META.fileSize})`}
             className="w-full sm:w-auto px-7 py-3.5 sm:py-3.5 min-h-[48px] rounded-full bg-[#12151C] hover:bg-[#181C26] border border-[#232936] hover:border-[#323B4E] text-[#FFFFFF] text-xs sm:text-[13px] font-bold tracking-wider active:scale-[0.98] transition-all flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
           >
             <Download className="w-4 h-4 text-[#cef11c]" />
             <span>DOWNLOAD APK ({UGABYTE_APP_META.fileSize})</span>
-          </button>
+          </a>
         </div>
 
         {/* Direct Web App Hub Quick-Access Chips */}

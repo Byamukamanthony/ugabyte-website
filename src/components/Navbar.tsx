@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { UGABYTE_WEB_APP_URL, UGABYTE_APP_META } from "../config/ugabyte";
+import { UGABYTE_APK_URL, UGABYTE_WEB_APP_URL, UGABYTE_APP_META } from "../config/ugabyte";
 import { UgaByteLogo } from "./UgaByteLogo";
 import {
   Download,
@@ -15,8 +15,8 @@ import {
 } from "lucide-react";
 
 interface NavbarProps {
-  onDownloadApk: () => void;
-  onOpenWebApp: () => void;
+  onDownloadApk: (e?: React.MouseEvent) => void;
+  onOpenWebApp: (e?: React.MouseEvent) => void;
   theme: "dark" | "light";
   onToggleTheme: () => void;
 }
@@ -108,15 +108,18 @@ export const Navbar: React.FC<NavbarProps> = ({
               )}
             </button>
 
-            {/* Desktop secondary APK button */}
-            <button
+            {/* Desktop secondary APK link */}
+            <a
+              href={UGABYTE_APK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={onDownloadApk}
-              title={`Download Android APK (${UGABYTE_APP_META.fileSize})`}
+              title={`Download ${UGABYTE_APP_META.fileName} (${UGABYTE_APP_META.version} · ${UGABYTE_APP_META.fileSize})`}
               className="hidden lg:inline-flex items-center gap-1.5 px-3 py-1.5 min-h-[36px] rounded-full border border-[#232936] hover:border-[#323B4E] bg-[#12151C] hover:bg-[#181C26] text-[#8E98A8] hover:text-[#FFFFFF] text-[11px] font-bold tracking-wide transition-all active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
             >
               <Download className="w-3.5 h-3.5 text-[#cef11c]" />
-              <span>APK</span>
-            </button>
+              <span>APK ({UGABYTE_APP_META.fileSize})</span>
+            </a>
 
             {/* Primary Action in Top Right: Open Web App */}
             <a
@@ -207,16 +210,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             <span>Open Web App</span>
           </a>
 
-          <button
-            onClick={() => {
+          <a
+            href={UGABYTE_APK_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => {
+              onDownloadApk(e);
               setMobileMenuOpen(false);
-              onDownloadApk();
             }}
             className="w-full py-3 min-h-[46px] rounded-full bg-[#181C26] border border-[#232936] text-[#e3e2e8] text-xs font-bold tracking-wide flex items-center justify-center gap-2 active:scale-95 transition-all"
           >
             <Download className="w-4 h-4 text-[#cef11c]" />
             <span>Download APK ({UGABYTE_APP_META.fileSize})</span>
-          </button>
+          </a>
         </div>
       </aside>
     </>

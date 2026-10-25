@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Download, Globe, Flame, Store } from "lucide-react";
-import { UGABYTE_APP_META, UGABYTE_WEB_APP_URL } from "../config/ugabyte";
+import { UGABYTE_APK_URL, UGABYTE_APP_META, UGABYTE_WEB_APP_URL } from "../config/ugabyte";
 
 interface MobileThumbBarProps {
-  onDownloadApk: () => void;
-  onOpenWebApp: () => void;
+  onDownloadApk: (e?: React.MouseEvent) => void;
+  onOpenWebApp: (e?: React.MouseEvent) => void;
 }
 
 export const MobileThumbBar: React.FC<MobileThumbBarProps> = ({
@@ -41,13 +41,17 @@ export const MobileThumbBar: React.FC<MobileThumbBarProps> = ({
         </a>
 
         {/* Secondary APK CTA */}
-        <button
+        <a
+          href={UGABYTE_APK_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           onClick={onDownloadApk}
+          title={`Download ${UGABYTE_APP_META.fileName} (${UGABYTE_APP_META.fileSize})`}
           className="flex-1 min-h-[42px] py-1 px-2 rounded-full bg-[#181C26] hover:bg-[#232936] text-[#e3e2e8] text-[11px] font-bold flex items-center justify-center gap-1 active:scale-95 transition-all text-center truncate"
         >
           <Download className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
           <span className="truncate">APK</span>
-        </button>
+        </a>
 
         {/* Primary Open Web App CTA */}
         <a

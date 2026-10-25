@@ -1,10 +1,10 @@
 import React from "react";
 import { Download, ExternalLink, Sparkles } from "lucide-react";
-import { UGABYTE_APP_META, UGABYTE_WEB_APP_URL } from "../config/ugabyte";
+import { UGABYTE_APK_URL, UGABYTE_APP_META, UGABYTE_WEB_APP_URL } from "../config/ugabyte";
 
 interface FinalCTAProps {
-  onDownloadApk: () => void;
-  onOpenWebApp: () => void;
+  onDownloadApk: (e?: React.MouseEvent) => void;
+  onOpenWebApp: (e?: React.MouseEvent) => void;
 }
 
 export const FinalCTA: React.FC<FinalCTAProps> = ({ onDownloadApk, onOpenWebApp }) => {
@@ -27,13 +27,16 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ onDownloadApk, onOpenWebApp 
         </p>
 
         <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button
+          <a
+            href={UGABYTE_APK_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={onDownloadApk}
             className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#cef11c] text-[#090A0E] text-[13px] font-black uppercase tracking-wider glow-lime hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
           >
             <Download className="w-5 h-5 stroke-[2.5]" />
-            <span>DOWNLOAD UGABYTE ({UGABYTE_APP_META.fileSize})</span>
-          </button>
+            <span>DOWNLOAD APK ({UGABYTE_APP_META.fileSize})</span>
+          </a>
 
           <a
             href={UGABYTE_WEB_APP_URL}

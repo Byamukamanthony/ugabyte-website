@@ -5,7 +5,7 @@
 
 export const UGABYTE_APK_URL =
   import.meta.env.VITE_UGABYTE_APK_URL ||
-  "https://github.com/Byamukamanthony/ugabyte-website/raw/main/ugabyte.apk.apk";
+  "https://limewire.com/d/87VtZ#gAMC0GRo8H";
 
 export const UGABYTE_WEB_APP_URL =
   import.meta.env.VITE_UGABYTE_WEB_APP_URL || "https://ugabyte.vercel.app/";
@@ -67,12 +67,17 @@ export const UGABYTE_SOCIALS = {
 } as const;
 
 export const UGABYTE_APP_META = {
-  version: "v1.2.0",
-  fileSize: "14.1 MB",
-  sha256: "2f8338ca40c7f7d695eb584a7d8ffb9cd65396b0effe7e12a54a1fc178a2c3d7",
-  targetSdk: "Android 34 (Android 14)",
-  minSdk: "Android 26 (Android 8.0)",
-  releaseDate: "October 2026",
+  fileName: "app-release.apk",
+  version: "v1.0.0",
+  versionCode: 3,
+  fileSize: "6.4 MB",
+  fileSizeBytes: 6380243,
+  sha256: "fdee5f18c01c6b80e53249113e69080817f9c40d3e8ce5161c81e53dafedbdfe",
+  sha1: "4aa556d2f970bd105c99a9d52b9e25044c961009",
+  packageName: "co.median.android.mbjrbra",
+  targetSdk: "Android 36 (Android 16)",
+  minSdk: "Android 26 (Android 8.0+)",
+  releaseDate: "October 25, 2026",
   hubs: ["Makerere University (Main & Kikoni)", "MUBS Nakawa", "Kyambogo University"],
   upcomingHubs: ["Uganda Christian University (UCU)", "Mbarara University (MUST)"],
 } as const;

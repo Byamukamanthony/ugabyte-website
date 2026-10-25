@@ -37,7 +37,7 @@ export const DownloadToast: React.FC<DownloadToastProps> = ({
       <div className="flex-1 min-w-0">
         <div className="flex items-center justify-between">
           <h4 className="text-xs font-bold text-[#FFFFFF]">
-            Downloading APK ({UGABYTE_APP_META.fileSize})
+            Opening APK ({UGABYTE_APP_META.version} · {UGABYTE_APP_META.fileSize})
           </h4>
           <button
             type="button"
@@ -48,6 +48,9 @@ export const DownloadToast: React.FC<DownloadToastProps> = ({
             <X className="w-3.5 h-3.5" />
           </button>
         </div>
+        <p className="text-[11px] text-[#8E98A8] mt-0.5 font-mono truncate">
+          {UGABYTE_APP_META.fileName}
+        </p>
 
         <button
           type="button"
