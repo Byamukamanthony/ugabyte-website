@@ -53,6 +53,49 @@ export default function App() {
     return () => unsubscribe();
   }, []);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const path = window.location.pathname.toLowerCase().replace(/\/$/, "");
+    if (path === "/privacy") {
+      setLegalTab("privacy");
+    } else if (path === "/terms") {
+      setLegalTab("terms");
+    } else if (path === "/cookie" || path === "/cookies") {
+      setLegalTab("cookie");
+    } else if (path === "/refund" || path === "/refunds") {
+      setLegalTab("refund");
+    } else if (path === "/download" || path === "/install") {
+      setTimeout(() => {
+        const el = document.getElementById("download");
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 150);
+    } else if (path === "/faq") {
+      setTimeout(() => {
+        const el = document.getElementById("faq");
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 150);
+    } else if (path === "/about") {
+      setTimeout(() => {
+        const el = document.getElementById("about");
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 150);
+    }
+  }, []);
+
+  const handleOpenLegal = (tab: "privacy" | "terms" | "cookie" | "refund") => {
+    setLegalTab(tab);
+    if (typeof window !== "undefined") {
+      window.history.pushState({}, "", `/${tab}`);
+    }
+  };
+
+  const handleCloseLegal = () => {
+    setLegalTab(null);
+    if (typeof window !== "undefined" && window.location.pathname !== "/") {
+      window.history.pushState({}, "", "/");
+    }
+  };
+
   const toggleTheme = () => {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
@@ -117,7 +160,7 @@ export default function App() {
 
       {/* Footer with Official Favicon Logo, @ugabyteinc Icon Cards & Legal Links */}
       <Footer
-        onOpenLegal={(tab) => setLegalTab(tab)}
+        onOpenLegal={handleOpenLegal}
         onOpenInstallGuide={() => setInstallGuideOpen(true)}
         onDownloadApk={handleDownloadApk}
         onOpenWebApp={handleOpenWebApp}
@@ -138,8 +181,8 @@ export default function App() {
       <LegalModal
         isOpen={legalTab !== null}
         activeTab={legalTab || "privacy"}
-        onClose={() => setLegalTab(null)}
-        onSelectTab={(tab) => setLegalTab(tab)}
+        onClose={handleCloseLegal}
+        onSelectTab={handleOpenLegal}
       />
 
       {/* Download Alert Toast */}
