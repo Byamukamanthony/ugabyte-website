@@ -1,4 +1,13 @@
-import { BRAND_ASSETS, UGABYTE_APK_URL, UGABYTE_APP_META, UGABYTE_WEB_APP_URL, UGABYTE_APP_LINKS } from "../config/ugabyte";
+import React, { useState } from "react";
+import {
+  BRAND_ASSETS,
+  UGABYTE_APK_URL,
+  UGABYTE_APP_META,
+  UGABYTE_WEB_APP_URL,
+  UGABYTE_APP_LINKS,
+} from "../config/ugabyte";
+import { HOMEPAGE_SEO } from "../data/seoPages";
+import { shareUgaByteContent } from "../utils/share";
 import {
   Download,
   Globe,
@@ -10,6 +19,8 @@ import {
   Calendar,
   Briefcase,
   ExternalLink,
+  Share2,
+  Check,
 } from "lucide-react";
 
 interface HeroProps {
@@ -18,16 +29,39 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onDownloadApk, onOpenWebApp }) => {
+  const [heroImgFailed, setHeroImgFailed] = useState(false);
+  const [sharedCopied, setSharedCopied] = useState(false);
+
+  const handleShareUgaByte = async () => {
+    const res = await shareUgaByteContent({
+      title: HOMEPAGE_SEO.title,
+      text: "Check out UgaByte — student deals, zero-fee campus marketplace, events & gigs across Uganda",
+      url: HOMEPAGE_SEO.canonicalUrl,
+    });
+    if (res === "copied" || res === "shared") {
+      setSharedCopied(true);
+      setTimeout(() => setSharedCopied(false), 2500);
+    }
+  };
+
   return (
     <section className="relative min-h-[82vh] sm:min-h-[86vh] flex items-center justify-center overflow-hidden border-b border-[#232936] pt-18 sm:pt-22 pb-12 sm:pb-16">
-      {/* Cinematic Portrait Backdrop with Organic Glow */}
+      {/* Cinematic Portrait Backdrop with Organic Glow & Graceful Fallback */}
       <div className="absolute inset-0 z-0 pointer-events-none select-none">
-        <img
-          src={BRAND_ASSETS.heroPortrait}
-          alt="African university student portrait"
-          className="hero-portrait-img w-full h-full object-cover object-top opacity-40 sm:opacity-50 mix-blend-screen scale-105"
-          loading="eager"
-        />
+        {!heroImgFailed && (
+          <img
+            src={BRAND_ASSETS.heroPortrait}
+            alt="Ugandan university student discovering campus deals and opportunities on UgaByte"
+            width={1200}
+            height={800}
+            fetchPriority="high"
+            decoding="async"
+            referrerPolicy="no-referrer"
+            onError={() => setHeroImgFailed(true)}
+            className="hero-portrait-img w-full h-full object-cover object-top opacity-40 sm:opacity-50 mix-blend-screen scale-105"
+            loading="eager"
+          />
+        )}
         {/* Gradients layering dark onyx aesthetic with subtle lime tint */}
         <div className="hero-scrim absolute inset-0 bg-gradient-to-b from-[#090A0E]/40 via-[#090A0E]/85 to-[#090A0E]" />
         <div className="hero-radial-glow absolute -top-24 left-1/2 -translate-x-1/2 w-[320px] sm:w-[650px] h-[320px] sm:h-[450px] bg-[#cef11c]/12 rounded-full blur-[100px] sm:blur-[140px]" />
@@ -35,7 +69,7 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadApk, onOpenWebApp }) => {
 
       {/* Main Hero Container */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center w-full">
-        {/* Smartphone-Optimized Display Headline */}
+        {/* Smartphone-Optimized Display Headline (g and y descenders preserved completely) */}
         <h1 className="text-[32px] xs:text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-[#FFFFFF] max-w-4xl mb-3 sm:mb-4 leading-[1.12] sm:leading-[1.08] text-balance">
           <span className="block text-xl xs:text-2xl sm:text-3xl md:text-4xl font-black tracking-tight hero-gradient-text text-transparent bg-clip-text bg-gradient-to-r from-white via-[#e3e2e8] to-[#cef11c] mb-1 sm:mb-2 select-none transform -translate-y-1 sm:-translate-y-1.5 pb-1 sm:pb-1.5 leading-normal">
             UgaByte
@@ -43,13 +77,13 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadApk, onOpenWebApp }) => {
           Deals, Market &amp; Events.{" "}
           <br className="hidden sm:inline" />
           <span className="hero-gradient-text text-transparent bg-clip-text bg-gradient-to-r from-white via-[#e3e2e8] to-[#cef11c]">
-            Built for Students.
+            Built for Students in Uganda.
           </span>
         </h1>
 
         {/* Subtitle */}
-        <p className="text-xs sm:text-base text-[#8E98A8] max-w-xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2">
-          Claim student discounts, trade peer-to-peer with zero commission, and unlock campus events across Kampala.
+        <p className="text-xs sm:text-base text-[#8E98A8] max-w-2xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2">
+          Discover verified student discounts and affordable campus food, buy and sell peer-to-peer with UGX 0 commission, and unlock university events and gigs across Kampala and Uganda.
         </p>
 
         {/* Dual Primary & Secondary Action CTAs (Web App Primary, Touch-first on smartphones) */}
@@ -78,8 +112,8 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadApk, onOpenWebApp }) => {
           </a>
         </div>
 
-        {/* Direct Web App Hub Quick-Access Chips */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-8 sm:mb-10 w-full max-w-2xl px-2">
+        {/* Direct Web App Hub Quick-Access Chips + One-Tap Share */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-8 sm:mb-10 w-full max-w-3xl px-2">
           <a
             href={UGABYTE_APP_LINKS.deals}
             target="_blank"
@@ -127,6 +161,25 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadApk, onOpenWebApp }) => {
             <span>Opportunities</span>
             <ExternalLink className="w-3 h-3 opacity-60" />
           </a>
+
+          <button
+            type="button"
+            onClick={handleShareUgaByte}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#12151C] hover:bg-[#181C26] border border-[#232936] hover:border-[#cef11c]/50 text-xs text-[#e3e2e8] hover:text-[#cef11c] font-semibold transition-all active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
+            title="Share UgaByte with classmates on WhatsApp or social media"
+          >
+            {sharedCopied ? (
+              <>
+                <Check className="w-3.5 h-3.5 text-[#cef11c]" />
+                <span className="text-[#cef11c]">Link Ready!</span>
+              </>
+            ) : (
+              <>
+                <Share2 className="w-3.5 h-3.5 text-[#cef11c]" />
+                <span>Share UgaByte</span>
+              </>
+            )}
+          </button>
         </div>
 
         {/* High-Impact Metric Stats Row (Proportionate on mobile) */}

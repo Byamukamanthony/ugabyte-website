@@ -15,10 +15,14 @@ export const UgaByteLogo: React.FC<UgaByteLogoProps> = ({
 }) => {
   return (
     <div className={`inline-flex items-center gap-2.5 select-none ${className}`}>
-      {/* Official 3D Isometric Faceted 'U' Icon */}
+      {/* Official 3D Isometric Faceted 'U' Icon (untouched original + responsive sizes) */}
       <img
         src="/assets/aistudio/ugabyte_icon_29c10976.png"
-        alt="UgaByte Logo"
+        srcSet="/favicon-96x96.png 96w, /favicon.png 192w, /android-chrome-512x512.png 512w, /assets/aistudio/ugabyte_icon_29c10976.png 1600w"
+        sizes="40px"
+        width={36}
+        height={36}
+        alt="UgaByte"
         className="h-full w-auto aspect-square shrink-0 object-contain drop-shadow-[0_2px_10px_rgba(198,242,0,0.3)]"
         style={size ? { width: size, height: size } : undefined}
         loading="eager"

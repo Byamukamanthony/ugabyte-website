@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Flame,
   Store,
@@ -7,23 +7,49 @@ import {
   MapPin,
   ExternalLink,
   PlusCircle,
+  Share2,
+  Check,
+  ArrowRight,
 } from "lucide-react";
 import { LiveFeedPayload, EMPTY_LIVE_FEED } from "../services/liveFeed";
 import { UGABYTE_APP_LINKS } from "../config/ugabyte";
+import { CategoryRouteSlug, SITE_ORIGIN } from "../data/seoPages";
+import { shareUgaByteContent } from "../utils/share";
 
 interface TheSolutionProps {
   onClaimDrop?: () => void;
   onOpenWebApp?: () => void;
+  onNavigateCategory?: (slug: CategoryRouteSlug, e?: React.MouseEvent) => void;
   feed?: LiveFeedPayload;
 }
 
 export const TheSolution: React.FC<TheSolutionProps> = ({
+  onNavigateCategory,
   feed = EMPTY_LIVE_FEED,
 }) => {
+  const [sharedKey, setSharedKey] = useState<string | null>(null);
+
   const featuredDeal = feed.deals[0];
   const topProducts = feed.products.slice(0, 3);
   const featuredEvent = feed.events[0];
   const topGigs = feed.gigs.slice(0, 2);
+
+  const handleShareItem = async (
+    key: string,
+    title: string,
+    text: string,
+    slug: CategoryRouteSlug
+  ) => {
+    const res = await shareUgaByteContent({
+      title,
+      text,
+      url: `${SITE_ORIGIN}/${slug}`,
+    });
+    if (res === "copied" || res === "shared") {
+      setSharedKey(key);
+      setTimeout(() => setSharedKey(null), 2500);
+    }
+  };
 
   return (
     <section
@@ -31,9 +57,15 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
       id="features"
     >
       <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
-        <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#FFFFFF] tracking-tight text-balance">
+        <span className="text-[11px] font-black text-[#cef11c] uppercase tracking-wider">
+          What UgaByte Offers Across Uganda
+        </span>
+        <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#FFFFFF] mt-1 tracking-tight text-balance">
           Four Core Pillars by UgaByte
         </h2>
+        <p className="text-xs sm:text-sm text-[#8E98A8] mt-2 leading-relaxed">
+          Everything students and campus communities need to save money, trade safely, attend university events, and earn income—accessible in any browser or Android phone.
+        </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-stretch">
@@ -65,78 +97,113 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
             </div>
 
             <h3 className="text-base sm:text-xl font-bold text-[#FFFFFF] mb-1">
-              Flash Deals &amp; Student Drops
+              Student Deals &amp; Affordable Campus Food
             </h3>
             <p className="text-xs sm:text-sm text-[#8E98A8] leading-relaxed mb-4 sm:mb-5">
-              Exclusive partner food, printing, and hostel discounts verified by Student ID.
+              Verified meal discounts, rolex &amp; café combos, academic printing offers, and hostel promotions around Makerere, MUBS Nakawa, and Kyambogo.
             </p>
           </div>
 
           {/* Live Deal Card synced directly from Supabase */}
-          {featuredDeal ? (
-            <div className="bg-[#181C26] border border-[#232936] rounded-xl p-3.5 sm:p-5 relative mt-1 sm:mt-2">
-              <div className="flex flex-col xs:flex-row items-start xs:items-start justify-between gap-2 sm:gap-4">
-                <div className="min-w-0 flex-1">
-                  <span className="text-[10px] font-black text-[#FFA800] uppercase tracking-wider flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#FFA800] animate-pulse" />
-                    {featuredDeal.discount || "LIVE IN APP"}
-                  </span>
-                  <h4 className="text-sm sm:text-base font-bold text-[#FFFFFF] mt-1 truncate">
-                    {featuredDeal.title}
-                  </h4>
-                  <div className="flex items-center gap-1.5 text-xs text-[#8E98A8] mt-1">
-                    <MapPin className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                    <span className="truncate">{featuredDeal.location}</span>
+          <div>
+            {featuredDeal ? (
+              <div className="bg-[#181C26] border border-[#232936] rounded-xl p-3.5 sm:p-5 relative mt-1 sm:mt-2">
+                <div className="flex flex-col xs:flex-row items-start xs:items-start justify-between gap-2 sm:gap-4">
+                  <div className="min-w-0 flex-1">
+                    <span className="text-[10px] font-black text-[#FFA800] uppercase tracking-wider flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#FFA800] animate-pulse" />
+                      {featuredDeal.discount || "LIVE IN APP"}
+                    </span>
+                    <h4 className="text-sm sm:text-base font-bold text-[#FFFFFF] mt-1 truncate">
+                      {featuredDeal.title}
+                    </h4>
+                    <div className="flex items-center gap-1.5 text-xs text-[#8E98A8] mt-1">
+                      <MapPin className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
+                      <span className="truncate">{featuredDeal.location}</span>
+                    </div>
+                  </div>
+
+                  <div className="text-left xs:text-right shrink-0">
+                    <div className="text-base sm:text-xl font-black text-[#cef11c] tabular-nums">
+                      {featuredDeal.price}
+                    </div>
+                    {featuredDeal.originalPrice && (
+                      <div className="text-[11px] sm:text-xs line-through text-[#8E98A8] tabular-nums">
+                        {featuredDeal.originalPrice}
+                      </div>
+                    )}
                   </div>
                 </div>
 
-                <div className="text-left xs:text-right shrink-0">
-                  <div className="text-base sm:text-xl font-black text-[#cef11c] tabular-nums">
-                    {featuredDeal.price}
+                <div className="mt-3.5 sm:mt-4 flex items-center justify-between border-t border-[#232936] pt-3 gap-2">
+                  <span className="text-[10px] sm:text-[11px] text-[#8E98A8]">{featuredDeal.time}</span>
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        handleShareItem(
+                          `deal-${featuredDeal.id}`,
+                          `${featuredDeal.title} — UgaByte Deal`,
+                          `${featuredDeal.title} (${featuredDeal.price}) near ${featuredDeal.location} on UgaByte`,
+                          "student-deals-uganda"
+                        )
+                      }
+                      className="w-9 h-9 rounded-full bg-[#12151C] border border-[#232936] hover:border-[#cef11c]/50 text-[#8E98A8] hover:text-[#cef11c] flex items-center justify-center transition-colors"
+                      title="Share this deal"
+                      aria-label="Share this deal"
+                    >
+                      {sharedKey === `deal-${featuredDeal.id}` ? (
+                        <Check className="w-3.5 h-3.5 text-[#cef11c]" />
+                      ) : (
+                        <Share2 className="w-3.5 h-3.5" />
+                      )}
+                    </button>
+                    <a
+                      href={UGABYTE_APP_LINKS.deals}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3.5 sm:px-4 py-2 sm:py-1.5 min-h-[40px] rounded-full text-xs font-black uppercase tracking-wider bg-[#cef11c] text-[#090A0E] hover:brightness-105 transition-all active:scale-95 inline-flex items-center gap-1.5"
+                    >
+                      <span>Claim Deal</span>
+                      <ExternalLink className="w-3.5 h-3.5 stroke-[2.5]" />
+                    </a>
                   </div>
-                  {featuredDeal.originalPrice && (
-                    <div className="text-[11px] sm:text-xs line-through text-[#8E98A8] tabular-nums">
-                      {featuredDeal.originalPrice}
-                    </div>
-                  )}
                 </div>
               </div>
-
-              <div className="mt-3.5 sm:mt-4 flex items-center justify-between border-t border-[#232936] pt-3">
-                <span className="text-[10px] sm:text-[11px] text-[#8E98A8]">{featuredDeal.time}</span>
+            ) : (
+              <div className="bg-[#181C26] border border-[#232936] rounded-xl p-3.5 sm:p-5 flex flex-col xs:flex-row items-stretch xs:items-center justify-between gap-3 sm:gap-4 mt-1 sm:mt-2">
+                <div>
+                  <div className="text-xs sm:text-sm font-bold text-[#FFFFFF]">
+                    Synced with Live Campus Deals
+                  </div>
+                  <div className="text-xs text-[#8E98A8] mt-0.5">
+                    Browse current local food offers and student discounts inside the UgaByte app.
+                  </div>
+                </div>
                 <a
                   href={UGABYTE_APP_LINKS.deals}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-3.5 sm:px-4 py-2 sm:py-1.5 min-h-[40px] rounded-full text-xs font-black uppercase tracking-wider bg-[#cef11c] text-[#090A0E] hover:brightness-105 transition-all active:scale-95 inline-flex items-center gap-1.5"
+                  className="px-4 py-2.5 min-h-[44px] rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-black uppercase tracking-wider shrink-0 inline-flex items-center justify-center gap-1.5 hover:brightness-105 active:scale-95 transition-all"
                 >
+                  <PlusCircle className="w-3.5 h-3.5" />
                   <span>Open Deals</span>
-                  <ExternalLink className="w-3.5 h-3.5 stroke-[2.5]" />
+                  <ExternalLink className="w-3 h-3 stroke-[2.5]" />
                 </a>
               </div>
-            </div>
-          ) : (
-            <div className="bg-[#181C26] border border-[#232936] rounded-xl p-3.5 sm:p-5 flex flex-col xs:flex-row items-stretch xs:items-center justify-between gap-3 sm:gap-4 mt-1 sm:mt-2">
-              <div>
-                <div className="text-xs sm:text-sm font-bold text-[#FFFFFF]">
-                  Synced with Live Campus Deals
-                </div>
-                <div className="text-xs text-[#8E98A8] mt-0.5">
-                  No active flash drops posted right now. Post or claim deals in the app.
-                </div>
-              </div>
+            )}
+
+            <div className="mt-3 pt-2 flex items-center justify-between text-xs">
               <a
-                href={UGABYTE_APP_LINKS.deals}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2.5 min-h-[44px] rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-black uppercase tracking-wider shrink-0 inline-flex items-center justify-center gap-1.5 hover:brightness-105 active:scale-95 transition-all"
+                href="/student-deals-uganda"
+                onClick={(e) => onNavigateCategory?.("student-deals-uganda", e)}
+                className="inline-flex items-center gap-1.5 font-bold text-[#cef11c] hover:underline"
               >
-                <PlusCircle className="w-3.5 h-3.5" />
-                <span>Open Deals</span>
-                <ExternalLink className="w-3 h-3 stroke-[2.5]" />
+                <span>Explore Student Deals &amp; Food in Uganda</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </a>
             </div>
-          )}
+          </div>
         </div>
 
         {/* Pillar 2: Peer Market (Col-Span 5) */}
@@ -167,10 +234,10 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
             </div>
 
             <h3 className="text-base sm:text-xl font-bold text-[#FFFFFF] mb-1">
-              Peer Marketplace
+              Peer-to-Peer Student Marketplace
             </h3>
             <p className="text-xs sm:text-sm text-[#8E98A8] leading-relaxed mb-4 sm:mb-5">
-              Trade electronics, calculators, and hostel essentials directly at campus gates.
+              Buy and sell laptops, Casio calculators, textbooks, and hostel essentials directly at university gates with UGX 0 listing fees.
             </p>
           </div>
 
@@ -196,18 +263,6 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
                     </span>
                   </a>
                 ))}
-
-                <div className="pt-2 text-center">
-                  <a
-                    href={UGABYTE_APP_LINKS.marketplace}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#cef11c] hover:underline"
-                  >
-                    <span>View all items in Marketplace</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                </div>
               </div>
             ) : (
               <a
@@ -217,14 +272,25 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
                 className="w-full p-3 sm:p-3.5 min-h-[48px] rounded-xl bg-[#181C26] border border-[#232936] hover:border-[#cef11c]/50 flex items-center justify-between text-xs transition-colors active:scale-[0.99]"
               >
                 <span className="text-[#8E98A8] truncate pr-2">
-                  List or browse verified items in app
+                  List or browse verified student items
                 </span>
                 <span className="font-bold text-[#cef11c] flex items-center gap-1.5 shrink-0">
-                  <span>View Marketplace</span>
+                  <span>Marketplace</span>
                   <ExternalLink className="w-3.5 h-3.5" />
                 </span>
               </a>
             )}
+
+            <div className="mt-3 pt-2 flex items-center justify-between text-xs">
+              <a
+                href="/student-marketplace-uganda"
+                onClick={(e) => onNavigateCategory?.("student-marketplace-uganda", e)}
+                className="inline-flex items-center gap-1.5 font-bold text-[#cef11c] hover:underline"
+              >
+                <span>Student Marketplace Guide</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
           </div>
         </div>
 
@@ -256,37 +322,50 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
             </div>
 
             <h3 className="text-base sm:text-xl font-bold text-[#FFFFFF] mb-1">
-              Campus Events
+              University &amp; Campus Events
             </h3>
             <p className="text-xs sm:text-sm text-[#8E98A8] leading-relaxed mb-4 sm:mb-5">
-              Hackathons, hall nights, and inter-university sports with instant QR check-in.
+              Hackathons, career fairs, public lectures, cultural galas, and inter-university sports fixtures across Ugandan campuses.
             </p>
           </div>
 
-          <a
-            href={UGABYTE_APP_LINKS.events}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full text-left bg-[#181C26] p-3 sm:p-3.5 min-h-[56px] rounded-xl border border-[#232936] hover:border-[#cef11c]/50 flex items-center gap-3 transition-colors active:scale-[0.99] group/evt focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
-          >
-            <div className="w-10 h-10 rounded-lg bg-[#12151C] flex flex-col items-center justify-center border border-[#232936] text-[#cef11c] shrink-0 group-hover/evt:border-[#cef11c]/50 transition-colors">
-              <Calendar className="w-4 h-4" />
-            </div>
-            <div className="min-w-0 flex-1">
-              <div className="text-xs sm:text-sm font-bold text-[#FFFFFF] group-hover/evt:text-[#cef11c] truncate transition-colors">
-                {featuredEvent ? featuredEvent.title : "Live Campus Events"}
+          <div>
+            <a
+              href={UGABYTE_APP_LINKS.events}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full text-left bg-[#181C26] p-3 sm:p-3.5 min-h-[56px] rounded-xl border border-[#232936] hover:border-[#cef11c]/50 flex items-center gap-3 transition-colors active:scale-[0.99] group/evt focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
+            >
+              <div className="w-10 h-10 rounded-lg bg-[#12151C] flex flex-col items-center justify-center border border-[#232936] text-[#cef11c] shrink-0 group-hover/evt:border-[#cef11c]/50 transition-colors">
+                <Calendar className="w-4 h-4" />
               </div>
-              <span className="text-[11px] text-[#8E98A8] truncate block">
-                {featuredEvent
-                  ? `${featuredEvent.location} · ${featuredEvent.time}`
-                  : "Browse or host upcoming university events"}
+              <div className="min-w-0 flex-1">
+                <div className="text-xs sm:text-sm font-bold text-[#FFFFFF] group-hover/evt:text-[#cef11c] truncate transition-colors">
+                  {featuredEvent ? featuredEvent.title : "Live Campus Events"}
+                </div>
+                <span className="text-[11px] text-[#8E98A8] truncate block">
+                  {featuredEvent
+                    ? `${featuredEvent.location} · ${featuredEvent.time}`
+                    : "Browse or publish upcoming university events"}
+                </span>
+              </div>
+              <span className="inline-flex items-center gap-1 text-[11px] font-bold text-[#cef11c] shrink-0">
+                <span className="hidden xs:inline">Open</span>
+                <ExternalLink className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
               </span>
+            </a>
+
+            <div className="mt-3 pt-2 flex items-center justify-between text-xs">
+              <a
+                href="/campus-events-uganda"
+                onClick={(e) => onNavigateCategory?.("campus-events-uganda", e)}
+                className="inline-flex items-center gap-1.5 font-bold text-[#cef11c] hover:underline"
+              >
+                <span>Explore Campus Events in Uganda</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
             </div>
-            <span className="inline-flex items-center gap-1 text-[11px] font-bold text-[#cef11c] shrink-0">
-              <span className="hidden xs:inline">Open Events</span>
-              <ExternalLink className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-            </span>
-          </a>
+          </div>
         </div>
 
         {/* Pillar 4: Internships & Freelance Gigs (Col-Span 7) */}
@@ -317,56 +396,42 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
             </div>
 
             <h3 className="text-base sm:text-xl font-bold text-[#FFFFFF] mb-1">
-              Internships &amp; Campus Gigs
+              Student Gigs, Freelance Hustles &amp; Internships
             </h3>
             <p className="text-xs sm:text-sm text-[#8E98A8] leading-relaxed mb-4 sm:mb-5">
-              Vetted brand ambassador roles, tech internships, and paid student tasks.
+              Vetted brand ambassador roles, tech and business internships, academic tutoring, and paid student tasks across Uganda.
             </p>
           </div>
 
           <div className="border-t border-[#232936] pt-3 sm:pt-4">
             {topGigs.length > 0 ? (
-              <div className="space-y-2.5">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
-                  {topGigs.map((gig, idx) => (
-                    <a
-                      key={gig.id}
-                      href={UGABYTE_APP_LINKS.opportunities}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-3 sm:p-3.5 min-h-[64px] rounded-xl bg-[#181C26] border border-[#232936] hover:border-[#cef11c]/50 text-left transition-colors active:scale-[0.99] block group/gig"
-                    >
-                      <div className="flex items-center justify-between">
-                        <span
-                          className={`text-[10px] font-black uppercase tracking-wider ${
-                            idx === 0 ? "text-[#cef11c]" : "text-[#FFA800]"
-                          }`}
-                        >
-                          {gig.discount || "OPPORTUNITY"}
-                        </span>
-                        <ExternalLink className="w-3 h-3 text-[#8E98A8] group-hover/gig:text-[#cef11c] transition-colors" />
-                      </div>
-                      <h5 className="text-xs sm:text-sm font-bold text-[#FFFFFF] group-hover/gig:text-[#cef11c] mt-0.5 truncate transition-colors">
-                        {gig.title}
-                      </h5>
-                      <p className="text-[11px] text-[#8E98A8] mt-0.5 font-mono">
-                        {gig.price}
-                      </p>
-                    </a>
-                  ))}
-                </div>
-
-                <div className="pt-1 text-center">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
+                {topGigs.map((gig, idx) => (
                   <a
+                    key={gig.id}
                     href={UGABYTE_APP_LINKS.opportunities}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#cef11c] hover:underline"
+                    className="p-3 sm:p-3.5 min-h-[64px] rounded-xl bg-[#181C26] border border-[#232936] hover:border-[#cef11c]/50 text-left transition-colors active:scale-[0.99] block group/gig"
                   >
-                    <span>View all opportunities &amp; student gigs</span>
-                    <ExternalLink className="w-3 h-3" />
+                    <div className="flex items-center justify-between">
+                      <span
+                        className={`text-[10px] font-black uppercase tracking-wider ${
+                          idx === 0 ? "text-[#cef11c]" : "text-[#FFA800]"
+                        }`}
+                      >
+                        {gig.discount || "OPPORTUNITY"}
+                      </span>
+                      <ExternalLink className="w-3 h-3 text-[#8E98A8] group-hover/gig:text-[#cef11c] transition-colors" />
+                    </div>
+                    <h5 className="text-xs sm:text-sm font-bold text-[#FFFFFF] group-hover/gig:text-[#cef11c] mt-0.5 truncate transition-colors">
+                      {gig.title}
+                    </h5>
+                    <p className="text-[11px] text-[#8E98A8] mt-0.5 font-mono">
+                      {gig.price}
+                    </p>
                   </a>
-                </div>
+                ))}
               </div>
             ) : (
               <a
@@ -376,7 +441,7 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
                 className="w-full p-3 sm:p-3.5 min-h-[48px] rounded-xl bg-[#181C26] border border-[#232936] hover:border-[#cef11c]/50 flex items-center justify-between text-xs transition-colors active:scale-[0.99]"
               >
                 <span className="text-[#8E98A8] truncate pr-2">
-                  Explore paid student gigs and roles
+                  Explore paid student gigs, hustles &amp; internships
                 </span>
                 <span className="font-bold text-[#cef11c] flex items-center gap-1 shrink-0">
                   <span>Opportunities</span>
@@ -384,6 +449,17 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
                 </span>
               </a>
             )}
+
+            <div className="mt-3 pt-2 flex items-center justify-between text-xs">
+              <a
+                href="/student-gigs-uganda"
+                onClick={(e) => onNavigateCategory?.("student-gigs-uganda", e)}
+                className="inline-flex items-center gap-1.5 font-bold text-[#cef11c] hover:underline"
+              >
+                <span>Explore Student Gigs &amp; Internships in Uganda</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
           </div>
         </div>
       </div>

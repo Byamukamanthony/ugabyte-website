@@ -3,16 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>UgaByte — Student Deals, Events & Opportunities</title>
+    <title>UgaByte — Student Deals, Events &amp; Opportunities</title>
     <meta
       name="description"
-      content="Discover verified campus student discounts, buy and sell peer-to-peer with zero fees, and explore live university events and gigs on UgaByte across Uganda."
+      content="UgaByte connects university students and campus communities across Uganda with verified student deals, affordable local food, a zero-fee marketplace, campus events, and gigs."
     />
     <link rel="canonical" href="https://ugabyte-website.vercel.app/" />
 
     <!-- Google Site Verification & Crawlability -->
     <meta name="google-site-verification" content="87jWzRWK8S1yFtsIxvYbvrKIZaG6KJ2eJxSfCSIjxyk" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="theme-color" content="#090A0E" />
 
     <!-- App Name Signals for Google Search & Browsers -->
     <meta name="application-name" content="UgaByte" />
@@ -20,49 +21,50 @@
 
     <!-- OpenGraph Metadata -->
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_UG" />
     <meta property="og:site_name" content="UgaByte" />
-    <meta property="og:title" content="UgaByte — Student Deals, Events & Opportunities" />
+    <meta property="og:title" content="UgaByte — Student Deals, Events &amp; Opportunities" />
     <meta
       property="og:description"
-      content="Discover verified campus student discounts, buy and sell peer-to-peer with zero fees, and explore live university events and gigs on UgaByte across Uganda."
+      content="UgaByte connects university students and campus communities across Uganda with verified student deals, affordable local food, a zero-fee marketplace, campus events, and gigs."
     />
     <meta property="og:url" content="https://ugabyte-website.vercel.app/" />
-    <meta property="og:image" content="https://ugabyte-website.vercel.app/android-chrome-512x512.png" />
-    <meta property="og:image:width" content="512" />
-    <meta property="og:image:height" content="512" />
-    <meta property="og:image:alt" content="UgaByte Official Logo" />
+    <meta property="og:image" content="https://ugabyte-website.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content="UgaByte — Student Deals, Marketplace, Campus Events &amp; Opportunities in Uganda" />
 
-    <!-- Twitter Card Metadata -->
+    <!-- Twitter / X Card Metadata -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@ugabyteinc" />
     <meta name="twitter:creator" content="@ugabyteinc" />
-    <meta name="twitter:title" content="UgaByte — Student Deals, Events & Opportunities" />
+    <meta name="twitter:title" content="UgaByte — Student Deals, Events &amp; Opportunities" />
     <meta
       name="twitter:description"
-      content="Discover verified campus student discounts, buy and sell peer-to-peer with zero fees, and explore live university events and gigs on UgaByte across Uganda."
+      content="UgaByte connects university students and campus communities across Uganda with verified student deals, affordable local food, a zero-fee marketplace, campus events, and gigs."
     />
-    <meta name="twitter:image" content="https://ugabyte-website.vercel.app/android-chrome-512x512.png" />
-    <meta name="twitter:image:alt" content="UgaByte Official Logo" />
+    <meta name="twitter:image" content="https://ugabyte-website.vercel.app/og-image.png" />
+    <meta name="twitter:image:alt" content="UgaByte — Student Deals, Marketplace, Campus Events &amp; Opportunities in Uganda" />
 
-    <!-- Favicon & Touch Icons (Official Square UgaByte Logo) -->
+    <!-- Favicon & Touch Icons (Official Square UgaByte 'U' Logo) -->
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png" />
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
 
-    <!-- Google Fonts -->
+    <!-- Optimized Google Fonts (only used weights + swap) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
 
     <!-- Schema.org JSON-LD Structured Data for Google Search Branding -->
-    <script type="application/ld+json">
+    <script type="application/ld+json" id="ugabyte-jsonld">
     {
       "@context": "https://schema.org",
       "@graph": [
@@ -72,19 +74,27 @@
           "name": "UgaByte",
           "alternateName": "UgaByte",
           "url": "https://ugabyte-website.vercel.app/",
-          "description": "Discover verified campus student discounts, buy and sell peer-to-peer with zero fees, and explore live university events and gigs on UgaByte across Uganda."
+          "inLanguage": "en-UG",
+          "publisher": {
+            "@id": "https://ugabyte-website.vercel.app/#organization"
+          },
+          "description": "UgaByte connects university students and campus communities across Uganda with verified student deals, affordable local food, a zero-fee marketplace, campus events, and gigs."
         },
         {
           "@type": "Organization",
           "@id": "https://ugabyte-website.vercel.app/#organization",
           "name": "UgaByte",
-          "alternateName": "UgaByte",
           "url": "https://ugabyte-website.vercel.app/",
           "logo": {
             "@type": "ImageObject",
             "url": "https://ugabyte-website.vercel.app/favicon.png",
             "width": 192,
             "height": 192
+          },
+          "image": "https://ugabyte-website.vercel.app/android-chrome-512x512.png",
+          "areaServed": {
+            "@type": "Country",
+            "name": "Uganda"
           },
           "sameAs": [
             "https://x.com/ugabyteinc",
@@ -98,8 +108,15 @@
           "@id": "https://ugabyte-website.vercel.app/#software",
           "name": "UgaByte",
           "applicationCategory": "LifestyleApplication",
-          "operatingSystem": "Android, Web",
-          "description": "UgaByte digital platform connecting students with deals, marketplace commerce, events, and opportunities.",
+          "operatingSystem": "Web, Android 8.0+",
+          "url": "https://ugabyte.vercel.app/",
+          "downloadUrl": "https://limewire.com/d/87VtZ#gAMC0GRo8H",
+          "softwareVersion": "1.0.0",
+          "fileSize": "6.4 MB",
+          "publisher": {
+            "@id": "https://ugabyte-website.vercel.app/#organization"
+          },
+          "description": "UgaByte web and Android application connecting students in Uganda with local deals, affordable food, peer-to-peer marketplace listings, campus events, and gigs.",
           "offers": {
             "@type": "Offer",
             "price": "0",
@@ -111,7 +128,36 @@
     </script>
   </head>
   <body class="bg-[#090A0E] text-[#e3e2e8] antialiased selection:bg-[#cef11c] selection:text-[#090A0E] min-h-screen">
-    <div id="root"></div>
+    <div id="root">
+      <!-- Meaningful Public HTML Shell for Search Crawlers, AI Bots, and Instant Pre-JS Paint -->
+      <header class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between border-b border-[#232936]">
+        <a href="/" class="text-lg font-black text-white">Uga<span class="text-[#cef11c]">Byte</span></a>
+        <nav aria-label="Primary">
+          <a href="https://ugabyte.vercel.app/" class="px-4 py-2 rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-black uppercase">Open Web App</a>
+        </nav>
+      </header>
+      <main class="max-w-5xl mx-auto px-4 py-12 space-y-8">
+        <section>
+          <h1 class="text-3xl sm:text-5xl font-black text-white">UgaByte — Student Deals, Marketplace, Events &amp; Opportunities in Uganda</h1>
+          <p class="mt-4 text-base text-[#8E98A8]">
+            UgaByte connects university students and campus communities across Makerere University, MUBS Nakawa, Kyambogo University, and Kampala with verified student discounts, affordable campus food, a UGX 0 commission peer-to-peer marketplace, live university events, and student gigs or internships.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="https://ugabyte.vercel.app/" class="px-6 py-3 rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-black uppercase">Open UgaByte Web App</a>
+            <a href="https://limewire.com/d/87VtZ#gAMC0GRo8H" class="px-6 py-3 rounded-full border border-[#232936] text-white text-xs font-bold">Download Android APK (6.4 MB)</a>
+          </div>
+        </section>
+        <section>
+          <h2 class="text-xl font-bold text-white">Explore UgaByte Campus Hubs in Uganda</h2>
+          <ul class="mt-3 space-y-2 text-sm text-[#e3e2e8]">
+            <li><a href="/student-deals-uganda" class="text-[#cef11c] underline">Student Deals &amp; Affordable Campus Food in Uganda</a> — Verified meal combos, printing discounts, and hostel offers.</li>
+            <li><a href="/student-marketplace-uganda" class="text-[#cef11c] underline">Student Peer-to-Peer Marketplace in Uganda</a> — Buy and sell electronics, calculators, textbooks, and hostel gear with UGX 0 fees.</li>
+            <li><a href="/campus-events-uganda" class="text-[#cef11c] underline">University &amp; Campus Events in Uganda</a> — Hackathons, career fairs, public lectures, and inter-university sports.</li>
+            <li><a href="/student-gigs-uganda" class="text-[#cef11c] underline">Student Gigs, Internships &amp; Opportunities in Uganda</a> — Paid student gigs, freelance hustles, and university internships.</li>
+          </ul>
+        </section>
+      </main>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

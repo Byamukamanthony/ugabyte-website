@@ -1,6 +1,6 @@
 {
   "name": "UgaByte — Student Deals, Events & Opportunities",
-  "description": "Discover verified campus student discounts, buy and sell peer-to-peer with zero fees, and explore live university events and gigs on UgaByte across Uganda.",
+  "description": "UgaByte connects university students and campus communities across Uganda with verified student deals, affordable local food, a zero-fee marketplace, campus events, and gigs.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
