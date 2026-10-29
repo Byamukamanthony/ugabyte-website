@@ -46,6 +46,8 @@ export function updateDocumentSeo({
   setMetaTag("name", "description", description);
   setMetaTag("name", "robots", robots);
 
+  setMetaTag("property", "og:type", "website");
+  setMetaTag("property", "og:site_name", "UgaByte");
   setMetaTag("property", "og:title", title);
   setMetaTag("property", "og:description", description);
   setMetaTag("property", "og:url", canonicalUrl);

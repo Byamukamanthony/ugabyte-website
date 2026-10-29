@@ -45,7 +45,7 @@ export interface CategorySeoPageConfig {
 export const HOMEPAGE_SEO = {
   title: "UgaByte — Student Deals, Events & Opportunities",
   metaDescription:
-    "UgaByte connects university students and campus communities across Uganda with verified student deals, affordable local food, a zero-fee marketplace, campus events, and gigs.",
+    "UgaByte connects students across Uganda with verified campus deals, affordable local food, a zero-fee marketplace, university events, and opportunities.",
   canonicalUrl: `${SITE_ORIGIN}/`,
   ogImage: `${SITE_ORIGIN}/og-image.png`,
 } as const;

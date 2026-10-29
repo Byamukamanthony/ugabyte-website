@@ -31,7 +31,7 @@ export const UgaByteLogo: React.FC<UgaByteLogoProps> = ({
 
       {/* Brand Name Typography */}
       {showWordmark && (
-        <span className={`${wordmarkClassName} inline-flex items-baseline`}>
+        <span className={wordmarkClassName}>
           <span className="text-[#FFFFFF]">Uga</span>
           <span className="text-[#cef11c] logo-accent">Byte</span>
         </span>

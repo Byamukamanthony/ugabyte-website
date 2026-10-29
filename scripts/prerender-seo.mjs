@@ -122,13 +122,14 @@ for (const route of ROUTES) {
         "@type": "WebSite",
         "@id": `${SITE_ORIGIN}/#website`,
         name: "UgaByte",
-        alternateName: "UgaByte",
+        alternateName: "Ugabyte",
         url: `${SITE_ORIGIN}/`,
       },
       {
         "@type": "Organization",
         "@id": `${SITE_ORIGIN}/#organization`,
         name: "UgaByte",
+        alternateName: "Ugabyte",
         url: `${SITE_ORIGIN}/`,
         logo: {
           "@type": "ImageObject",
@@ -183,7 +184,7 @@ for (const route of ROUTES) {
 
   const bodyShell = `
       <header class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between border-b border-[#232936]">
-        <a href="/" class="text-lg font-black text-white">Uga<span class="text-[#cef11c]">Byte</span></a>
+        <a href="/" class="text-lg font-black text-white">UgaByte</a>
         <nav aria-label="Breadcrumb" class="text-xs text-[#8E98A8]">
           <a href="/" class="hover:underline">Home</a> / <span>${escapeHtml(route.navLabel)}</span>
         </nav>
