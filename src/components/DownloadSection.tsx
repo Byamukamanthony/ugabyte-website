@@ -23,7 +23,7 @@ export const DownloadSection: React.FC<DownloadSectionProps> = ({
 
   return (
     <section
-      className="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-[#232936]"
+      className="py-12 sm:py-16 scroll-mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-[#232936]"
       id="download"
     >
       <div className="bg-gradient-to-b from-[#12151C] to-[#181C26] border border-[#232936] rounded-2xl p-5 sm:p-10 relative overflow-hidden shadow-2xl">

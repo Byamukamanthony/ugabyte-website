@@ -67,7 +67,7 @@ export const CategoryHubPage: React.FC<CategoryHubPageProps> = ({
   };
 
   return (
-    <div className="pt-16 sm:pt-20 pb-12">
+    <div className="pt-24 md:pt-20 pb-12">
       {/* Breadcrumb & Hero Header */}
       <section className="relative overflow-hidden border-b border-[#232936] py-10 sm:py-16">
         <div className="hero-radial-glow absolute -top-24 left-1/2 -translate-x-1/2 w-[300px] sm:w-[600px] h-[260px] bg-[#cef11c]/10 rounded-full blur-[120px] pointer-events-none" />

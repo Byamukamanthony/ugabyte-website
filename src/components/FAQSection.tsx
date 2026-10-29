@@ -37,7 +37,7 @@ export const FAQSection: React.FC = () => {
   };
 
   return (
-    <section className="py-12 sm:py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" id="faq">
+    <section className="py-12 sm:py-20 scroll-mt-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" id="faq">
       <div className="text-center mb-8 sm:mb-12">
         <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-black text-[#cef11c] uppercase tracking-wider">
           <HelpCircle className="w-3.5 h-3.5" />

@@ -82,10 +82,10 @@ export const Navbar: React.FC<NavbarProps> = ({
         className={`fixed top-0 left-0 w-full z-40 transition-all duration-200 ${
           scrolled
             ? "bg-[#090A0E]/95 backdrop-blur-md border-b border-[#232936] shadow-lg"
-            : "bg-[#090A0E]/80 backdrop-blur-sm border-b border-[#232936]/60"
-        } h-14 sm:h-16`}
+            : "bg-[#090A0E]/85 backdrop-blur-sm border-b border-[#232936]/60"
+        }`}
       >
-        <div className="max-w-7xl mx-auto h-full px-3.5 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto h-14 sm:h-16 px-3.5 sm:px-4 lg:px-8 flex items-center justify-between gap-2">
           {/* Zone 1: Official UgaByte Favicon + Brand Mark */}
           <a
             href="/"
@@ -94,7 +94,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onNavigateHome(e);
               }
             }}
-            className="flex items-center gap-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c] rounded min-h-[44px]"
+            className="flex items-center gap-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c] rounded min-h-[44px] shrink-0"
             aria-label="UgaByte Home"
           >
             <UgaByteLogo
@@ -104,9 +104,9 @@ export const Navbar: React.FC<NavbarProps> = ({
             />
           </a>
 
-          {/* Zone 2: Icon + Label Navigation (Desktop) */}
+          {/* Zone 2: Icon + Label Navigation (Tablet, Split-Preview & Desktop) */}
           <nav
-            className="hidden lg:flex items-center gap-5 text-[11px] font-bold tracking-wider uppercase text-[#8E98A8]"
+            className="hidden md:flex items-center gap-3 lg:gap-5 text-[10.5px] lg:text-[11px] font-bold tracking-wider uppercase text-[#8E98A8] whitespace-nowrap"
             aria-label="Primary Navigation"
           >
             {navLinks.map((link) => {
@@ -118,7 +118,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   onClick={(e) => handleSectionClick(link.href, e)}
                   className="inline-flex items-center gap-1.5 hover:text-[#cef11c] transition-colors focus:outline-none focus-visible:text-[#cef11c]"
                 >
-                  <Icon className="w-3.5 h-3.5 text-[#cef11c]" />
+                  <Icon className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
                   <span>{link.label}</span>
                 </a>
               );
@@ -126,7 +126,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </nav>
 
           {/* Zone 3: Theme Switcher & Action Buttons */}
-          <div className="flex items-center gap-1.5 sm:gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             {/* Light / Dark Mode Toggle */}
             <button
               type="button"
@@ -173,7 +173,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="lg:hidden w-10 h-10 rounded-lg text-[#8E98A8] hover:text-[#cef11c] hover:bg-[#12151C] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
+              className="md:hidden w-10 h-10 rounded-lg text-[#8E98A8] hover:text-[#cef11c] hover:bg-[#12151C] flex items-center justify-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
               aria-label="Open mobile menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -181,12 +181,33 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
           </div>
         </div>
+
+        {/* Top Icon + Label Strip for Narrow / Mobile Viewports */}
+        <nav
+          className="md:hidden border-t border-[#232936]/70 px-3.5 py-2 flex items-center gap-4 overflow-x-auto no-scrollbar text-[10px] font-bold tracking-wider uppercase text-[#8E98A8] whitespace-nowrap"
+          aria-label="Quick Top Navigation"
+        >
+          {navLinks.map((link) => {
+            const Icon = link.icon;
+            return (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={(e) => handleSectionClick(link.href, e)}
+                className="inline-flex items-center gap-1.5 hover:text-[#cef11c] transition-colors shrink-0"
+              >
+                <Icon className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
+                <span>{link.label}</span>
+              </a>
+            );
+          })}
+        </nav>
       </header>
 
       {/* Mobile Backdrop */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 lg:hidden transition-opacity"
+          className="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 md:hidden transition-opacity"
           onClick={() => setMobileMenuOpen(false)}
           aria-hidden="true"
         />
@@ -196,7 +217,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       <aside
         id="mobile-drawer"
         aria-label="Mobile Navigation"
-        className={`fixed inset-y-0 right-0 z-50 w-72 max-w-[84vw] bg-[#12151C] border-l border-[#232936] shadow-2xl p-5 sm:p-6 flex flex-col justify-between transform transition-transform duration-300 ease-in-out lg:hidden overflow-y-auto ${
+        className={`fixed inset-y-0 right-0 z-50 w-72 max-w-[84vw] bg-[#12151C] border-l border-[#232936] shadow-2xl p-5 sm:p-6 flex flex-col justify-between transform transition-transform duration-300 ease-in-out md:hidden overflow-y-auto ${
           mobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >

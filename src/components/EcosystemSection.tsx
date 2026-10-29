@@ -3,7 +3,7 @@ import { Truck, ShieldCheck, BatteryCharging, PiggyBank } from "lucide-react";
 
 export const EcosystemSection: React.FC = () => {
   return (
-    <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-[#232936]" id="about">
+    <section className="py-24 scroll-mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-[#232936]" id="about">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <div className="lg:col-span-5 space-y-6">
           <span className="text-[11px] font-black text-[#cef11c] uppercase tracking-wider">

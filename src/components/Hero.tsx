@@ -45,7 +45,7 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadApk, onOpenWebApp }) => {
   };
 
   return (
-    <section className="relative min-h-[82vh] sm:min-h-[86vh] flex items-center justify-center overflow-hidden border-b border-[#232936] pt-18 sm:pt-22 pb-12 sm:pb-16">
+    <section className="relative min-h-[82vh] sm:min-h-[86vh] flex items-center justify-center overflow-hidden border-b border-[#232936] pt-28 md:pt-22 pb-12 sm:pb-16">
       {/* Cinematic Portrait Backdrop with Organic Glow & Graceful Fallback */}
       <div className="absolute inset-0 z-0 pointer-events-none select-none">
         {!heroImgFailed && (

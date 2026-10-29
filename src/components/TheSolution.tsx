@@ -53,7 +53,7 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
 
   return (
     <section
-      className="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-[#232936]"
+      className="py-14 sm:py-20 scroll-mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-[#232936]"
       id="features"
     >
       <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
