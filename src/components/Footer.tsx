@@ -102,7 +102,7 @@ export const Footer: React.FC<FooterProps> = ({
               <UgaByteLogo className="h-7 sm:h-8" />
             </a>
             <p className="text-xs sm:text-sm text-[#8E98A8] max-w-sm leading-relaxed">
-              UgaByte connects students and campus communities across Uganda with verified deals, affordable local food, zero-fee peer commerce, university events, and opportunities.
+              Campus deals, zero-fee trading, events, and gigs for students in Uganda.
             </p>
             <div className="pt-1 text-xs text-[#8E98A8]">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#12151C] border border-[#232936]">
@@ -117,7 +117,7 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Crawlable Uganda Category Guides */}
           <div className="col-span-1 lg:col-span-3 space-y-3">
             <h5 className="text-[11px] font-black uppercase tracking-wider text-[#FFFFFF]">
-              Explore Uganda Guides
+              Campus Guides
             </h5>
             <ul className="space-y-1 sm:space-y-1.5 text-xs text-[#8E98A8]">
               {CATEGORY_PAGE_LIST.map((cat) => (
@@ -128,7 +128,7 @@ export const Footer: React.FC<FooterProps> = ({
                     className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[34px] py-1 focus:outline-none"
                   >
                     <Compass className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                    <span>{cat.navLabel} in Uganda</span>
+                    <span>{cat.navLabel}</span>
                   </a>
                 </li>
               ))}
@@ -138,7 +138,7 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Direct Web App Modules Column */}
           <div className="col-span-1 lg:col-span-2 space-y-3">
             <h5 className="text-[11px] font-black uppercase tracking-wider text-[#FFFFFF]">
-              Web App Hubs
+              Web App
             </h5>
             <ul className="space-y-1 sm:space-y-1.5 text-xs text-[#8E98A8]">
               <li>
@@ -149,7 +149,7 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[34px] py-1 focus:outline-none"
                 >
                   <Flame className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                  <span>Open Deals</span>
+                  <span>Deals</span>
                   <ExternalLink className="w-3 h-3 opacity-60 shrink-0" />
                 </a>
               </li>
@@ -161,7 +161,7 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[34px] py-1 focus:outline-none"
                 >
                   <Store className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                  <span>Marketplace</span>
+                  <span>Market</span>
                   <ExternalLink className="w-3 h-3 opacity-60 shrink-0" />
                 </a>
               </li>
@@ -173,7 +173,7 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[34px] py-1 focus:outline-none"
                 >
                   <Calendar className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                  <span>Campus Events</span>
+                  <span>Events</span>
                   <ExternalLink className="w-3 h-3 opacity-60 shrink-0" />
                 </a>
               </li>
@@ -185,7 +185,7 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[34px] py-1 focus:outline-none"
                 >
                   <Briefcase className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                  <span>Opportunities</span>
+                  <span>Gigs</span>
                   <ExternalLink className="w-3 h-3 opacity-60 shrink-0" />
                 </a>
               </li>
@@ -195,7 +195,7 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Product Column */}
           <div className="col-span-1 lg:col-span-2 space-y-3">
             <h5 className="text-[11px] font-black uppercase tracking-wider text-[#FFFFFF]">
-              Get UgaByte
+              Get App
             </h5>
             <ul className="space-y-1 sm:space-y-1.5 text-xs text-[#8E98A8]">
               <li>
@@ -207,7 +207,7 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[34px] py-1 focus:outline-none"
                 >
                   <Globe className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                  <span>Web App (Browser)</span>
+                  <span>Web App</span>
                 </a>
               </li>
               <li>
@@ -219,7 +219,7 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[34px] py-1 focus:outline-none"
                 >
                   <Download className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                  <span>Android APK ({UGABYTE_APP_META.fileSize})</span>
+                  <span>APK ({UGABYTE_APP_META.fileSize})</span>
                 </a>
               </li>
               <li>
@@ -229,7 +229,7 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[34px] py-1 focus:outline-none"
                 >
                   <HelpCircle className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                  <span>APK Install Guide</span>
+                  <span>Install Guide</span>
                 </button>
               </li>
             </ul>
@@ -248,7 +248,7 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[34px] py-1 focus:outline-none"
                 >
                   <Shield className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                  <span>Privacy Policy</span>
+                  <span>Privacy</span>
                 </button>
               </li>
               <li>
@@ -258,7 +258,7 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[34px] py-1 focus:outline-none"
                 >
                   <FileText className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                  <span>Terms of Use</span>
+                  <span>Terms</span>
                 </button>
               </li>
               <li>
@@ -268,7 +268,7 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[34px] py-1 focus:outline-none"
                 >
                   <Cookie className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                  <span>Cookie Policy</span>
+                  <span>Cookies</span>
                 </button>
               </li>
               <li>
@@ -278,7 +278,7 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[34px] py-1 focus:outline-none"
                 >
                   <RotateCcw className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                  <span>Disputes &amp; Refunds</span>
+                  <span>Refunds</span>
                 </button>
               </li>
             </ul>
@@ -288,7 +288,7 @@ export const Footer: React.FC<FooterProps> = ({
         {/* Official Social Media Platforms */}
         <div className="py-5 sm:py-6 border-b border-[#232936]/80 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-xs text-[#8E98A8] flex items-center gap-2">
-            <span>Official Community</span>
+            <span>Community</span>
             <span className="text-[#cef11c] font-mono font-semibold">{UGABYTE_HANDLE}</span>
           </div>
 
@@ -311,8 +311,8 @@ export const Footer: React.FC<FooterProps> = ({
 
         {/* Bottom copyright & attribution */}
         <div className="pt-5 sm:pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#8E98A8]/80 gap-2 text-center sm:text-left">
-          <div>&copy; 2026 UgaByte. All rights reserved.</div>
-          <div>Makerere · MUBS Nakawa · Kyambogo · Kampala, Uganda</div>
+          <div>&copy; 2026 UgaByte.</div>
+          <div>MAK · MUBS · KYU · Kampala</div>
         </div>
       </div>
     </footer>

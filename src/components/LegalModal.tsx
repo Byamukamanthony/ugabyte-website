@@ -90,42 +90,36 @@ export const LegalModal: React.FC<LegalModalProps> = ({
         <div className="overflow-y-auto text-xs text-[#8E98A8] space-y-3 leading-relaxed pr-1 flex-1">
           {activeTab === "privacy" && (
             <>
-              <h4 className="text-xs sm:text-sm font-bold text-[#FFFFFF]">Privacy Policy</h4>
+              <h4 className="text-xs sm:text-sm font-bold text-[#FFFFFF]">Privacy</h4>
               <p>
-                UgaByte collects only essential account and campus hub preferences to match students with verified local sellers and hostels.
-              </p>
-              <p>
-                We never sell personal student data to third-party advertisers. For account removal requests, message our official team <strong className="text-[#cef11c]">{UGABYTE_HANDLE}</strong>.
+                UgaByte stores only essential account and campus preferences. We never sell student data. Message <strong className="text-[#cef11c]">{UGABYTE_HANDLE}</strong> for data requests.
               </p>
             </>
           )}
 
           {activeTab === "terms" && (
             <>
-              <h4 className="text-xs sm:text-sm font-bold text-[#FFFFFF]">Terms of Use</h4>
+              <h4 className="text-xs sm:text-sm font-bold text-[#FFFFFF]">Terms</h4>
               <p>
-                All listings on UgaByte platforms must represent genuine goods, food, or hostel accommodations around verified university hubs.
-              </p>
-              <p>
-                Peer-to-peer pickups should take place at designated public university halls or campus gates.
+                Listings must represent genuine goods, food, or services near campus hubs. Meet at public university gates or halls.
               </p>
             </>
           )}
 
           {activeTab === "cookie" && (
             <>
-              <h4 className="text-xs sm:text-sm font-bold text-[#FFFFFF]">Cookie Policy</h4>
+              <h4 className="text-xs sm:text-sm font-bold text-[#FFFFFF]">Cookies</h4>
               <p>
-                UgaByte uses lightweight local storage strictly to remember your preferred campus hub, saved items, and Light/Dark theme setting.
+                Local storage saves only your campus hub, saved items, and theme preference.
               </p>
             </>
           )}
 
           {activeTab === "refund" && (
             <>
-              <h4 className="text-xs sm:text-sm font-bold text-[#FFFFFF]">Dispute &amp; Refund Policy</h4>
+              <h4 className="text-xs sm:text-sm font-bold text-[#FFFFFF]">Refunds</h4>
               <p>
-                Student buyers are encouraged to inspect peer-to-peer items upon campus pickup before completing mobile money or cash payment.
+                Inspect peer-to-peer items in person upon pickup before paying via cash or Mobile Money.
               </p>
             </>
           )}

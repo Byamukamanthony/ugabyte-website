@@ -83,7 +83,7 @@ export const CategoryHubPage: React.FC<CategoryHubPageProps> = ({
               className="inline-flex items-center gap-1.5 hover:text-[#cef11c] font-semibold transition-colors"
             >
               <ArrowLeft className="w-3.5 h-3.5 text-[#cef11c]" />
-              <span>UgaByte Home</span>
+              <span>Home</span>
             </a>
             <ChevronRight className="w-3.5 h-3.5 opacity-60" />
             <span className="text-[#FFFFFF] font-semibold">{page.navLabel}</span>
@@ -132,12 +132,12 @@ export const CategoryHubPage: React.FC<CategoryHubPageProps> = ({
               {sharedId === "page" ? (
                 <>
                   <Check className="w-4 h-4 text-[#cef11c]" />
-                  <span className="text-[#cef11c]">Link Ready to Share</span>
+                  <span className="text-[#cef11c]">Copied</span>
                 </>
               ) : (
                 <>
                   <Share2 className="w-4 h-4 text-[#cef11c]" />
-                  <span>Share with Friends</span>
+                  <span>Share</span>
                 </>
               )}
             </button>
@@ -150,10 +150,10 @@ export const CategoryHubPage: React.FC<CategoryHubPageProps> = ({
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-6 sm:mb-8">
           <div>
             <span className="text-[11px] font-black text-[#cef11c] uppercase tracking-wider">
-              Real-Time App Feed
+              Live Feed
             </span>
             <h2 className="text-xl sm:text-2xl font-extrabold text-[#FFFFFF] mt-1 tracking-tight">
-              Live {page.navLabel} on UgaByte
+              Live {page.navLabel}
             </h2>
           </div>
           <a
@@ -162,7 +162,7 @@ export const CategoryHubPage: React.FC<CategoryHubPageProps> = ({
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 text-xs font-bold text-[#cef11c] hover:underline"
           >
-            <span>Open full interactive feed in Web App</span>
+            <span>Open in Web App</span>
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
         </div>
@@ -243,10 +243,10 @@ export const CategoryHubPage: React.FC<CategoryHubPageProps> = ({
           <div className="bg-[#12151C] border border-[#232936] rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="space-y-1">
               <h3 className="text-sm sm:text-base font-bold text-[#FFFFFF]">
-                Connected to the Live UgaByte Campus Database
+                Live Campus Feed
               </h3>
               <p className="text-xs sm:text-sm text-[#8E98A8] max-w-xl leading-relaxed">
-                Open the UgaByte Web App directly to browse all current {page.navLabel.toLowerCase()}, filter by your university hub, or publish a new listing for free.
+                Browse current {page.navLabel.toLowerCase()} or post for free in the Web App.
               </p>
             </div>
             <a
@@ -299,7 +299,7 @@ export const CategoryHubPage: React.FC<CategoryHubPageProps> = ({
           <div className="lg:col-span-5 space-y-5">
             <div className="p-5 sm:p-6 rounded-2xl bg-[#12151C] border border-[#232936]">
               <h3 className="text-sm sm:text-base font-bold text-[#FFFFFF] mb-3.5">
-                How to Get Started in 3 Steps
+                Quick Start
               </h3>
               <div className="space-y-3.5">
                 {page.howToSteps.map((s) => (
@@ -322,7 +322,7 @@ export const CategoryHubPage: React.FC<CategoryHubPageProps> = ({
 
             <div className="p-5 rounded-2xl bg-[#12151C] border border-[#232936]">
               <h3 className="text-xs font-black uppercase tracking-wider text-[#cef11c] mb-2.5">
-                Active Uganda Campus Zones
+                Campus Zones
               </h3>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-[#e3e2e8]">
                 {page.campusZones.map((zone) => (
@@ -343,7 +343,7 @@ export const CategoryHubPage: React.FC<CategoryHubPageProps> = ({
           <div className="lg:col-span-6 bg-[#181C26] border border-[#232936] rounded-2xl p-6 sm:p-8 space-y-4">
             <span className="inline-flex items-center gap-1.5 text-[11px] font-black text-[#cef11c] uppercase tracking-wider">
               <Store className="w-3.5 h-3.5" />
-              <span>Contribute to UgaByte</span>
+              <span>Contribute</span>
             </span>
             <h2 className="text-lg sm:text-2xl font-extrabold text-[#FFFFFF] tracking-tight">
               {page.contributorTitle}
@@ -369,7 +369,7 @@ export const CategoryHubPage: React.FC<CategoryHubPageProps> = ({
                 rel="noopener noreferrer"
                 className="px-5 py-3 min-h-[44px] rounded-full bg-[#12151C] border border-[#232936] hover:border-[#cef11c]/50 text-[#FFFFFF] text-xs font-bold inline-flex items-center gap-2 transition-all"
               >
-                <span>Open in UgaByte Web App</span>
+                <span>Web App</span>
                 <ExternalLink className="w-3.5 h-3.5 text-[#cef11c]" />
               </a>
             </div>
@@ -377,7 +377,7 @@ export const CategoryHubPage: React.FC<CategoryHubPageProps> = ({
 
           <div className="lg:col-span-6 space-y-3">
             <h2 className="text-lg sm:text-xl font-extrabold text-[#FFFFFF] mb-2">
-              Common Questions
+              FAQ
             </h2>
             {page.faqs.map((faq) => (
               <div
@@ -399,7 +399,7 @@ export const CategoryHubPage: React.FC<CategoryHubPageProps> = ({
       {/* Crawlable Internal Cross-Links to Other UgaByte Hubs */}
       <section className="pt-12 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-base sm:text-lg font-extrabold text-[#FFFFFF] mb-4">
-          Explore More on UgaByte Uganda
+          More Hubs
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
           {otherPages.map((other) => (

@@ -10,43 +10,43 @@ export const EcosystemSection: React.FC = () => {
             About UgaByte
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#FFFFFF] tracking-tight leading-tight">
-            Building digital products and platforms that connect students with opportunities, services, deals, and commerce.
+            Built for everyday student life in Uganda.
           </h2>
           <p className="text-sm sm:text-base text-[#8E98A8] leading-relaxed">
-            UgaByte engineers high-speed digital products tailored for real-world campus communities, combining verified local commerce, peer-to-peer marketplaces, live events, and career opportunities in one unified ecosystem.
+            UgaByte unifies campus deals, peer trading, university events, and student gigs in one fast platform.
           </p>
         </div>
 
         <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="p-6 rounded-xl bg-[#12151C] border border-[#232936] hover:border-[#cef11c]/30 transition-all space-y-2.5">
             <Truck className="w-7 h-7 text-[#cef11c]" />
-            <h4 className="text-base font-bold text-[#FFFFFF]">Hyper-Local Geography</h4>
+            <h4 className="text-base font-bold text-[#FFFFFF]">Campus-Gate Local</h4>
             <p className="text-xs text-[#8E98A8] leading-relaxed">
-              Every drop is indexed by gates, halls, and hostels: Mitchell, Lumumba, Mary Stuart, Kikoni, Kikoni-Kagugube, and Sir Apollo Kaggwa Rd.
+              Indexed by gates and hostels across Makerere, Kikoni, Wandegeya, MUBS, and Kyambogo.
             </p>
           </div>
 
           <div className="p-6 rounded-xl bg-[#12151C] border border-[#232936] hover:border-[#cef11c]/30 transition-all space-y-2.5">
             <ShieldCheck className="w-7 h-7 text-[#cef11c]" />
-            <h4 className="text-base font-bold text-[#FFFFFF]">Peer Accountability</h4>
+            <h4 className="text-base font-bold text-[#FFFFFF]">Peer Trust</h4>
             <p className="text-xs text-[#8E98A8] leading-relaxed">
-              Students vouch for students. Bad actors face automated blacklist protocols across the entire campus registry.
+              Community verification keeps campus trading transparent and safe.
             </p>
           </div>
 
           <div className="p-6 rounded-xl bg-[#12151C] border border-[#232936] hover:border-[#cef11c]/30 transition-all space-y-2.5">
             <BatteryCharging className="w-7 h-7 text-[#cef11c]" />
-            <h4 className="text-base font-bold text-[#FFFFFF]">Extreme Low-Bandwidth</h4>
+            <h4 className="text-base font-bold text-[#FFFFFF]">Low Data</h4>
             <p className="text-xs text-[#8E98A8] leading-relaxed">
-              Engineered with zero third-party bloated trackers, aggressive image compression, and full offline cached indexing.
+              Compressed media, offline caching, and zero bloated trackers.
             </p>
           </div>
 
           <div className="p-6 rounded-xl bg-[#12151C] border border-[#232936] hover:border-[#cef11c]/30 transition-all space-y-2.5">
             <PiggyBank className="w-7 h-7 text-[#cef11c]" />
-            <h4 className="text-base font-bold text-[#FFFFFF]">Student-First Economy</h4>
+            <h4 className="text-base font-bold text-[#FFFFFF]">Zero Cut</h4>
             <p className="text-xs text-[#8E98A8] leading-relaxed">
-              We never take a cut of personal student sales or charge students to attend campus guild gatherings.
+              0% commission on student sales and free club events.
             </p>
           </div>
         </div>

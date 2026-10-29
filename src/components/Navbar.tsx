@@ -12,7 +12,6 @@ import {
   Flame,
   Store,
   HelpCircle,
-  Sparkles,
   Info,
   ChevronRight,
 } from "lucide-react";
@@ -59,7 +58,6 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const navLinks = [
     { label: "Pillars", href: isHome ? "#features" : "/#features", icon: Flame },
-    { label: "How It Works", href: isHome ? "#how-it-works" : "/#how-it-works", icon: Sparkles },
     { label: "About", href: isHome ? "#about" : "/#about", icon: Info },
     { label: "Sell", href: isHome ? "#sellers" : "/#sellers", icon: Store },
     { label: "Download", href: isHome ? "#download" : "/#download", icon: Download },
@@ -246,7 +244,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Crawlable Category Landing Pages */}
           <div className="mt-4 pt-4 border-t border-[#232936]">
             <div className="px-3 mb-1.5 text-[10px] font-black uppercase tracking-wider text-[#8E98A8]">
-              Explore Uganda Hubs
+              Campus Hubs
             </div>
             <div className="flex flex-col gap-0.5">
               {CATEGORY_PAGE_LIST.map((cat) => (

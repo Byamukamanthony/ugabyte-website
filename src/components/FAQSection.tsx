@@ -7,28 +7,28 @@ export const FAQSection: React.FC = () => {
 
   const faqs = [
     {
-      q: "What is UgaByte and who does it serve in Uganda?",
-      a: "UgaByte is a digital platform built for university students, campus communities, and local businesses across Uganda. It connects users with verified student discounts, affordable campus food, a zero-fee peer marketplace, live university events, and paid gigs or internships.",
+      q: "What is UgaByte?",
+      a: "Uganda's student platform for campus deals, affordable food, zero-fee trading, events, and gigs.",
     },
     {
-      q: "Which Ugandan universities and campus hubs are supported?",
-      a: "UgaByte is active across Makerere University (Main Campus, Kikoni & Wandegeya), MUBS Nakawa, and Kyambogo University (Banda), with Uganda Christian University (UCU) and Mbarara University (MUST) rolling out next.",
+      q: "Which universities are supported?",
+      a: "Makerere, MUBS Nakawa, and Kyambogo are live, with UCU and MUST rolling out next.",
     },
     {
-      q: "Does UgaByte charge commission on student marketplace sales?",
-      a: "No. Listing second-hand electronics, calculators, textbooks, or hostel items on the UgaByte Peer Marketplace costs UGX 0, and UgaByte takes 0% commission from student sellers.",
+      q: "Are there marketplace fees?",
+      a: "No. Personal student listings cost UGX 0 with 0% commission.",
     },
     {
-      q: "How can local restaurants, hostels, or merchants contribute offers?",
-      a: "Campus-area restaurants, print shops, hostels, and employers can click 'Partner with UgaByte' in the Merchants section or publish offers directly inside the UgaByte Web App to reach nearby students.",
+      q: "How do merchants post offers?",
+      a: "Click 'Partner with UgaByte' above or publish directly inside the Web App.",
     },
     {
-      q: "How do I access UgaByte—Web App or Android APK?",
-      a: `You can launch the UgaByte Web App instantly in any mobile or desktop browser with zero installation, or download the verified Android package (${UGABYTE_APP_META.fileName}, ${UGABYTE_APP_META.version}, ${UGABYTE_APP_META.fileSize}, ${UGABYTE_APP_META.minSdk}) verified via SHA-256 checksum.`,
+      q: "Web App or Android APK?",
+      a: `Open the Web App in any browser or install ${UGABYTE_APP_META.fileName} (${UGABYTE_APP_META.version}, ${UGABYTE_APP_META.fileSize}, ${UGABYTE_APP_META.minSdk}).`,
     },
     {
-      q: "How do I contact the official UgaByte team?",
-      a: `Reach out through our verified official social channels under ${UGABYTE_HANDLE} on X (Twitter), Instagram, TikTok, and Facebook.`,
+      q: "How do I contact UgaByte?",
+      a: `Message ${UGABYTE_HANDLE} on X, Instagram, TikTok, or Facebook.`,
     },
   ];
 
@@ -44,7 +44,7 @@ export const FAQSection: React.FC = () => {
           <span>FAQ</span>
         </span>
         <h2 className="text-xl xs:text-2xl sm:text-3xl font-extrabold text-[#FFFFFF] mt-1 tracking-tight text-balance">
-          Frequently Asked Questions About UgaByte
+          Common Questions
         </h2>
       </div>
 

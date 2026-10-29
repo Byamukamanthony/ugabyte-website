@@ -34,18 +34,18 @@ export const InstallGuideModal: React.FC<InstallGuideModalProps> = ({
   const steps = [
     {
       num: "1",
-      title: `Download ${UGABYTE_APP_META.fileName}`,
-      desc: `Tap Download APK to open the official link and save ${UGABYTE_APP_META.fileName} (${UGABYTE_APP_META.fileSize}, ${UGABYTE_APP_META.version}).`,
+      title: "Download APK",
+      desc: `Save ${UGABYTE_APP_META.fileName} (${UGABYTE_APP_META.fileSize}).`,
     },
     {
       num: "2",
-      title: "Allow Installation",
-      desc: "Toggle 'Allow from this source' if prompted by your Android browser.",
+      title: "Allow Source",
+      desc: "Enable 'Allow from this source' if prompted.",
     },
     {
       num: "3",
-      title: "Launch UgaByte App",
-      desc: `Open ${UGABYTE_APP_META.fileName} in your downloads to install (${UGABYTE_APP_META.minSdk}).`,
+      title: "Install & Open",
+      desc: `Tap ${UGABYTE_APP_META.fileName} to launch (${UGABYTE_APP_META.minSdk}).`,
     },
   ];
 

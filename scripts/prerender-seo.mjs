@@ -8,87 +8,87 @@ const APK_URL = "https://limewire.com/d/87VtZ#gAMC0GRo8H";
 const ROUTES = [
   {
     slug: "student-deals-uganda",
-    navLabel: "Student Deals & Food",
+    navLabel: "Deals",
     title: "Student Deals & Affordable Campus Food in Uganda | UgaByte",
     description:
       "Discover verified student discounts, affordable meals, printing offers, and hostel deals around Makerere, MUBS Nakawa, and Kyambogo University on UgaByte.",
-    h1: "Student Deals & Affordable Campus Food in Uganda",
+    h1: "Student Deals & Campus Food in Uganda",
     intro:
-      "Stretch your semester upkeep further with verified meal drops, rolex & café discounts, printing offers, and hostel promotions around Kampala university gates.",
+      "Verified meal drops, printing discounts, and hostel offers near Kampala university gates.",
     paragraphs: [
-      "UgaByte partners with local restaurants, cafés, stationery shops, and student-friendly merchants around Makerere University (Kikoni, Wandegeya, Kagugube), MUBS Nakawa, and Kyambogo University to publish real-time price drops directly to students.",
-      "Every deal displays transparent UGX pricing, exact campus-gate or hostel proximity, and direct access inside the UgaByte Web App or Android APK at zero cost to students.",
+      "UgaByte partners with local cafés, restaurants, print shops, and hostels around university gates to share real-time student discounts.",
+      "Every deal shows transparent UGX pricing, gate proximity, and instant access in the Web App or Android APK at zero cost.",
     ],
     bullets: [
-      "Affordable student lunch combos, snacks, and local café offers near campus gates.",
-      "Coursework printing, binding, salon, laundry, and verified hostel move-in promotions.",
-      "Local merchants can partner with UgaByte to publish off-peak and flash student discounts.",
+      "Budget lunch combos and café offers near campus gates.",
+      "Printing, binding, laundry, repairs, and hostel offers.",
+      "Local merchants can publish flash student discounts.",
     ],
     appUrl: `${WEB_APP_ORIGIN}/campus-deals`,
-    appCta: "Open Live Deals in UgaByte Web App",
+    appCta: "Open Deals",
   },
   {
     slug: "student-marketplace-uganda",
-    navLabel: "Student Marketplace",
+    navLabel: "Marketplace",
     title: "Student Marketplace in Uganda — Buy & Sell Peer-to-Peer | UgaByte",
     description:
       "Buy and sell laptops, scientific calculators, textbooks, and hostel essentials peer-to-peer across Ugandan universities with UGX 0 commission on UgaByte.",
-    h1: "Student Peer-to-Peer Marketplace in Uganda",
+    h1: "Student Marketplace in Uganda",
     intro:
-      "Buy and sell second-hand laptops, Casio calculators, hostel appliances, and textbooks directly with fellow university students at UGX 0 listing fee.",
+      "Buy and sell laptops, calculators, books, and hostel gear with fellow students at 0% commission.",
     paragraphs: [
-      "The UgaByte Peer Marketplace connects buyers and sellers on the same Ugandan university campus so essential study gear and hostel appliances stay affordable and within walking distance.",
-      "Personal student listings carry a UGX 0 listing fee and 0% commission. Students meet in daylight at recognized university gates or hall receptions to inspect items before paying.",
+      "Connect with buyers and sellers on your own campus so study gear and hostel essentials stay affordable and within walking distance.",
+      "Personal student listings carry UGX 0 fees. Meet at busy university gates or hall receptions to inspect items before paying.",
     ],
     bullets: [
-      "UGX 0 listing fee and 0% commission on student-to-student sales.",
-      "Trade laptops, phones, scientific calculators, kettles, lamps, and study notes.",
-      "Safe in-person campus gate inspection across Makerere, MUBS Nakawa, and Kyambogo.",
+      "UGX 0 listing fee and 0% commission on student sales.",
+      "Trade laptops, calculators, textbooks, and hostel gear.",
+      "Daylight campus-gate inspection across Makerere, MUBS, and Kyambogo.",
     ],
     appUrl: `${WEB_APP_ORIGIN}/marketplace`,
-    appCta: "Browse Marketplace in UgaByte Web App",
+    appCta: "Open Marketplace",
   },
   {
     slug: "campus-events-uganda",
-    navLabel: "Campus Events",
+    navLabel: "Events",
     title: "University & Campus Events in Uganda — Tech, Guild & Sports | UgaByte",
     description:
       "Track upcoming university hackathons, career fairs, guild nights, freshers orientation, and inter-university sports across Kampala and Uganda on UgaByte.",
-    h1: "University & Campus Events Across Uganda",
+    h1: "University & Campus Events in Uganda",
     intro:
-      "Never miss a hackathon, public lecture, career fair, cultural gala, or inter-university sports fixture across Ugandan campuses.",
+      "Hackathons, career fairs, public lectures, guild nights, and university sports in one live feed.",
     paragraphs: [
-      "UgaByte centralizes upcoming academic, tech, cultural, and sports gatherings across Makerere, MUBS, Kyambogo, UCU, MUST, and Kampala innovation hubs into one accessible feed.",
-      "Student associations, developer clubs, faculties, and guild organizers can share upcoming events so students across Uganda can discover dates, venues, and RSVP details.",
+      "Skip scattered noticeboards and missed WhatsApp flyers—see verified dates, venues, and entry details across Ugandan universities.",
+      "Student clubs, faculties, and guild teams can publish free or ticketed campus events directly in the UgaByte Web App.",
     ],
     bullets: [
-      "Student developer circles, software hackathons, and startup pitch nights.",
-      "Graduate career fairs, scholarship briefings, and faculty symposiums.",
-      "Cultural galas, hall nights, freshers orientation, and university sports.",
+      "Developer meetups, hackathons, and pitch nights.",
+      "Career fairs, scholarships, and faculty symposiums.",
+      "Cultural galas, freshers nights, and university sports.",
     ],
     appUrl: `${WEB_APP_ORIGIN}/events`,
-    appCta: "Explore Campus Events in UgaByte Web App",
+    appCta: "Open Events",
   },
   {
     slug: "student-gigs-uganda",
-    navLabel: "Student Gigs & Internships",
+    navLabel: "Gigs",
     title: "Student Gigs, Internships & Campus Opportunities in Uganda | UgaByte",
     description:
       "Find paid student gigs, brand ambassador roles, freelance services, and university internships in Kampala and across Uganda on the UgaByte platform.",
-    h1: "Student Gigs, Internships & Opportunities in Uganda",
+    h1: "Student Gigs & Internships in Uganda",
     intro:
-      "Earn upkeep income and gain practical experience through vetted campus gigs, student freelance services, internships, and fellowships in Uganda.",
+      "Paid campus gigs, freelance student services, and verified internships built around lecture schedules.",
     paragraphs: [
-      "UgaByte connects talented undergraduates across Uganda with flexible paid tasks, brand ambassador roles, field attachment internships, and peer freelance opportunities that fit lecture schedules.",
-      "Students offering photography, coding, graphic design, academic tutoring, or repair skills can also showcase their services directly in the UgaByte Web App.",
+      "UgaByte connects undergraduates across Uganda with vetted short-term gigs, brand campaigns, freelance tasks, and internships.",
+      "Students offering coding, design, photography, or tutoring can also showcase their skills directly inside the Web App.",
     ],
     bullets: [
-      "Paid brand activation, research data collection, and campus event staffing.",
-      "Software, finance, engineering, and NGO internships for Ugandan students.",
-      "Peer freelance showcase for student designers, developers, tutors, and creatives.",
+      "Paid event staffing, research fieldwork, and brand roles.",
+      "Internships and fellowships for Ugandan students.",
+      "Peer freelance showcase for student tutors, coders, and creatives.",
     ],
     appUrl: `${WEB_APP_ORIGIN}/opportunities`,
-    appCta: "View Opportunities in UgaByte Web App",
+    appCta: "Open Gigs",
   },
 ];
 
@@ -201,13 +201,13 @@ for (const route of ROUTES) {
           </ul>
           <div class="pt-4 flex flex-wrap gap-3">
             <a href="${route.appUrl}" class="px-6 py-3 rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-black uppercase">${escapeHtml(route.appCta)}</a>
-            <a href="${APK_URL}" class="px-6 py-3 rounded-full border border-[#232936] text-white text-xs font-bold">Download Android APK (6.4 MB)</a>
+            <a href="${APK_URL}" class="px-6 py-3 rounded-full border border-[#232936] text-white text-xs font-bold">Download APK (6.4 MB)</a>
           </div>
         </article>
         <nav aria-label="Related UgaByte Uganda Pages" class="pt-6 border-t border-[#232936]">
-          <h2 class="text-lg font-bold text-white mb-2">More UgaByte Campus Hubs in Uganda</h2>
+          <h2 class="text-lg font-bold text-white mb-2">More Hubs</h2>
           <ul class="space-y-1.5 text-sm">
-            <li><a href="/" class="text-[#cef11c] underline">UgaByte Homepage — Student Deals, Events &amp; Opportunities</a></li>
+            <li><a href="/" class="text-[#cef11c] underline">UgaByte Home</a></li>
             ${otherLinksHtml}
           </ul>
         </nav>

@@ -33,16 +33,16 @@ export const DownloadSection: React.FC<DownloadSectionProps> = ({
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#cef11c]/10 border border-[#cef11c]/30 text-[#cef11c] text-[11px] sm:text-xs font-bold uppercase tracking-wider">
             <ShieldCheck className="w-3.5 h-3.5" />
             <span>
-              {UGABYTE_APP_META.version} (Build {UGABYTE_APP_META.versionCode}) · {UGABYTE_APP_META.fileSize}
+              {UGABYTE_APP_META.version} · {UGABYTE_APP_META.fileSize}
             </span>
           </div>
 
           <h2 className="text-2xl sm:text-4xl font-black text-[#FFFFFF] tracking-tight text-balance">
-            Get UgaByte on Any Device
+            Get UgaByte Anywhere
           </h2>
 
           <p className="text-xs sm:text-sm text-[#8E98A8] max-w-md mx-auto leading-relaxed">
-            Download the updated Android package (<span className="text-[#e3e2e8] font-mono">{UGABYTE_APP_META.fileName}</span>, {UGABYTE_APP_META.minSdk}) or launch the web app instantly in any browser.
+            Launch instantly in any browser or install <span className="text-[#e3e2e8] font-mono">{UGABYTE_APP_META.fileName}</span> ({UGABYTE_APP_META.minSdk}).
           </p>
 
           {/* Action Buttons (Web App Primary, Touch-first stacked on smartphone) */}

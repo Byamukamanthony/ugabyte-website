@@ -3,7 +3,6 @@ import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
 import { CampusTicker } from "./components/CampusTicker";
 import { TheSolution } from "./components/TheSolution";
-import { HowItWorks } from "./components/HowItWorks";
 import { EcosystemSection } from "./components/EcosystemSection";
 import { ForBusinesses } from "./components/ForBusinesses";
 import { DownloadSection } from "./components/DownloadSection";
@@ -308,10 +307,7 @@ export default function App() {
               feed={liveFeed}
             />
 
-            {/* 4. Step-by-Step User Onboarding Flow (#how-it-works) */}
-            <HowItWorks />
-
-            {/* 5. About UgaByte & Uganda Campus Ecosystem (#about) */}
+            {/* 4. About UgaByte & Uganda Campus Ecosystem (#about) */}
             <EcosystemSection />
 
             {/* 6. For Campus Businesses & Sellers (#sellers) */}

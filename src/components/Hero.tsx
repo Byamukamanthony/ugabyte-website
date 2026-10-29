@@ -77,13 +77,13 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadApk, onOpenWebApp }) => {
           Deals, Market &amp; Events.{" "}
           <br className="hidden sm:inline" />
           <span className="hero-gradient-text text-transparent bg-clip-text bg-gradient-to-r from-white via-[#e3e2e8] to-[#cef11c]">
-            Built for Students in Uganda.
+            For Students in Uganda.
           </span>
         </h1>
 
         {/* Subtitle */}
-        <p className="text-xs sm:text-base text-[#8E98A8] max-w-2xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2">
-          Discover verified student discounts and affordable campus food, buy and sell peer-to-peer with UGX 0 commission, and unlock university events and gigs across Kampala and Uganda.
+        <p className="text-xs sm:text-base text-[#8E98A8] max-w-xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2">
+          Verified campus deals, affordable food, zero-fee student trading, events, and gigs across Uganda.
         </p>
 
         {/* Dual Primary & Secondary Action CTAs (Web App Primary, Touch-first on smartphones) */}
@@ -122,7 +122,7 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadApk, onOpenWebApp }) => {
             title="Open Deals in Web App"
           >
             <Flame className="w-3.5 h-3.5 text-[#cef11c]" />
-            <span>Open Deals</span>
+            <span>Deals</span>
             <ExternalLink className="w-3 h-3 opacity-60" />
           </a>
 
@@ -134,7 +134,7 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadApk, onOpenWebApp }) => {
             title="View Marketplace in Web App"
           >
             <Store className="w-3.5 h-3.5 text-[#cef11c]" />
-            <span>View Marketplace</span>
+            <span>Market</span>
             <ExternalLink className="w-3 h-3 opacity-60" />
           </a>
 
@@ -146,7 +146,7 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadApk, onOpenWebApp }) => {
             title="Live Campus Events in Web App"
           >
             <Calendar className="w-3.5 h-3.5 text-[#cef11c]" />
-            <span>Live Campus Events</span>
+            <span>Events</span>
             <ExternalLink className="w-3 h-3 opacity-60" />
           </a>
 
@@ -158,7 +158,7 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadApk, onOpenWebApp }) => {
             title="Campus Opportunities in Web App"
           >
             <Briefcase className="w-3.5 h-3.5 text-[#cef11c]" />
-            <span>Opportunities</span>
+            <span>Gigs</span>
             <ExternalLink className="w-3 h-3 opacity-60" />
           </a>
 
@@ -166,17 +166,17 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadApk, onOpenWebApp }) => {
             type="button"
             onClick={handleShareUgaByte}
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#12151C] hover:bg-[#181C26] border border-[#232936] hover:border-[#cef11c]/50 text-xs text-[#e3e2e8] hover:text-[#cef11c] font-semibold transition-all active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
-            title="Share UgaByte with classmates on WhatsApp or social media"
+            title="Share UgaByte"
           >
             {sharedCopied ? (
               <>
                 <Check className="w-3.5 h-3.5 text-[#cef11c]" />
-                <span className="text-[#cef11c]">Link Ready!</span>
+                <span className="text-[#cef11c]">Copied</span>
               </>
             ) : (
               <>
                 <Share2 className="w-3.5 h-3.5 text-[#cef11c]" />
-                <span>Share UgaByte</span>
+                <span>Share</span>
               </>
             )}
           </button>

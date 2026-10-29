@@ -76,12 +76,12 @@ export const PartnerInquiryModal: React.FC<PartnerInquiryModalProps> = ({
     setErrorMsg(null);
 
     if (cleanName.length < 2) {
-      setErrorMsg("Please enter a valid business or store name (at least 2 characters).");
+      setErrorMsg("Enter a valid business name.");
       return;
     }
 
     if (!isValidPhone(cleanPhone)) {
-      setErrorMsg("Please enter a valid Ugandan or international WhatsApp number (e.g. +256 700 000000 or 0770 000000).");
+      setErrorMsg("Enter a valid WhatsApp number (e.g. +256 770 000000).");
       return;
     }
 
@@ -159,7 +159,7 @@ export const PartnerInquiryModal: React.FC<PartnerInquiryModalProps> = ({
               </h3>
             </div>
             <p className="text-xs text-[#8E98A8] mb-4 leading-relaxed">
-              Share your store details below to prepare your campus merchant listing or publish directly in the UgaByte Web App.
+              Enter store details or publish directly in the Web App.
             </p>
 
             {errorMsg && (
@@ -275,10 +275,10 @@ export const PartnerInquiryModal: React.FC<PartnerInquiryModalProps> = ({
                 <CheckCircle2 className="w-6 h-6" />
               </div>
               <h3 className="text-base font-bold text-[#FFFFFF]">
-                {savedToCloud ? "Merchant Request Logged!" : "Merchant Details Ready!"}
+                {savedToCloud ? "Request Logged" : "Details Ready"}
               </h3>
               <p className="text-xs text-[#8E98A8] leading-relaxed">
-                You can publish deals or items immediately inside the UgaByte Web App, or send your store summary directly to <strong className="text-[#FFFFFF]">{UGABYTE_HANDLE}</strong> for verified partner badge support.
+                Post immediately in the Web App or DM <strong className="text-[#FFFFFF]">{UGABYTE_HANDLE}</strong> for verification.
               </p>
             </div>
 
@@ -293,7 +293,7 @@ export const PartnerInquiryModal: React.FC<PartnerInquiryModalProps> = ({
                 rel="noopener noreferrer"
                 className="w-full py-3 min-h-[44px] rounded-xl bg-[#cef11c] text-[#090A0E] text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2 hover:brightness-105 transition-all"
               >
-                <span>Post Listing Now in Web App</span>
+                <span>Post in Web App</span>
                 <ExternalLink className="w-3.5 h-3.5 stroke-[2.5]" />
               </a>
 
