@@ -5,7 +5,7 @@
 
 export const UGABYTE_APK_URL =
   import.meta.env.VITE_UGABYTE_APK_URL ||
-  "https://limewire.com/d/87VtZ#gAMC0GRo8H";
+  "https://ugabyte.vercel.app/";
 
 export const UGABYTE_WEB_APP_URL =
   import.meta.env.VITE_UGABYTE_WEB_APP_URL || "https://ugabyte.vercel.app/";

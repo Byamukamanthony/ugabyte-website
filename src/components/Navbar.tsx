@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { UGABYTE_APK_URL, UGABYTE_WEB_APP_URL, UGABYTE_APP_META } from "../config/ugabyte";
+import { UGABYTE_WEB_APP_URL } from "../config/ugabyte";
 import { CATEGORY_PAGE_LIST, CategoryRouteSlug } from "../data/seoPages";
 import { UgaByteLogo } from "./UgaByteLogo";
 import {
@@ -12,12 +12,12 @@ import {
   Flame,
   Store,
   HelpCircle,
-  Info,
   ChevronRight,
 } from "lucide-react";
 
 interface NavbarProps {
-  onDownloadApk: (e?: React.MouseEvent) => void;
+  onInstallApp: (e?: React.MouseEvent) => void;
+  isInstalled?: boolean;
   onOpenWebApp: (e?: React.MouseEvent) => void;
   onNavigateHome?: (e?: React.MouseEvent) => void;
   onNavigateCategory?: (slug: CategoryRouteSlug, e?: React.MouseEvent) => void;
@@ -27,7 +27,8 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
-  onDownloadApk,
+  onInstallApp,
+  isInstalled = false,
   onOpenWebApp,
   onNavigateHome,
   onNavigateCategory,
@@ -58,7 +59,6 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const navLinks = [
     { label: "Pillars", href: isHome ? "#features" : "/#features", icon: Flame },
-    { label: "About", href: isHome ? "#about" : "/#about", icon: Info },
     { label: "Sell", href: isHome ? "#sellers" : "/#sellers", icon: Store },
     { label: "Download", href: isHome ? "#download" : "/#download", icon: Download },
     { label: "FAQ", href: isHome ? "#faq" : "/#faq", icon: HelpCircle },
@@ -98,8 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             aria-label="UgaByte Home"
           >
             <UgaByteLogo
-              showWordmark={true}
-              wordmarkClassName="text-base sm:text-lg font-black tracking-tight"
+              showWordmark={false}
               className="h-8 sm:h-9 hover:brightness-110 transition-all"
             />
           </a>
@@ -142,18 +141,18 @@ export const Navbar: React.FC<NavbarProps> = ({
               )}
             </button>
 
-            {/* Desktop secondary APK link */}
-            <a
-              href={UGABYTE_APK_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={onDownloadApk}
-              title={`Download ${UGABYTE_APP_META.fileName} (${UGABYTE_APP_META.version} · ${UGABYTE_APP_META.fileSize})`}
-              className="hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 min-h-[36px] rounded-full border border-[#232936] hover:border-[#323B4E] bg-[#12151C] hover:bg-[#181C26] text-[#8E98A8] hover:text-[#FFFFFF] text-[11px] font-bold tracking-wide transition-all active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
-            >
-              <Download className="w-3.5 h-3.5 text-[#cef11c]" />
-              <span>APK ({UGABYTE_APP_META.fileSize})</span>
-            </a>
+            {/* Desktop secondary Install App button (auto-hidden when already installed) */}
+            {!isInstalled && (
+              <button
+                type="button"
+                onClick={onInstallApp}
+                title="Install UgaByte App to your device"
+                className="hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 min-h-[36px] rounded-full border border-[#232936] hover:border-[#323B4E] bg-[#12151C] hover:bg-[#181C26] text-[#8E98A8] hover:text-[#FFFFFF] text-[11px] font-bold tracking-wide transition-all active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
+              >
+                <Download className="w-3.5 h-3.5 text-[#cef11c]" />
+                <span>Install App</span>
+              </button>
+            )}
 
             {/* Primary Action in Top Right: Open Web App */}
             <a
@@ -301,19 +300,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             <span>Open Web App</span>
           </a>
 
-          <a
-            href={UGABYTE_APK_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => {
-              onDownloadApk(e);
-              setMobileMenuOpen(false);
-            }}
-            className="w-full py-3 min-h-[46px] rounded-full bg-[#181C26] border border-[#232936] text-[#e3e2e8] text-xs font-bold tracking-wide flex items-center justify-center gap-2 active:scale-95 transition-all"
-          >
-            <Download className="w-4 h-4 text-[#cef11c]" />
-            <span>Download APK ({UGABYTE_APP_META.fileSize})</span>
-          </a>
+          {!isInstalled && (
+            <button
+              type="button"
+              onClick={(e) => {
+                setMobileMenuOpen(false);
+                onInstallApp(e);
+              }}
+              className="w-full py-3 min-h-[46px] rounded-full bg-[#181C26] border border-[#232936] text-[#e3e2e8] text-xs font-bold tracking-wide flex items-center justify-center gap-2 active:scale-95 transition-all"
+            >
+              <Download className="w-4 h-4 text-[#cef11c]" />
+              <span>Install App</span>
+            </button>
+          )}
         </div>
       </aside>
     </>

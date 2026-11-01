@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import {
   BRAND_ASSETS,
-  UGABYTE_APK_URL,
-  UGABYTE_APP_META,
   UGABYTE_WEB_APP_URL,
-  UGABYTE_APP_LINKS,
 } from "../config/ugabyte";
 import { HOMEPAGE_SEO } from "../data/seoPages";
 import { shareUgaByteContent } from "../utils/share";
@@ -14,21 +11,16 @@ import {
   ShieldCheck,
   MapPin,
   Tag,
-  Flame,
-  Store,
-  Calendar,
-  Briefcase,
-  ExternalLink,
   Share2,
   Check,
 } from "lucide-react";
 
 interface HeroProps {
-  onDownloadApk: (e?: React.MouseEvent) => void;
+  onInstallApp: (e?: React.MouseEvent) => void;
   onOpenWebApp: (e?: React.MouseEvent) => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onDownloadApk, onOpenWebApp }) => {
+export const Hero: React.FC<HeroProps> = ({ onInstallApp, onOpenWebApp }) => {
   const [heroImgFailed, setHeroImgFailed] = useState(false);
   const [sharedCopied, setSharedCopied] = useState(false);
 
@@ -71,7 +63,7 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadApk, onOpenWebApp }) => {
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center w-full">
         {/* Smartphone-Optimized Display Headline (g and y descenders preserved completely) */}
         <h1 className="text-[32px] xs:text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-[#FFFFFF] max-w-4xl mb-3 sm:mb-4 leading-[1.12] sm:leading-[1.08] text-balance">
-          <span className="block text-xl xs:text-2xl sm:text-3xl md:text-4xl font-black tracking-tight hero-gradient-text text-transparent bg-clip-text bg-gradient-to-r from-white via-[#e3e2e8] to-[#cef11c] mb-1 sm:mb-2 select-none transform -translate-y-1 sm:-translate-y-1.5 pb-1 sm:pb-1.5 leading-normal">
+          <span className="block text-[28px] xs:text-3xl sm:text-4xl md:text-5xl font-black tracking-tight hero-gradient-text text-transparent bg-clip-text bg-gradient-to-r from-white via-[#e3e2e8] to-[#cef11c] mb-1 sm:mb-2 select-none pb-1 sm:pb-2 leading-[1.12]">
             UgaByte
           </span>
           Deals, Market &amp; Events.{" "}
@@ -99,69 +91,19 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadApk, onOpenWebApp }) => {
             <span>OPEN WEB APP</span>
           </a>
 
-          <a
-            href={UGABYTE_APK_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={onDownloadApk}
-            title={`Download ${UGABYTE_APP_META.fileName} (${UGABYTE_APP_META.version} · ${UGABYTE_APP_META.fileSize})`}
+          <button
+            type="button"
+            onClick={onInstallApp}
+            title="Install UgaByte App to your phone via Google Chrome"
             className="w-full sm:w-auto px-7 py-3.5 sm:py-3.5 min-h-[48px] rounded-full bg-[#12151C] hover:bg-[#181C26] border border-[#232936] hover:border-[#323B4E] text-[#FFFFFF] text-xs sm:text-[13px] font-bold tracking-wider active:scale-[0.98] transition-all flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
           >
             <Download className="w-4 h-4 text-[#cef11c]" />
-            <span>DOWNLOAD APK ({UGABYTE_APP_META.fileSize})</span>
-          </a>
+            <span>INSTALL APP</span>
+          </button>
         </div>
 
-        {/* Direct Web App Hub Quick-Access Chips + One-Tap Share */}
+        {/* One-Tap Share */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-8 sm:mb-10 w-full max-w-3xl px-2">
-          <a
-            href={UGABYTE_APP_LINKS.deals}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#12151C] hover:bg-[#181C26] border border-[#232936] hover:border-[#cef11c]/50 text-xs text-[#e3e2e8] hover:text-[#cef11c] font-semibold transition-all active:scale-95"
-            title="Open Deals in Web App"
-          >
-            <Flame className="w-3.5 h-3.5 text-[#cef11c]" />
-            <span>Deals</span>
-            <ExternalLink className="w-3 h-3 opacity-60" />
-          </a>
-
-          <a
-            href={UGABYTE_APP_LINKS.marketplace}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#12151C] hover:bg-[#181C26] border border-[#232936] hover:border-[#cef11c]/50 text-xs text-[#e3e2e8] hover:text-[#cef11c] font-semibold transition-all active:scale-95"
-            title="View Marketplace in Web App"
-          >
-            <Store className="w-3.5 h-3.5 text-[#cef11c]" />
-            <span>Market</span>
-            <ExternalLink className="w-3 h-3 opacity-60" />
-          </a>
-
-          <a
-            href={UGABYTE_APP_LINKS.events}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#12151C] hover:bg-[#181C26] border border-[#232936] hover:border-[#cef11c]/50 text-xs text-[#e3e2e8] hover:text-[#cef11c] font-semibold transition-all active:scale-95"
-            title="Live Campus Events in Web App"
-          >
-            <Calendar className="w-3.5 h-3.5 text-[#cef11c]" />
-            <span>Events</span>
-            <ExternalLink className="w-3 h-3 opacity-60" />
-          </a>
-
-          <a
-            href={UGABYTE_APP_LINKS.opportunities}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#12151C] hover:bg-[#181C26] border border-[#232936] hover:border-[#cef11c]/50 text-xs text-[#e3e2e8] hover:text-[#cef11c] font-semibold transition-all active:scale-95"
-            title="Campus Opportunities in Web App"
-          >
-            <Briefcase className="w-3.5 h-3.5 text-[#cef11c]" />
-            <span>Gigs</span>
-            <ExternalLink className="w-3 h-3 opacity-60" />
-          </a>
-
           <button
             type="button"
             onClick={handleShareUgaByte}

@@ -15,9 +15,36 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="theme-color" content="#090A0E" />
 
-    <!-- App Name Signals for Google Search & Browsers -->
+    <!-- App Name & PWA Capability Signals for Google Search & Browsers -->
     <meta name="application-name" content="UgaByte" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="UgaByte" />
+
+    <!-- Instant Installed Shortcut Launcher -> Opens https://ugabyte.vercel.app/ & Captures Chrome Install Prompt -->
+    <script>
+      (function () {
+        try {
+          var params = new URLSearchParams(window.location.search);
+          var isStandalone =
+            params.get("pwa") === "1" ||
+            window.navigator.standalone === true ||
+            (window.matchMedia &&
+              (window.matchMedia("(display-mode: standalone)").matches ||
+                window.matchMedia("(display-mode: fullscreen)").matches ||
+                window.matchMedia("(display-mode: minimal-ui)").matches));
+          if (isStandalone) {
+            window.location.replace("https://ugabyte.vercel.app/");
+            return;
+          }
+          window.addEventListener("beforeinstallprompt", function (e) {
+            e.preventDefault();
+            window.__ugabyteDeferredPrompt = e;
+          });
+        } catch (err) {}
+      })();
+    </script>
 
     <!-- OpenGraph Metadata -->
     <meta property="og:type" content="website" />
@@ -55,7 +82,6 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
 
     <!-- Optimized Google Fonts (only used weights + swap) -->
@@ -109,15 +135,14 @@
           "@id": "https://ugabyte-website.vercel.app/#software",
           "name": "UgaByte",
           "applicationCategory": "LifestyleApplication",
-          "operatingSystem": "Web, Android 8.0+",
+          "operatingSystem": "Web, Android, iOS",
           "url": "https://ugabyte.vercel.app/",
-          "downloadUrl": "https://limewire.com/d/87VtZ#gAMC0GRo8H",
+          "installUrl": "https://ugabyte.vercel.app/",
           "softwareVersion": "1.0.0",
-          "fileSize": "6.4 MB",
           "publisher": {
             "@id": "https://ugabyte-website.vercel.app/#organization"
           },
-          "description": "UgaByte web and Android application connecting students in Uganda with local deals, affordable food, peer-to-peer marketplace listings, campus events, and gigs.",
+          "description": "UgaByte web application connecting students in Uganda with local deals, affordable food, peer-to-peer marketplace listings, campus events, and gigs.",
           "offers": {
             "@type": "Offer",
             "price": "0",
@@ -145,7 +170,7 @@
           </p>
           <div class="mt-6 flex flex-wrap gap-3">
             <a href="https://ugabyte.vercel.app/" class="px-6 py-3 rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-black uppercase">Open Web App</a>
-            <a href="https://limewire.com/d/87VtZ#gAMC0GRo8H" class="px-6 py-3 rounded-full border border-[#232936] text-white text-xs font-bold">Download APK (6.4 MB)</a>
+            <a href="https://ugabyte.vercel.app/" class="px-6 py-3 rounded-full border border-[#232936] text-white text-xs font-bold">Install App</a>
           </div>
         </section>
         <section>

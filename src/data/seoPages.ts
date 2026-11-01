@@ -67,7 +67,7 @@ export const CATEGORY_SEO_PAGES: Record<CategoryRouteSlug, CategorySeoPageConfig
     overviewTitle: "How Campus Deals Work",
     overviewParagraphs: [
       "UgaByte partners with local cafés, restaurants, print shops, and hostels around university gates to share real-time student discounts.",
-      "Every deal shows transparent UGX pricing, gate proximity, and instant access in the Web App or Android APK at zero cost.",
+      "Every deal shows transparent UGX pricing, gate proximity, and instant access in the Web App or installed phone app at zero cost.",
     ],
     appLink: UGABYTE_APP_LINKS.deals,
     appCtaLabel: "Open Deals",

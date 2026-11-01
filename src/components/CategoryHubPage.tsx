@@ -17,7 +17,6 @@ import {
   CategoryRouteSlug,
 } from "../data/seoPages";
 import { LiveFeedPayload, LiveAppListing } from "../services/liveFeed";
-import { UGABYTE_APK_URL, UGABYTE_APP_META } from "../config/ugabyte";
 import { shareUgaByteContent } from "../utils/share";
 
 interface CategoryHubPageProps {
@@ -25,7 +24,7 @@ interface CategoryHubPageProps {
   feed: LiveFeedPayload;
   onNavigateHome: (e?: React.MouseEvent) => void;
   onNavigateCategory: (slug: CategoryRouteSlug, e?: React.MouseEvent) => void;
-  onDownloadApk: (e?: React.MouseEvent) => void;
+  onInstallApp: (e?: React.MouseEvent) => void;
   onOpenPartnerModal: () => void;
 }
 
@@ -34,7 +33,7 @@ export const CategoryHubPage: React.FC<CategoryHubPageProps> = ({
   feed,
   onNavigateHome,
   onNavigateCategory,
-  onDownloadApk,
+  onInstallApp,
   onOpenPartnerModal,
 }) => {
   const [sharedId, setSharedId] = useState<string | null>(null);
@@ -113,16 +112,14 @@ export const CategoryHubPage: React.FC<CategoryHubPageProps> = ({
               <ExternalLink className="w-4 h-4 stroke-[2.5]" />
             </a>
 
-            <a
-              href={UGABYTE_APK_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={onDownloadApk}
+            <button
+              type="button"
+              onClick={onInstallApp}
               className="px-6 py-3.5 min-h-[48px] rounded-full bg-[#12151C] hover:bg-[#181C26] border border-[#232936] hover:border-[#323B4E] text-[#FFFFFF] text-xs sm:text-[13px] font-bold tracking-wider active:scale-[0.98] transition-all inline-flex items-center justify-center gap-2"
             >
               <Download className="w-4 h-4 text-[#cef11c]" />
-              <span>Download APK ({UGABYTE_APP_META.fileSize})</span>
-            </a>
+              <span>Install App</span>
+            </button>
 
             <button
               type="button"

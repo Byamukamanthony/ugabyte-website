@@ -1,28 +1,30 @@
 import React, { useEffect } from "react";
-import { Download, X } from "lucide-react";
-import { UGABYTE_APP_META } from "../config/ugabyte";
+import { Check, ExternalLink, X } from "lucide-react";
+import { UGABYTE_WEB_APP_URL } from "../config/ugabyte";
 
 interface DownloadToastProps {
   show: boolean;
+  mode?: "installed" | "launched";
   onClose: () => void;
-  onOpenGuide: () => void;
 }
 
 export const DownloadToast: React.FC<DownloadToastProps> = ({
   show,
+  mode = "installed",
   onClose,
-  onOpenGuide,
 }) => {
   useEffect(() => {
     if (show) {
       const timer = setTimeout(() => {
         onClose();
-      }, 6000);
+      }, 5500);
       return () => clearTimeout(timer);
     }
   }, [show, onClose]);
 
   if (!show) return null;
+
+  const isInstalledMode = mode === "installed";
 
   return (
     <div
@@ -31,13 +33,13 @@ export const DownloadToast: React.FC<DownloadToastProps> = ({
       aria-live="polite"
     >
       <div className="w-8 h-8 rounded-lg bg-[#cef11c] text-[#090A0E] flex items-center justify-center shrink-0 mt-0.5">
-        <Download className="w-4 h-4 stroke-[2.25]" />
+        <Check className="w-4 h-4 stroke-[2.5]" />
       </div>
 
       <div className="flex-1 min-w-0">
         <div className="flex items-center justify-between">
           <h4 className="text-xs font-bold text-[#FFFFFF]">
-            Opening APK ({UGABYTE_APP_META.version} · {UGABYTE_APP_META.fileSize})
+            {isInstalledMode ? "UgaByte App Installed" : "Opening UgaByte App"}
           </h4>
           <button
             type="button"
@@ -48,20 +50,22 @@ export const DownloadToast: React.FC<DownloadToastProps> = ({
             <X className="w-3.5 h-3.5" />
           </button>
         </div>
-        <p className="text-[11px] text-[#8E98A8] mt-0.5 font-mono truncate">
-          {UGABYTE_APP_META.fileName}
+        <p className="text-[11px] text-[#8E98A8] mt-0.5 truncate">
+          {isInstalledMode
+            ? "Shortcut added · Opens ugabyte.vercel.app"
+            : "Launching ugabyte.vercel.app"}
         </p>
 
-        <button
-          type="button"
-          onClick={() => {
-            onClose();
-            onOpenGuide();
-          }}
-          className="mt-1.5 text-xs text-[#cef11c] font-semibold hover:underline"
+        <a
+          href={UGABYTE_WEB_APP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={onClose}
+          className="mt-1.5 inline-flex items-center gap-1 text-xs text-[#cef11c] font-semibold hover:underline"
         >
-          View Install Guide &rarr;
-        </button>
+          <span>Open UgaByte App</span>
+          <ExternalLink className="w-3 h-3" />
+        </a>
       </div>
     </div>
   );

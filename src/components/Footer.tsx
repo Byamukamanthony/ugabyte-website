@@ -2,8 +2,6 @@ import React from "react";
 import {
   UGABYTE_HANDLE,
   UGABYTE_PLATFORMS,
-  UGABYTE_APK_URL,
-  UGABYTE_APP_META,
   UGABYTE_WEB_APP_URL,
   UGABYTE_APP_LINKS,
 } from "../config/ugabyte";
@@ -14,7 +12,6 @@ import {
   Download,
   AtSign,
   Globe,
-  HelpCircle,
   Shield,
   FileText,
   Cookie,
@@ -28,8 +25,7 @@ import {
 
 interface FooterProps {
   onOpenLegal: (type: "privacy" | "terms" | "cookie" | "refund") => void;
-  onOpenInstallGuide: () => void;
-  onDownloadApk: (e?: React.MouseEvent) => void;
+  onInstallApp: (e?: React.MouseEvent) => void;
   onOpenWebApp: (e?: React.MouseEvent) => void;
   onNavigateHome?: (e?: React.MouseEvent) => void;
   onNavigateCategory?: (slug: CategoryRouteSlug, e?: React.MouseEvent) => void;
@@ -82,8 +78,7 @@ const PlatformIcon: React.FC<{ id: string; className?: string }> = ({
 
 export const Footer: React.FC<FooterProps> = ({
   onOpenLegal,
-  onOpenInstallGuide,
-  onDownloadApk,
+  onInstallApp,
   onOpenWebApp,
   onNavigateHome,
   onNavigateCategory,
@@ -91,9 +86,9 @@ export const Footer: React.FC<FooterProps> = ({
   return (
     <footer className="w-full bg-[#090A0E] border-t border-[#232936] pt-10 sm:pt-14 pb-20 sm:pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-6 sm:gap-8 pb-8 sm:pb-10 border-b border-[#232936]/80">
+        <div className="grid grid-cols-4 lg:grid-cols-12 gap-2 sm:gap-5 lg:gap-8 pb-6 sm:pb-9 border-b border-[#232936]/80">
           {/* Brand Column */}
-          <div className="sm:col-span-2 lg:col-span-3 space-y-3">
+          <div className="col-span-4 lg:col-span-3 space-y-3 pb-2 lg:pb-0">
             <a
               href="/"
               onClick={onNavigateHome}
@@ -115,20 +110,20 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           {/* Crawlable Uganda Category Guides */}
-          <div className="col-span-1 lg:col-span-3 space-y-3">
-            <h5 className="text-[11px] font-black uppercase tracking-wider text-[#FFFFFF]">
+          <div className="col-span-1 lg:col-span-3 min-w-0 space-y-1.5 sm:space-y-2.5">
+            <h5 className="text-[10px] sm:text-[11px] font-black uppercase tracking-tight sm:tracking-wider text-[#FFFFFF] leading-tight">
               Campus Guides
             </h5>
-            <ul className="space-y-1 sm:space-y-1.5 text-xs text-[#8E98A8]">
+            <ul className="space-y-0.5 sm:space-y-1 text-[11px] sm:text-xs text-[#8E98A8]">
               {CATEGORY_PAGE_LIST.map((cat) => (
                 <li key={cat.slug}>
                   <a
                     href={cat.path}
                     onClick={(e) => onNavigateCategory?.(cat.slug, e)}
-                    className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[34px] py-1 focus:outline-none"
+                    className="hover:text-[#cef11c] transition-colors flex items-center gap-1 sm:gap-1.5 py-1 leading-tight focus:outline-none"
                   >
-                    <Compass className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                    <span>{cat.navLabel}</span>
+                    <Compass className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#cef11c] shrink-0" />
+                    <span className="truncate">{cat.navLabel}</span>
                   </a>
                 </li>
               ))}
@@ -136,21 +131,21 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           {/* Direct Web App Modules Column */}
-          <div className="col-span-1 lg:col-span-2 space-y-3">
-            <h5 className="text-[11px] font-black uppercase tracking-wider text-[#FFFFFF]">
+          <div className="col-span-1 lg:col-span-2 min-w-0 space-y-1.5 sm:space-y-2.5">
+            <h5 className="text-[10px] sm:text-[11px] font-black uppercase tracking-tight sm:tracking-wider text-[#FFFFFF] leading-tight">
               Web App
             </h5>
-            <ul className="space-y-1 sm:space-y-1.5 text-xs text-[#8E98A8]">
+            <ul className="space-y-0.5 sm:space-y-1 text-[11px] sm:text-xs text-[#8E98A8]">
               <li>
                 <a
                   href={UGABYTE_APP_LINKS.deals}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[34px] py-1 focus:outline-none"
+                  className="hover:text-[#cef11c] transition-colors flex items-center gap-1 sm:gap-1.5 py-1 leading-tight focus:outline-none"
                 >
-                  <Flame className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                  <span>Deals</span>
-                  <ExternalLink className="w-3 h-3 opacity-60 shrink-0" />
+                  <Flame className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#cef11c] shrink-0" />
+                  <span className="truncate">Deals</span>
+                  <ExternalLink className="hidden sm:block w-3 h-3 opacity-60 shrink-0" />
                 </a>
               </li>
               <li>
@@ -158,11 +153,11 @@ export const Footer: React.FC<FooterProps> = ({
                   href={UGABYTE_APP_LINKS.marketplace}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[34px] py-1 focus:outline-none"
+                  className="hover:text-[#cef11c] transition-colors flex items-center gap-1 sm:gap-1.5 py-1 leading-tight focus:outline-none"
                 >
-                  <Store className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                  <span>Market</span>
-                  <ExternalLink className="w-3 h-3 opacity-60 shrink-0" />
+                  <Store className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#cef11c] shrink-0" />
+                  <span className="truncate">Market</span>
+                  <ExternalLink className="hidden sm:block w-3 h-3 opacity-60 shrink-0" />
                 </a>
               </li>
               <li>
@@ -170,11 +165,11 @@ export const Footer: React.FC<FooterProps> = ({
                   href={UGABYTE_APP_LINKS.events}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[34px] py-1 focus:outline-none"
+                  className="hover:text-[#cef11c] transition-colors flex items-center gap-1 sm:gap-1.5 py-1 leading-tight focus:outline-none"
                 >
-                  <Calendar className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                  <span>Events</span>
-                  <ExternalLink className="w-3 h-3 opacity-60 shrink-0" />
+                  <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#cef11c] shrink-0" />
+                  <span className="truncate">Events</span>
+                  <ExternalLink className="hidden sm:block w-3 h-3 opacity-60 shrink-0" />
                 </a>
               </li>
               <li>
@@ -182,103 +177,91 @@ export const Footer: React.FC<FooterProps> = ({
                   href={UGABYTE_APP_LINKS.opportunities}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[34px] py-1 focus:outline-none"
+                  className="hover:text-[#cef11c] transition-colors flex items-center gap-1 sm:gap-1.5 py-1 leading-tight focus:outline-none"
                 >
-                  <Briefcase className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                  <span>Gigs</span>
-                  <ExternalLink className="w-3 h-3 opacity-60 shrink-0" />
+                  <Briefcase className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#cef11c] shrink-0" />
+                  <span className="truncate">Gigs</span>
+                  <ExternalLink className="hidden sm:block w-3 h-3 opacity-60 shrink-0" />
                 </a>
               </li>
             </ul>
           </div>
 
           {/* Product Column */}
-          <div className="col-span-1 lg:col-span-2 space-y-3">
-            <h5 className="text-[11px] font-black uppercase tracking-wider text-[#FFFFFF]">
+          <div className="col-span-1 lg:col-span-2 min-w-0 space-y-1.5 sm:space-y-2.5">
+            <h5 className="text-[10px] sm:text-[11px] font-black uppercase tracking-tight sm:tracking-wider text-[#FFFFFF] leading-tight">
               Get App
             </h5>
-            <ul className="space-y-1 sm:space-y-1.5 text-xs text-[#8E98A8]">
+            <ul className="space-y-0.5 sm:space-y-1 text-[11px] sm:text-xs text-[#8E98A8]">
               <li>
                 <a
                   href={UGABYTE_WEB_APP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={onOpenWebApp}
-                  className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[34px] py-1 focus:outline-none"
+                  className="hover:text-[#cef11c] transition-colors flex items-center gap-1 sm:gap-1.5 py-1 leading-tight focus:outline-none"
                 >
-                  <Globe className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                  <span>Web App</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href={UGABYTE_APK_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={onDownloadApk}
-                  className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[34px] py-1 focus:outline-none"
-                >
-                  <Download className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                  <span>APK ({UGABYTE_APP_META.fileSize})</span>
+                  <Globe className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#cef11c] shrink-0" />
+                  <span className="truncate">Web App</span>
                 </a>
               </li>
               <li>
                 <button
                   type="button"
-                  onClick={onOpenInstallGuide}
-                  className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[34px] py-1 focus:outline-none"
+                  onClick={onInstallApp}
+                  className="hover:text-[#cef11c] transition-colors flex items-center gap-1 sm:gap-1.5 py-1 leading-tight focus:outline-none text-left max-w-full"
                 >
-                  <HelpCircle className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                  <span>Install Guide</span>
+                  <Download className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#cef11c] shrink-0" />
+                  <span className="truncate">Install App</span>
                 </button>
               </li>
             </ul>
           </div>
 
           {/* Legal Column */}
-          <div className="col-span-1 lg:col-span-2 space-y-3">
-            <h5 className="text-[11px] font-black uppercase tracking-wider text-[#FFFFFF]">
+          <div className="col-span-1 lg:col-span-2 min-w-0 space-y-1.5 sm:space-y-2.5">
+            <h5 className="text-[10px] sm:text-[11px] font-black uppercase tracking-tight sm:tracking-wider text-[#FFFFFF] leading-tight">
               Policies
             </h5>
-            <ul className="space-y-1 sm:space-y-1.5 text-xs text-[#8E98A8]">
+            <ul className="space-y-0.5 sm:space-y-1 text-[11px] sm:text-xs text-[#8E98A8]">
               <li>
                 <button
                   type="button"
                   onClick={() => onOpenLegal("privacy")}
-                  className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[34px] py-1 focus:outline-none"
+                  className="hover:text-[#cef11c] transition-colors flex items-center gap-1 sm:gap-1.5 py-1 leading-tight focus:outline-none text-left max-w-full"
                 >
-                  <Shield className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                  <span>Privacy</span>
+                  <Shield className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#cef11c] shrink-0" />
+                  <span className="truncate">Privacy</span>
                 </button>
               </li>
               <li>
                 <button
                   type="button"
                   onClick={() => onOpenLegal("terms")}
-                  className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[34px] py-1 focus:outline-none"
+                  className="hover:text-[#cef11c] transition-colors flex items-center gap-1 sm:gap-1.5 py-1 leading-tight focus:outline-none text-left max-w-full"
                 >
-                  <FileText className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                  <span>Terms</span>
+                  <FileText className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#cef11c] shrink-0" />
+                  <span className="truncate">Terms</span>
                 </button>
               </li>
               <li>
                 <button
                   type="button"
                   onClick={() => onOpenLegal("cookie")}
-                  className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[34px] py-1 focus:outline-none"
+                  className="hover:text-[#cef11c] transition-colors flex items-center gap-1 sm:gap-1.5 py-1 leading-tight focus:outline-none text-left max-w-full"
                 >
-                  <Cookie className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                  <span>Cookies</span>
+                  <Cookie className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#cef11c] shrink-0" />
+                  <span className="truncate">Cookies</span>
                 </button>
               </li>
               <li>
                 <button
                   type="button"
                   onClick={() => onOpenLegal("refund")}
-                  className="hover:text-[#cef11c] transition-colors flex items-center gap-2 min-h-[34px] py-1 focus:outline-none"
+                  className="hover:text-[#cef11c] transition-colors flex items-center gap-1 sm:gap-1.5 py-1 leading-tight focus:outline-none text-left max-w-full"
                 >
-                  <RotateCcw className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                  <span>Refunds</span>
+                  <RotateCcw className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#cef11c] shrink-0" />
+                  <span className="truncate">Refunds</span>
                 </button>
               </li>
             </ul>

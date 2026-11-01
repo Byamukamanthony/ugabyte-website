@@ -3,18 +3,18 @@ import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
 import { CampusTicker } from "./components/CampusTicker";
 import { TheSolution } from "./components/TheSolution";
-import { EcosystemSection } from "./components/EcosystemSection";
 import { ForBusinesses } from "./components/ForBusinesses";
 import { DownloadSection } from "./components/DownloadSection";
 import { FAQSection } from "./components/FAQSection";
 import { Footer } from "./components/Footer";
 import { CategoryHubPage } from "./components/CategoryHubPage";
-import { InstallGuideModal } from "./components/InstallGuideModal";
 import { PartnerInquiryModal } from "./components/PartnerInquiryModal";
 import { LegalModal } from "./components/LegalModal";
 import { DownloadToast } from "./components/DownloadToast";
 import { MobileThumbBar } from "./components/MobileThumbBar";
-import { UGABYTE_APK_URL, UGABYTE_WEB_APP_URL } from "./config/ugabyte";
+import { OfflineIndicator } from "./components/OfflineIndicator";
+import { UGABYTE_WEB_APP_URL } from "./config/ugabyte";
+import { usePWAInstall } from "./hooks/usePWAInstall";
 import {
   CATEGORY_SEO_PAGES,
   CategoryRouteSlug,
@@ -36,14 +36,15 @@ function parseCategoryFromPathname(pathname: string): CategoryRouteSlug | null {
 }
 
 export default function App() {
-  const [installGuideOpen, setInstallGuideOpen] = useState(false);
   const [partnerModalOpen, setPartnerModalOpen] = useState(false);
   const [legalTab, setLegalTab] = useState<"privacy" | "terms" | "cookie" | "refund" | null>(null);
-  const [downloadToastOpen, setDownloadToastOpen] = useState(false);
+  const [toastState, setToastState] = useState<"installed" | "launched" | null>(null);
   const [liveFeed, setLiveFeed] = useState<LiveFeedPayload>(EMPTY_LIVE_FEED);
   const [activeCategory, setActiveCategory] = useState<CategoryRouteSlug | null>(() =>
     typeof window !== "undefined" ? parseCategoryFromPathname(window.location.pathname) : null
   );
+
+  const { isInstalled, triggerAutomatedInstall } = usePWAInstall();
 
   const [theme, setTheme] = useState<"dark" | "light">(() => {
     if (typeof window !== "undefined") {
@@ -147,8 +148,7 @@ export default function App() {
       window.history.replaceState({}, "", "/#faq");
       setTimeout(() => document.getElementById("faq")?.scrollIntoView({ behavior: "smooth" }), 120);
     } else if (rawPath === "/about") {
-      window.history.replaceState({}, "", "/#about");
-      setTimeout(() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" }), 120);
+      window.history.replaceState({}, "", "/");
     }
   }, []);
 
@@ -236,20 +236,6 @@ export default function App() {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
 
-  const handleDownloadApk = (e?: React.MouseEvent) => {
-    setDownloadToastOpen(true);
-    if (e?.currentTarget instanceof HTMLAnchorElement) {
-      return;
-    }
-    const link = document.createElement("a");
-    link.href = UGABYTE_APK_URL;
-    link.setAttribute("target", "_blank");
-    link.setAttribute("rel", "noopener noreferrer");
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
   const handleOpenWebApp = (e?: React.MouseEvent) => {
     if (e?.currentTarget instanceof HTMLAnchorElement) {
       return;
@@ -263,13 +249,26 @@ export default function App() {
     document.body.removeChild(link);
   };
 
+  const handleInstallApp = async (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+    }
+    const outcome = await triggerAutomatedInstall();
+    if (outcome === "installed") {
+      setToastState("installed");
+    } else if (outcome === "launched" || outcome === "chrome_intent") {
+      setToastState("launched");
+    }
+  };
+
   const activeCategoryConfig = activeCategory ? CATEGORY_SEO_PAGES[activeCategory] : null;
 
   return (
     <div className="min-h-screen bg-[#090A0E] text-[#e3e2e8] flex flex-col font-sans selection:bg-[#cef11c] selection:text-[#090A0E] transition-colors duration-200">
       {/* Sticky Navbar with Theme Switcher & Crawlable Navigation */}
       <Navbar
-        onDownloadApk={handleDownloadApk}
+        onInstallApp={handleInstallApp}
+        isInstalled={isInstalled}
         onOpenWebApp={handleOpenWebApp}
         onNavigateHome={handleNavigateHome}
         onNavigateCategory={handleNavigateCategory}
@@ -285,14 +284,14 @@ export default function App() {
             feed={liveFeed}
             onNavigateHome={handleNavigateHome}
             onNavigateCategory={handleNavigateCategory}
-            onDownloadApk={handleDownloadApk}
+            onInstallApp={handleInstallApp}
             onOpenPartnerModal={() => setPartnerModalOpen(true)}
           />
         ) : (
           <>
             {/* 1. Hero Section */}
             <Hero
-              onDownloadApk={handleDownloadApk}
+              onInstallApp={handleInstallApp}
               onOpenWebApp={handleOpenWebApp}
             />
 
@@ -301,23 +300,19 @@ export default function App() {
 
             {/* 3. Four Core Pillars Bento Grid (Synced with Supabase + Category Guides) */}
             <TheSolution
-              onClaimDrop={handleDownloadApk}
+              onClaimDrop={handleInstallApp}
               onOpenWebApp={handleOpenWebApp}
               onNavigateCategory={handleNavigateCategory}
               feed={liveFeed}
             />
 
-            {/* 4. About UgaByte & Uganda Campus Ecosystem (#about) */}
-            <EcosystemSection />
-
-            {/* 6. For Campus Businesses & Sellers (#sellers) */}
+            {/* 4. For Campus Businesses & Sellers (#sellers) */}
             <ForBusinesses onOpenPartnerModal={() => setPartnerModalOpen(true)} />
 
-            {/* 7. Direct APK & Web App Download Section (#download) */}
+            {/* 7. App Shortcut & Web App Install Section (#download) */}
             <DownloadSection
-              onDownloadApk={handleDownloadApk}
+              onInstallApp={handleInstallApp}
               onOpenWebApp={handleOpenWebApp}
-              onOpenInstallGuide={() => setInstallGuideOpen(true)}
             />
 
             {/* 8. Comprehensive FAQ (#faq) */}
@@ -329,20 +324,13 @@ export default function App() {
       {/* Footer with Official Favicon Logo, Uganda Guides, @ugabyteinc & Legal Links */}
       <Footer
         onOpenLegal={handleOpenLegal}
-        onOpenInstallGuide={() => setInstallGuideOpen(true)}
-        onDownloadApk={handleDownloadApk}
+        onInstallApp={handleInstallApp}
         onOpenWebApp={handleOpenWebApp}
         onNavigateHome={handleNavigateHome}
         onNavigateCategory={handleNavigateCategory}
       />
 
       {/* Interactive Modals */}
-      <InstallGuideModal
-        isOpen={installGuideOpen}
-        onClose={() => setInstallGuideOpen(false)}
-        onDownloadApk={handleDownloadApk}
-      />
-
       <PartnerInquiryModal
         isOpen={partnerModalOpen}
         onClose={() => setPartnerModalOpen(false)}
@@ -355,16 +343,20 @@ export default function App() {
         onSelectTab={handleOpenLegal}
       />
 
-      {/* Download Alert Toast */}
+      {/* App Install / Launch Confirmation Toast */}
       <DownloadToast
-        show={downloadToastOpen}
-        onClose={() => setDownloadToastOpen(false)}
-        onOpenGuide={() => setInstallGuideOpen(true)}
+        show={toastState !== null}
+        mode={toastState || "installed"}
+        onClose={() => setToastState(null)}
       />
+
+      {/* Offline Connectivity Indicator */}
+      <OfflineIndicator />
 
       {/* Floating Ergonomic Mobile Thumb Dock for Smartphones */}
       <MobileThumbBar
-        onDownloadApk={handleDownloadApk}
+        onInstallApp={handleInstallApp}
+        isInstalled={isInstalled}
         onOpenWebApp={handleOpenWebApp}
       />
     </div>

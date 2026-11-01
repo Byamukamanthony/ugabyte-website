@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ChevronDown, HelpCircle } from "lucide-react";
-import { UGABYTE_APP_META, UGABYTE_HANDLE } from "../config/ugabyte";
+import { UGABYTE_HANDLE } from "../config/ugabyte";
 
 export const FAQSection: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -23,8 +23,8 @@ export const FAQSection: React.FC = () => {
       a: "Click 'Partner with UgaByte' above or publish directly inside the Web App.",
     },
     {
-      q: "Web App or Android APK?",
-      a: `Open the Web App in any browser or install ${UGABYTE_APP_META.fileName} (${UGABYTE_APP_META.version}, ${UGABYTE_APP_META.fileSize}, ${UGABYTE_APP_META.minSdk}).`,
+      q: "How do I install the UgaByte App?",
+      a: "Tap 'Install App' anywhere on this page for one-tap installation to your phone, or open ugabyte.vercel.app directly.",
     },
     {
       q: "How do I contact UgaByte?",

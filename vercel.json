@@ -24,13 +24,13 @@
     },
     {
       "source": "/ugabyte.apk",
-      "destination": "https://limewire.com/d/87VtZ#gAMC0GRo8H",
+      "destination": "https://ugabyte.vercel.app/",
       "permanent": false
     }
   ],
   "rewrites": [
     {
-      "source": "/((?!assets/|favicon|android-chrome|apple-touch|og-image\\.png|ugabyte-icon|robots\\.txt|sitemap\\.xml|site\\.webmanifest|student-deals-uganda|student-marketplace-uganda|campus-events-uganda|student-gigs-uganda).*)",
+      "source": "/((?!assets/|favicon|android-chrome|apple-touch|pwa-maskable|og-image\\.png|ugabyte-icon|robots\\.txt|sitemap\\.xml|site\\.webmanifest|manifest\\.webmanifest|sw\\.js|registerSW\\.js|workbox-.*|student-deals-uganda|student-marketplace-uganda|campus-events-uganda|student-gigs-uganda).*)",
       "destination": "/index.html"
     }
   ],
@@ -71,11 +71,41 @@
       ]
     },
     {
-      "source": "/(favicon.*|android-chrome.*|apple-touch-icon\\.png|og-image\\.png)",
+      "source": "/(favicon.*|android-chrome.*|apple-touch-icon\\.png|pwa-maskable.*|og-image\\.png)",
       "headers": [
         {
           "key": "Cache-Control",
           "value": "public, max-age=86400, stale-while-revalidate=604800"
+        }
+      ]
+    },
+    {
+      "source": "/site.webmanifest",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/manifest+json; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/sw.js",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/javascript; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        },
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/"
         }
       ]
     },

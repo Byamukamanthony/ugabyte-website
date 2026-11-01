@@ -3,7 +3,6 @@ import path from "node:path";
 
 const SITE_ORIGIN = "https://ugabyte-website.vercel.app";
 const WEB_APP_ORIGIN = "https://ugabyte.vercel.app";
-const APK_URL = "https://limewire.com/d/87VtZ#gAMC0GRo8H";
 
 const ROUTES = [
   {
@@ -17,7 +16,7 @@ const ROUTES = [
       "Verified meal drops, printing discounts, and hostel offers near Kampala university gates.",
     paragraphs: [
       "UgaByte partners with local cafés, restaurants, print shops, and hostels around university gates to share real-time student discounts.",
-      "Every deal shows transparent UGX pricing, gate proximity, and instant access in the Web App or Android APK at zero cost.",
+      "Every deal shows transparent UGX pricing, gate proximity, and instant access in the Web App or installed phone app at zero cost.",
     ],
     bullets: [
       "Budget lunch combos and café offers near campus gates.",
@@ -201,7 +200,7 @@ for (const route of ROUTES) {
           </ul>
           <div class="pt-4 flex flex-wrap gap-3">
             <a href="${route.appUrl}" class="px-6 py-3 rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-black uppercase">${escapeHtml(route.appCta)}</a>
-            <a href="${APK_URL}" class="px-6 py-3 rounded-full border border-[#232936] text-white text-xs font-bold">Download APK (6.4 MB)</a>
+            <a href="${WEB_APP_ORIGIN}/" class="px-6 py-3 rounded-full border border-[#232936] text-white text-xs font-bold">Install App</a>
           </div>
         </article>
         <nav aria-label="Related UgaByte Uganda Pages" class="pt-6 border-t border-[#232936]">
