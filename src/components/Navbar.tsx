@@ -103,26 +103,28 @@ export const Navbar: React.FC<NavbarProps> = ({
             />
           </a>
 
-          {/* Zone 2: Icon + Label Navigation (Tablet, Split-Preview & Desktop) */}
-          <nav
-            className="hidden md:flex items-center gap-3 lg:gap-5 text-[10.5px] lg:text-[11px] font-bold tracking-wider uppercase text-[#8E98A8] whitespace-nowrap"
-            aria-label="Primary Navigation"
-          >
-            {navLinks.map((link) => {
-              const Icon = link.icon;
-              return (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={(e) => handleSectionClick(link.href, e)}
-                  className="inline-flex items-center gap-1.5 hover:text-[#cef11c] transition-colors focus:outline-none focus-visible:text-[#cef11c]"
-                >
-                  <Icon className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                  <span>{link.label}</span>
-                </a>
-              );
-            })}
-          </nav>
+          {/* Zone 2: Icon + Label Navigation (Tablet, Split-Preview & Desktop) - Centered */}
+          <div className="hidden md:flex flex-1 items-center justify-center">
+            <nav
+              className="flex items-center justify-center gap-3 lg:gap-5 text-[10.5px] lg:text-[11px] font-bold tracking-wider uppercase text-[#8E98A8] whitespace-nowrap"
+              aria-label="Primary Navigation"
+            >
+              {navLinks.map((link) => {
+                const Icon = link.icon;
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    onClick={(e) => handleSectionClick(link.href, e)}
+                    className="inline-flex items-center gap-1.5 hover:text-[#cef11c] transition-colors focus:outline-none focus-visible:text-[#cef11c]"
+                  >
+                    <Icon className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
+                    <span>{link.label}</span>
+                  </a>
+                );
+              })}
+            </nav>
+          </div>
 
           {/* Zone 3: Theme Switcher & Action Buttons */}
           <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
@@ -181,9 +183,9 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
         </div>
 
-        {/* Top Icon + Label Strip for Narrow / Mobile Viewports */}
+        {/* Top Icon + Label Strip for Narrow / Mobile Viewports (Centered) */}
         <nav
-          className="md:hidden border-t border-[#232936]/70 px-3.5 py-2 flex items-center gap-4 overflow-x-auto no-scrollbar text-[10px] font-bold tracking-wider uppercase text-[#8E98A8] whitespace-nowrap"
+          className="md:hidden border-t border-[#232936]/70 px-3.5 py-2 flex items-center justify-center gap-4 sm:gap-6 overflow-x-auto no-scrollbar text-[10px] font-bold tracking-wider uppercase text-[#8E98A8] whitespace-nowrap"
           aria-label="Quick Top Navigation"
         >
           {navLinks.map((link) => {

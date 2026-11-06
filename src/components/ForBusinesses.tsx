@@ -1,11 +1,12 @@
 import React from "react";
-import { Store, Clock, Zap, Tag } from "lucide-react";
+import { Store, Clock, Zap, Tag, ExternalLink } from "lucide-react";
+import { UGABYTE_APP_LINKS } from "../config/ugabyte";
 
 interface ForBusinessesProps {
-  onOpenPartnerModal: () => void;
+  onOpenPartnerModal?: () => void;
 }
 
-export const ForBusinesses: React.FC<ForBusinessesProps> = ({ onOpenPartnerModal }) => {
+export const ForBusinesses: React.FC<ForBusinessesProps> = () => {
   return (
     <section
       className="py-12 sm:py-16 scroll-mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-[#232936]"
@@ -51,13 +52,17 @@ export const ForBusinesses: React.FC<ForBusinessesProps> = ({ onOpenPartnerModal
           </div>
 
           <div className="pt-2">
-            <button
-              onClick={onOpenPartnerModal}
-              className="w-full sm:w-auto px-7 py-3 min-h-[44px] rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-black uppercase tracking-wider hover:brightness-105 active:scale-95 transition-all shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c] inline-flex items-center justify-center gap-2"
+            <a
+              href={`${UGABYTE_APP_LINKS.marketplace}#add`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto px-7 py-3 min-h-[46px] rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-black uppercase tracking-wider hover:brightness-105 active:scale-95 transition-all shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c] inline-flex items-center justify-center gap-2"
+              title="Partner with UgaByte"
             >
               <Store className="w-4 h-4" />
               <span>Partner with UgaByte</span>
-            </button>
+              <ExternalLink className="w-3.5 h-3.5 stroke-[2.5]" />
+            </a>
           </div>
         </div>
       </div>

@@ -15,6 +15,10 @@ import { LiveFeedPayload, EMPTY_LIVE_FEED } from "../services/liveFeed";
 import { UGABYTE_APP_LINKS } from "../config/ugabyte";
 import { CategoryRouteSlug, SITE_ORIGIN } from "../data/seoPages";
 import { shareUgaByteContent } from "../utils/share";
+import topDealImg from "../assets/images/ugabyte_top_deal_1793876710444.jpg";
+import topProductImg from "../assets/images/ugabyte_top_product_1793876722807.jpg";
+import topEventImg from "../assets/images/ugabyte_top_event_1793876734663.jpg";
+import topGigImg from "../assets/images/ugabyte_top_gig_1793876746971.jpg";
 
 interface TheSolutionProps {
   onClaimDrop?: () => void;
@@ -104,94 +108,89 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
             </p>
           </div>
 
-          {/* Live Deal Card synced directly from Supabase */}
+          {/* Real App Glimpse: Top Deal */}
           <div>
-            {featuredDeal ? (
-              <div className="bg-[#181C26] border border-[#232936] rounded-xl p-3.5 sm:p-5 relative mt-1 sm:mt-2">
-                <div className="flex flex-col xs:flex-row items-start xs:items-start justify-between gap-2 sm:gap-4">
-                  <div className="min-w-0 flex-1">
-                    <span className="text-[10px] font-black text-[#FFA800] uppercase tracking-wider flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#FFA800] animate-pulse" />
-                      {featuredDeal.discount || "LIVE IN APP"}
-                    </span>
-                    <h4 className="text-sm sm:text-base font-bold text-[#FFFFFF] mt-1 truncate">
-                      {featuredDeal.title}
+            <div className="bg-[#181C26] border border-[#232936] hover:border-[#323B4E] rounded-xl p-3 sm:p-4 relative mt-1 sm:mt-2 transition-all">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4">
+                {/* Real Glimpse Image */}
+                <div className="relative w-full sm:w-36 h-36 sm:h-28 rounded-lg overflow-hidden shrink-0 border border-[#232936] bg-[#12151C]">
+                  <img
+                    src={featuredDeal?.image || topDealImg}
+                    alt={featuredDeal?.title || "Top Campus Meal Drop on UgaByte"}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                  <span className="absolute top-1.5 left-1.5 text-[9.5px] font-black uppercase tracking-wider bg-[#FFA800] text-[#090A0E] px-2 py-0.5 rounded-full shadow-sm">
+                    {featuredDeal?.discount || "42% OFF"}
+                  </span>
+                </div>
+
+                <div className="min-w-0 flex-1 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-[10px] font-black text-[#FFA800] uppercase tracking-wider flex items-center gap-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#FFA800] animate-pulse" />
+                        TOP DEAL
+                      </span>
+                      <div className="text-right">
+                        <span className="text-base sm:text-lg font-black text-[#cef11c] tabular-nums">
+                          {featuredDeal?.price || "UGX 3,500"}
+                        </span>
+                        {(featuredDeal?.originalPrice || !featuredDeal) && (
+                          <span className="text-[11px] line-through text-[#8E98A8] tabular-nums ml-1.5">
+                            {featuredDeal?.originalPrice || "UGX 6,000"}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    <h4 className="text-sm sm:text-base font-bold text-[#FFFFFF] mt-1 line-clamp-1">
+                      {featuredDeal?.title || "Double Rolex & Fresh Passion Juice"}
                     </h4>
                     <div className="flex items-center gap-1.5 text-xs text-[#8E98A8] mt-1">
                       <MapPin className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-                      <span className="truncate">{featuredDeal.location}</span>
+                      <span className="truncate">{featuredDeal?.location || "Kikoni Gate · Makerere"}</span>
                     </div>
                   </div>
 
-                  <div className="text-left xs:text-right shrink-0">
-                    <div className="text-base sm:text-xl font-black text-[#cef11c] tabular-nums">
-                      {featuredDeal.price}
+                  <div className="mt-3 flex items-center justify-between border-t border-[#232936] pt-2.5 gap-2">
+                    <span className="text-[10px] text-[#8E98A8]">{featuredDeal?.time || "Live on App"}</span>
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() =>
+                          handleShareItem(
+                            `deal-${featuredDeal?.id || "top"}`,
+                            `${featuredDeal?.title || "Double Rolex & Juice"} — UgaByte Deal`,
+                            `${featuredDeal?.title || "Double Rolex & Juice"} on UgaByte`,
+                            "student-deals-uganda"
+                          )
+                        }
+                        className="w-8 h-8 rounded-full bg-[#12151C] border border-[#232936] hover:border-[#cef11c]/50 text-[#8E98A8] hover:text-[#cef11c] flex items-center justify-center transition-colors"
+                        title="Share this deal"
+                        aria-label="Share this deal"
+                      >
+                        {sharedKey === `deal-${featuredDeal?.id || "top"}` ? (
+                          <Check className="w-3.5 h-3.5 text-[#cef11c]" />
+                        ) : (
+                          <Share2 className="w-3.5 h-3.5" />
+                        )}
+                      </button>
+                      <a
+                        href={UGABYTE_APP_LINKS.deals}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3.5 py-1.5 min-h-[36px] rounded-full text-xs font-black uppercase tracking-wider bg-[#cef11c] text-[#090A0E] hover:brightness-105 transition-all active:scale-95 inline-flex items-center gap-1.5 shrink-0 shadow-sm"
+                        title="View deal in UgaByte Web App"
+                      >
+                        <span>View in App</span>
+                        <ExternalLink className="w-3.5 h-3.5 stroke-[2.5]" />
+                      </a>
                     </div>
-                    {featuredDeal.originalPrice && (
-                      <div className="text-[11px] sm:text-xs line-through text-[#8E98A8] tabular-nums">
-                        {featuredDeal.originalPrice}
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                <div className="mt-3.5 sm:mt-4 flex items-center justify-between border-t border-[#232936] pt-3 gap-2">
-                  <span className="text-[10px] sm:text-[11px] text-[#8E98A8]">{featuredDeal.time}</span>
-                  <div className="flex items-center gap-2">
-                    <button
-                      type="button"
-                      onClick={() =>
-                        handleShareItem(
-                          `deal-${featuredDeal.id}`,
-                          `${featuredDeal.title} — UgaByte Deal`,
-                          `${featuredDeal.title} (${featuredDeal.price}) near ${featuredDeal.location} on UgaByte`,
-                          "student-deals-uganda"
-                        )
-                      }
-                      className="w-9 h-9 rounded-full bg-[#12151C] border border-[#232936] hover:border-[#cef11c]/50 text-[#8E98A8] hover:text-[#cef11c] flex items-center justify-center transition-colors"
-                      title="Share this deal"
-                      aria-label="Share this deal"
-                    >
-                      {sharedKey === `deal-${featuredDeal.id}` ? (
-                        <Check className="w-3.5 h-3.5 text-[#cef11c]" />
-                      ) : (
-                        <Share2 className="w-3.5 h-3.5" />
-                      )}
-                    </button>
-                    <a
-                      href={UGABYTE_APP_LINKS.deals}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-3.5 sm:px-4 py-2 sm:py-1.5 min-h-[40px] rounded-full text-xs font-black uppercase tracking-wider bg-[#cef11c] text-[#090A0E] hover:brightness-105 transition-all active:scale-95 inline-flex items-center gap-1.5"
-                    >
-                      <span>Claim Deal</span>
-                      <ExternalLink className="w-3.5 h-3.5 stroke-[2.5]" />
-                    </a>
                   </div>
                 </div>
               </div>
-            ) : (
-              <div className="bg-[#181C26] border border-[#232936] rounded-xl p-3.5 sm:p-5 flex flex-col xs:flex-row items-stretch xs:items-center justify-between gap-3 sm:gap-4 mt-1 sm:mt-2">
-                <div>
-                  <div className="text-xs sm:text-sm font-bold text-[#FFFFFF]">
-                    Live Campus Deals
-                  </div>
-                  <div className="text-xs text-[#8E98A8] mt-0.5">
-                    Verified food and service discounts in the app.
-                  </div>
-                </div>
-                <a
-                  href={UGABYTE_APP_LINKS.deals}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2.5 min-h-[44px] rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-black uppercase tracking-wider shrink-0 inline-flex items-center justify-center gap-1.5 hover:brightness-105 active:scale-95 transition-all"
-                >
-                  <PlusCircle className="w-3.5 h-3.5" />
-                  <span>Open</span>
-                  <ExternalLink className="w-3 h-3 stroke-[2.5]" />
-                </a>
-              </div>
-            )}
+            </div>
 
             <div className="mt-3 pt-2 flex items-center justify-between text-xs">
               <a
@@ -242,44 +241,55 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
           </div>
 
           <div className="border-t border-[#232936] pt-3 sm:pt-4">
-            {topProducts.length > 0 ? (
-              <div className="space-y-1 sm:space-y-2">
-                {topProducts.map((item, i) => (
-                  <a
-                    key={item.id}
-                    href={UGABYTE_APP_LINKS.marketplace}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`w-full flex items-center justify-between text-xs min-h-[42px] py-2 px-1 text-left hover:bg-[#181C26] rounded-lg transition-colors active:scale-[0.99] group/item ${
-                      i > 0 ? "border-t border-[#232936]/40" : ""
-                    }`}
-                  >
-                    <span className="text-[#FFFFFF] group-hover/item:text-[#cef11c] font-medium truncate pr-2 transition-colors">
-                      {item.title}
-                    </span>
-                    <span className="font-bold text-[#cef11c] tabular-nums shrink-0 flex items-center gap-1">
-                      {item.price}
-                      <ExternalLink className="w-3 h-3 opacity-60 group-hover/item:opacity-100" />
-                    </span>
-                  </a>
-                ))}
+            <div className="bg-[#181C26] border border-[#232936] hover:border-[#323B4E] rounded-xl p-3 sm:p-3.5 relative transition-all">
+              <div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-3 sm:gap-3.5">
+                {/* Real Item Image */}
+                <div className="relative w-full xs:w-24 sm:w-28 h-28 xs:h-24 sm:h-24 rounded-lg overflow-hidden shrink-0 border border-[#232936] bg-[#12151C]">
+                  <img
+                    src={topProducts[0]?.image || topProductImg}
+                    alt={topProducts[0]?.title || "Top Student Listing on UgaByte"}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                  <span className="absolute top-1 left-1 text-[8.5px] font-black uppercase tracking-wider bg-[#12151C]/90 text-[#cef11c] border border-[#232936] px-1.5 py-0.5 rounded">
+                    0% FEE
+                  </span>
+                </div>
+
+                <div className="min-w-0 flex-1 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-between gap-1">
+                      <span className="text-[10px] font-black text-[#cef11c] uppercase tracking-wider">
+                        TOP ITEM
+                      </span>
+                      <span className="text-sm sm:text-base font-black text-[#cef11c] tabular-nums">
+                        {topProducts[0]?.price || "UGX 85,000"}
+                      </span>
+                    </div>
+                    <h4 className="text-xs sm:text-sm font-bold text-[#FFFFFF] mt-1 line-clamp-1">
+                      {topProducts[0]?.title || "Wireless Studio ANC Headphones"}
+                    </h4>
+                    <p className="text-[11px] text-[#8E98A8] mt-0.5 truncate">
+                      {topProducts[0]?.location || "Makerere Main Campus · Direct Pickup"}
+                    </p>
+                  </div>
+
+                  <div className="mt-2.5 pt-2 border-t border-[#232936] flex items-center justify-between gap-2">
+                    <span className="text-[10px] text-[#8E98A8]">Verified Student Seller</span>
+                    <a
+                      href={UGABYTE_APP_LINKS.marketplace}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3 py-1.5 min-h-[32px] rounded-full text-[11px] font-black uppercase tracking-wider bg-[#cef11c] text-[#090A0E] hover:brightness-105 transition-all active:scale-95 inline-flex items-center gap-1.5 shrink-0 shadow-sm"
+                      title="View item in UgaByte Marketplace"
+                    >
+                      <span>View in App</span>
+                      <ExternalLink className="w-3 h-3 stroke-[2.5]" />
+                    </a>
+                  </div>
+                </div>
               </div>
-            ) : (
-              <a
-                href={UGABYTE_APP_LINKS.marketplace}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full p-3 sm:p-3.5 min-h-[48px] rounded-xl bg-[#181C26] border border-[#232936] hover:border-[#cef11c]/50 flex items-center justify-between text-xs transition-colors active:scale-[0.99]"
-              >
-                <span className="text-[#8E98A8] truncate pr-2">
-                  Student listings
-                </span>
-                <span className="font-bold text-[#cef11c] flex items-center gap-1.5 shrink-0">
-                  <span>Open</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </span>
-              </a>
-            )}
+            </div>
 
             <div className="mt-3 pt-2 flex items-center justify-between text-xs">
               <a
@@ -329,31 +339,58 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
             </p>
           </div>
 
-          <div>
-            <a
-              href={UGABYTE_APP_LINKS.events}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full text-left bg-[#181C26] p-3 sm:p-3.5 min-h-[56px] rounded-xl border border-[#232936] hover:border-[#cef11c]/50 flex items-center gap-3 transition-colors active:scale-[0.99] group/evt focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
-            >
-              <div className="w-10 h-10 rounded-lg bg-[#12151C] flex flex-col items-center justify-center border border-[#232936] text-[#cef11c] shrink-0 group-hover/evt:border-[#cef11c]/50 transition-colors">
-                <Calendar className="w-4 h-4" />
-              </div>
-              <div className="min-w-0 flex-1">
-                <div className="text-xs sm:text-sm font-bold text-[#FFFFFF] group-hover/evt:text-[#cef11c] truncate transition-colors">
-                  {featuredEvent ? featuredEvent.title : "Campus Events"}
+          <div className="border-t border-[#232936] pt-3 sm:pt-4">
+            <div className="bg-[#181C26] border border-[#232936] hover:border-[#323B4E] rounded-xl p-3 sm:p-3.5 relative transition-all">
+              <div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-3 sm:gap-3.5">
+                {/* Real Event Image */}
+                <div className="relative w-full xs:w-24 sm:w-28 h-28 xs:h-24 sm:h-24 rounded-lg overflow-hidden shrink-0 border border-[#232936] bg-[#12151C]">
+                  <img
+                    src={featuredEvent?.image || topEventImg}
+                    alt={featuredEvent?.title || "Top Campus Event on UgaByte"}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                  <span className="absolute top-1 left-1 text-[8.5px] font-black uppercase tracking-wider bg-[#cef11c] text-[#090A0E] px-1.5 py-0.5 rounded">
+                    CAMPUS EVENT
+                  </span>
                 </div>
-                <span className="text-[11px] text-[#8E98A8] truncate block">
-                  {featuredEvent
-                    ? `${featuredEvent.location} · ${featuredEvent.time}`
-                    : "Upcoming dates & venues"}
-                </span>
+
+                <div className="min-w-0 flex-1 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-between gap-1">
+                      <span className="text-[10px] font-black text-[#cef11c] uppercase tracking-wider">
+                        TOP EVENT
+                      </span>
+                      <span className="text-xs sm:text-sm font-black text-[#cef11c]">
+                        {featuredEvent?.price || "FREE ENTRY"}
+                      </span>
+                    </div>
+                    <h4 className="text-xs sm:text-sm font-bold text-[#FFFFFF] mt-1 line-clamp-1">
+                      {featuredEvent?.title || "Makerere Tech Hackathon & Demo Day"}
+                    </h4>
+                    <p className="text-[11px] text-[#8E98A8] mt-0.5 truncate">
+                      {featuredEvent
+                        ? `${featuredEvent.location} · ${featuredEvent.time}`
+                        : "Guild Auditorium · Sat 6:00 PM"}
+                    </p>
+                  </div>
+
+                  <div className="mt-2.5 pt-2 border-t border-[#232936] flex items-center justify-between gap-2">
+                    <span className="text-[10px] text-[#8E98A8]">Live Dates &amp; Entry</span>
+                    <a
+                      href={UGABYTE_APP_LINKS.events}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3 py-1.5 min-h-[32px] rounded-full text-[11px] font-black uppercase tracking-wider bg-[#cef11c] text-[#090A0E] hover:brightness-105 transition-all active:scale-95 inline-flex items-center gap-1.5 shrink-0 shadow-sm"
+                      title="View event in UgaByte Events"
+                    >
+                      <span>View in App</span>
+                      <ExternalLink className="w-3 h-3 stroke-[2.5]" />
+                    </a>
+                  </div>
+                </div>
               </div>
-              <span className="inline-flex items-center gap-1 text-[11px] font-bold text-[#cef11c] shrink-0">
-                <span className="hidden xs:inline">Open</span>
-                <ExternalLink className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
-              </span>
-            </a>
+            </div>
 
             <div className="mt-3 pt-2 flex items-center justify-between text-xs">
               <a
@@ -404,51 +441,56 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
           </div>
 
           <div className="border-t border-[#232936] pt-3 sm:pt-4">
-            {topGigs.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
-                {topGigs.map((gig, idx) => (
-                  <a
-                    key={gig.id}
-                    href={UGABYTE_APP_LINKS.opportunities}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 sm:p-3.5 min-h-[64px] rounded-xl bg-[#181C26] border border-[#232936] hover:border-[#cef11c]/50 text-left transition-colors active:scale-[0.99] block group/gig"
-                  >
-                    <div className="flex items-center justify-between">
-                      <span
-                        className={`text-[10px] font-black uppercase tracking-wider ${
-                          idx === 0 ? "text-[#cef11c]" : "text-[#FFA800]"
-                        }`}
-                      >
-                        {gig.discount || "OPPORTUNITY"}
+            <div className="bg-[#181C26] border border-[#232936] hover:border-[#323B4E] rounded-xl p-3 sm:p-4 relative transition-all">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4">
+                {/* Real Gig Image */}
+                <div className="relative w-full sm:w-36 h-36 sm:h-28 rounded-lg overflow-hidden shrink-0 border border-[#232936] bg-[#12151C]">
+                  <img
+                    src={topGigs[0]?.image || topGigImg}
+                    alt={topGigs[0]?.title || "Top Campus Gig on UgaByte"}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                  <span className="absolute top-1.5 left-1.5 text-[9.5px] font-black uppercase tracking-wider bg-[#cef11c]/20 border border-[#cef11c]/40 text-[#cef11c] px-2 py-0.5 rounded-full shadow-sm">
+                    {topGigs[0]?.discount || "PAID GIG"}
+                  </span>
+                </div>
+
+                <div className="min-w-0 flex-1 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-[10px] font-black text-[#cef11c] uppercase tracking-wider">
+                        TOP GIG
                       </span>
-                      <ExternalLink className="w-3 h-3 text-[#8E98A8] group-hover/gig:text-[#cef11c] transition-colors" />
+                      <span className="text-base sm:text-lg font-black text-[#cef11c] tabular-nums">
+                        {topGigs[0]?.price || "UGX 150,000"}
+                      </span>
                     </div>
-                    <h5 className="text-xs sm:text-sm font-bold text-[#FFFFFF] group-hover/gig:text-[#cef11c] mt-0.5 truncate transition-colors">
-                      {gig.title}
-                    </h5>
-                    <p className="text-[11px] text-[#8E98A8] mt-0.5 font-mono">
-                      {gig.price}
+
+                    <h4 className="text-sm sm:text-base font-bold text-[#FFFFFF] mt-1 line-clamp-1">
+                      {topGigs[0]?.title || "Campus Brand Identity & Poster Design"}
+                    </h4>
+                    <p className="text-xs text-[#8E98A8] mt-1 truncate">
+                      {topGigs[0]?.location || "@Makerere Innovation Hub · Remote / Campus"}
                     </p>
-                  </a>
-                ))}
+                  </div>
+
+                  <div className="mt-3 flex items-center justify-between border-t border-[#232936] pt-2.5 gap-2">
+                    <span className="text-[10px] text-[#8E98A8]">{topGigs[0]?.time || "Live on App"}</span>
+                    <a
+                      href={UGABYTE_APP_LINKS.opportunities}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3.5 py-1.5 min-h-[36px] rounded-full text-xs font-black uppercase tracking-wider bg-[#cef11c] text-[#090A0E] hover:brightness-105 transition-all active:scale-95 inline-flex items-center gap-1.5 shrink-0 shadow-sm"
+                      title="View gig in UgaByte Opportunities"
+                    >
+                      <span>View in App</span>
+                      <ExternalLink className="w-3.5 h-3.5 stroke-[2.5]" />
+                    </a>
+                  </div>
+                </div>
               </div>
-            ) : (
-              <a
-                href={UGABYTE_APP_LINKS.opportunities}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full p-3 sm:p-3.5 min-h-[48px] rounded-xl bg-[#181C26] border border-[#232936] hover:border-[#cef11c]/50 flex items-center justify-between text-xs transition-colors active:scale-[0.99]"
-              >
-                <span className="text-[#8E98A8] truncate pr-2">
-                  Paid gigs &amp; internships
-                </span>
-                <span className="font-bold text-[#cef11c] flex items-center gap-1 shrink-0">
-                  <span>Open</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </span>
-              </a>
-            )}
+            </div>
 
             <div className="mt-3 pt-2 flex items-center justify-between text-xs">
               <a
