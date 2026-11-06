@@ -271,3 +271,56 @@ html.light [role="status"][aria-live="polite"] {
 html.light [role="status"][aria-live="polite"] h4 {
   color: #0F172A !important;
 }
+
+/* ==========================================================================
+   FEATURE CARD SHOWCASE OVERLAYS IN BOTH LIGHT & DARK MODES
+   Ensures words, prices, locations and icons on image previews remain
+   100% luminous, crystal-clear, and high-contrast in Light Mode
+   ========================================================================== */
+.card-media-overlay {
+  background: linear-gradient(to top, rgba(9, 10, 14, 0.94) 0%, rgba(9, 10, 14, 0.72) 65%, transparent 100%) !important;
+}
+
+html.light .card-media-overlay {
+  background: linear-gradient(to top, rgba(9, 10, 14, 0.96) 0%, rgba(9, 10, 14, 0.78) 65%, transparent 100%) !important;
+}
+
+html.light .card-media-overlay h4,
+html.light .card-media-overlay .media-title,
+html.light .card-media-overlay [data-media-title] {
+  color: #FFFFFF !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9) !important;
+}
+
+html.light .card-media-overlay p,
+html.light .card-media-overlay span,
+html.light .card-media-overlay .media-subtext,
+html.light .card-media-overlay [data-media-subtext] {
+  color: #F1F5F9 !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9) !important;
+}
+
+html.light .card-media-overlay .media-accent,
+html.light .card-media-overlay [data-media-accent],
+html.light .card-media-overlay svg {
+  color: #CEF11C !important;
+  stroke: #CEF11C !important;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.9)) !important;
+}
+
+html.light .card-media-overlay .media-strikethrough {
+  color: #94A3B8 !important;
+}
+
+html.light .card-media-badge-warning {
+  background-color: #FFA800 !important;
+  color: #090A0E !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+}
+
+html.light .card-media-badge-lime {
+  background-color: #CEF11C !important;
+  color: #090A0E !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+}
+
