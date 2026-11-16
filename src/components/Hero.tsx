@@ -8,9 +8,6 @@ import { shareUgaByteContent } from "../utils/share";
 import {
   Download,
   Globe,
-  ShieldCheck,
-  MapPin,
-  Tag,
   Share2,
   Check,
 } from "lucide-react";
@@ -37,8 +34,8 @@ export const Hero: React.FC<HeroProps> = ({ onInstallApp, onOpenWebApp }) => {
   };
 
   return (
-    <section className="relative min-h-[82vh] sm:min-h-[86vh] flex items-center justify-center overflow-hidden border-b border-[#232936] pt-28 md:pt-22 pb-12 sm:pb-16">
-      {/* Cinematic Portrait Backdrop with Organic Glow & Graceful Fallback */}
+    <section className="relative min-h-[82vh] sm:min-h-[86vh] flex items-center justify-center overflow-hidden border-b border-[#232936]/80 pt-28 md:pt-24 pb-14 sm:pb-20">
+      {/* Cinematic Portrait Backdrop with Subtle Glow & Graceful Fallback */}
       <div className="absolute inset-0 z-0 pointer-events-none select-none">
         {!heroImgFailed && (
           <img
@@ -50,20 +47,19 @@ export const Hero: React.FC<HeroProps> = ({ onInstallApp, onOpenWebApp }) => {
             decoding="async"
             referrerPolicy="no-referrer"
             onError={() => setHeroImgFailed(true)}
-            className="hero-portrait-img w-full h-full object-cover object-top opacity-40 sm:opacity-50 mix-blend-screen scale-105"
+            className="hero-portrait-img w-full h-full object-cover object-top opacity-35 sm:opacity-45 mix-blend-screen scale-105"
             loading="eager"
           />
         )}
-        {/* Gradients layering dark onyx aesthetic with subtle lime tint */}
-        <div className="hero-scrim absolute inset-0 bg-gradient-to-b from-[#090A0E]/40 via-[#090A0E]/85 to-[#090A0E]" />
-        <div className="hero-radial-glow absolute -top-24 left-1/2 -translate-x-1/2 w-[320px] sm:w-[650px] h-[320px] sm:h-[450px] bg-[#cef11c]/12 rounded-full blur-[100px] sm:blur-[140px]" />
+        <div className="hero-scrim absolute inset-0 bg-gradient-to-b from-[#090A0E]/35 via-[#090A0E]/85 to-[#090A0E]" />
+        <div className="hero-radial-glow absolute -top-28 left-1/2 -translate-x-1/2 w-[320px] sm:w-[640px] h-[300px] sm:h-[420px] bg-[#cef11c]/8 rounded-full blur-[110px] sm:blur-[150px]" />
       </div>
 
       {/* Main Hero Container */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center w-full">
-        {/* Smartphone-Optimized Display Headline (g and y descenders preserved completely) */}
-        <h1 className="text-[32px] xs:text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-[#FFFFFF] max-w-4xl mb-3 sm:mb-4 leading-[1.12] sm:leading-[1.08] text-balance">
-          <span className="block text-[28px] xs:text-3xl sm:text-4xl md:text-5xl font-black tracking-tight hero-gradient-text text-transparent bg-clip-text bg-gradient-to-r from-white via-[#e3e2e8] to-[#cef11c] mb-1 sm:mb-2 select-none pb-1 sm:pb-2 leading-[1.12]">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center w-full">
+        {/* Display Headline */}
+        <h1 className="text-[32px] xs:text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#FFFFFF] max-w-3xl mb-4 sm:mb-5 leading-[1.1] sm:leading-[1.06] text-balance">
+          <span className="block text-[length:clamp(30px,3.2vw_+_18px,54px)] font-extrabold tracking-tight hero-gradient-text text-transparent bg-clip-text bg-gradient-to-r from-white via-[#e3e2e8] to-[#cef11c] mb-1.5 sm:mb-2 select-none pb-1 sm:pb-2 leading-[1.25]">
             UgaByte
           </span>
           Deals, Market &amp; Events.{" "}
@@ -74,84 +70,81 @@ export const Hero: React.FC<HeroProps> = ({ onInstallApp, onOpenWebApp }) => {
         </h1>
 
         {/* Subtitle */}
-        <p className="text-xs sm:text-base text-[#8E98A8] max-w-xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2">
+        <p className="text-sm sm:text-base text-[#8E98A8] max-w-lg mx-auto mb-7 sm:mb-9 leading-relaxed px-2">
           Verified campus deals, affordable food, zero-fee student trading, events, and gigs across Uganda.
         </p>
 
-        {/* Dual Primary & Secondary Action CTAs (Web App Primary, Touch-first on smartphones) */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full max-w-md sm:max-w-none justify-center mb-5 sm:mb-6 px-2 sm:px-0">
+        {/* Primary & Secondary Action CTAs */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full max-w-md sm:max-w-none justify-center mb-5 px-2 sm:px-0">
           <a
             href={UGABYTE_WEB_APP_URL}
             target="_blank"
             rel="noopener noreferrer"
             onClick={onOpenWebApp}
-            className="w-full sm:w-auto px-8 py-3.5 sm:py-4 min-h-[48px] rounded-full bg-[#cef11c] text-[#090A0E] text-xs sm:text-[13px] font-black uppercase tracking-wider glow-lime hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#cef11c] shadow-lg"
+            className="w-full sm:w-auto px-7 py-3.5 min-h-[46px] rounded-full bg-[#cef11c] text-[#090A0E] text-sm font-bold tracking-tight glow-lime hover:brightness-105 active:scale-[0.98] transition-all flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#cef11c]"
           >
-            <Globe className="w-4 h-4 stroke-[2.5]" />
-            <span>OPEN WEB APP</span>
+            <Globe className="w-4 h-4 stroke-[2.25]" />
+            <span>Open Web App</span>
           </a>
 
           <button
             type="button"
             onClick={onInstallApp}
             title="Install UgaByte App to your phone via Google Chrome"
-            className="w-full sm:w-auto px-7 py-3.5 sm:py-3.5 min-h-[48px] rounded-full bg-[#12151C] hover:bg-[#181C26] border border-[#232936] hover:border-[#323B4E] text-[#FFFFFF] text-xs sm:text-[13px] font-bold tracking-wider active:scale-[0.98] transition-all flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
+            className="w-full sm:w-auto px-7 py-3.5 min-h-[46px] rounded-full bg-[#12151C]/90 hover:bg-[#181C26] border border-[#232936] hover:border-[#323B4E] text-[#FFFFFF] text-sm font-semibold tracking-tight active:scale-[0.98] transition-all flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
           >
             <Download className="w-4 h-4 text-[#cef11c]" />
-            <span>INSTALL APP</span>
+            <span>Install App</span>
           </button>
         </div>
 
-        {/* One-Tap Share */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-8 sm:mb-10 w-full max-w-3xl px-2">
+        {/* Quiet Share Action */}
+        <div className="mb-10 sm:mb-12">
           <button
             type="button"
             onClick={handleShareUgaByte}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#12151C] hover:bg-[#181C26] border border-[#232936] hover:border-[#cef11c]/50 text-xs text-[#e3e2e8] hover:text-[#cef11c] font-semibold transition-all active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs text-[#8E98A8] hover:text-[#cef11c] font-medium transition-colors active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c] rounded"
             title="Share UgaByte"
           >
             {sharedCopied ? (
               <>
                 <Check className="w-3.5 h-3.5 text-[#cef11c]" />
-                <span className="text-[#cef11c]">Copied</span>
+                <span className="text-[#cef11c]">Link copied</span>
               </>
             ) : (
               <>
-                <Share2 className="w-3.5 h-3.5 text-[#cef11c]" />
-                <span>Share</span>
+                <Share2 className="w-3.5 h-3.5" />
+                <span>Share UgaByte</span>
               </>
             )}
           </button>
         </div>
 
-        {/* High-Impact Metric Stats Row (Proportionate on mobile) */}
-        <div className="w-full max-w-3xl pt-5 sm:pt-7 border-t border-[#232936] grid grid-cols-3 gap-2 sm:gap-4 text-center">
+        {/* Clean Architectural Metric Row */}
+        <div className="w-full max-w-2xl pt-6 sm:pt-8 border-t border-[#232936]/70 grid grid-cols-3 gap-2 sm:gap-6 text-center">
           <div className="flex flex-col items-center">
-            <div className="flex items-center gap-1 text-lg xs:text-xl sm:text-3xl font-black text-[#cef11c] tracking-tight tabular-nums">
-              <ShieldCheck className="w-4 h-4 sm:w-6 sm:h-6 shrink-0" />
-              <span>98%</span>
-            </div>
-            <span className="text-[10px] sm:text-[11px] font-bold text-[#8E98A8] mt-0.5 sm:mt-1 uppercase tracking-wider">
+            <span className="text-xl sm:text-3xl font-extrabold text-[#cef11c] tracking-tight tabular-nums">
+              98%
+            </span>
+            <span className="text-[11px] sm:text-xs font-medium text-[#8E98A8] mt-1">
               Peer Trust
             </span>
           </div>
 
-          <div className="flex flex-col items-center border-x border-[#232936] px-1 sm:px-2">
-            <div className="flex items-center gap-1 text-lg xs:text-xl sm:text-3xl font-black text-[#FFFFFF] tracking-tight tabular-nums">
-              <MapPin className="w-4 h-4 sm:w-6 sm:h-6 text-[#cef11c] shrink-0" />
-              <span>3+ Hubs</span>
-            </div>
-            <span className="text-[10px] sm:text-[11px] font-bold text-[#8E98A8] mt-0.5 sm:mt-1 uppercase tracking-wider truncate max-w-full">
+          <div className="flex flex-col items-center border-x border-[#232936]/70 px-2">
+            <span className="text-xl sm:text-3xl font-extrabold text-[#FFFFFF] tracking-tight tabular-nums">
+              3+ Hubs
+            </span>
+            <span className="text-[11px] sm:text-xs font-medium text-[#8E98A8] mt-1 truncate max-w-full">
               MAK · MUBS · KYU
             </span>
           </div>
 
           <div className="flex flex-col items-center">
-            <div className="flex items-center gap-1 text-lg xs:text-xl sm:text-3xl font-black text-[#cef11c] tracking-tight tabular-nums">
-              <Tag className="w-4 h-4 sm:w-6 sm:h-6 shrink-0" />
-              <span>UGX 0</span>
-            </div>
-            <span className="text-[10px] sm:text-[11px] font-bold text-[#8E98A8] mt-0.5 sm:mt-1 uppercase tracking-wider">
+            <span className="text-xl sm:text-3xl font-extrabold text-[#cef11c] tracking-tight tabular-nums">
+              UGX 0
+            </span>
+            <span className="text-[11px] sm:text-xs font-medium text-[#8E98A8] mt-1">
               Listing Fee
             </span>
           </div>

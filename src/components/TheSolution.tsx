@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import {
-  Flame,
-  Store,
-  Calendar,
-  Briefcase,
   MapPin,
   ExternalLink,
   Share2,
   Check,
   ArrowRight,
+  BookOpen,
 } from "lucide-react";
 import { LiveFeedPayload, EMPTY_LIVE_FEED } from "../services/liveFeed";
 import { UGABYTE_APP_LINKS } from "../config/ugabyte";
@@ -56,37 +53,32 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
 
   return (
     <section
-      className="py-16 sm:py-24 scroll-mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-[#232936]"
+      className="py-16 sm:py-24 scroll-mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-[#232936]/80"
       id="features"
     >
       {/* Section Header */}
-      <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
-        <span className="text-[11px] font-black text-[#cef11c] uppercase tracking-wider">
+      <div className="text-center max-w-xl mx-auto mb-10 sm:mb-14 space-y-2">
+        <span className="text-[11px] font-bold text-[#cef11c] uppercase tracking-widest">
           Campus Ecosystem
         </span>
-        <h2 className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-[#FFFFFF] mt-1.5 tracking-tight text-balance">
+        <h2 className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-[#FFFFFF] tracking-tight text-balance">
           Four Core Pillars
         </h2>
-        <p className="text-xs sm:text-sm text-[#8E98A8] mt-2.5 leading-relaxed">
+        <p className="text-xs sm:text-sm text-[#8E98A8] leading-relaxed">
           Save money, trade safely, attend events, and earn across campus.
         </p>
       </div>
 
-      {/* Bento Grid */}
+      {/* Minimalist Bento Grid */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 items-stretch">
         {/* Pillar 1: Deals & Food (Col-Span 7) */}
-        <div className="md:col-span-7 bg-[#12151C] border border-[#232936] hover:border-[#323B4E] rounded-2xl p-5 sm:p-7 flex flex-col justify-between transition-all duration-300 relative overflow-hidden group">
+        <div className="md:col-span-7 bg-[#12151C] border border-[#232936]/80 hover:border-[#323B4E] rounded-2xl p-6 sm:p-8 flex flex-col justify-between transition-colors duration-200 relative overflow-hidden group">
           <div>
-            {/* Header / Chapter */}
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-[#cef11c]/10 border border-[#cef11c]/25 flex items-center justify-center text-[#cef11c] shrink-0">
-                  <Flame className="w-4 h-4 text-[#cef11c]" />
-                </div>
-                <span className="text-[11px] font-bold tracking-wider uppercase text-[#8E98A8]">
-                  01. Flash Drops &amp; Food
-                </span>
-              </div>
+            {/* Clean Unboxed Header Row */}
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-[11px] font-semibold tracking-wider uppercase text-[#8E98A8]">
+                01 <span aria-hidden="true" className="mx-1 text-[#8E98A8]/50">·</span> Flash Drops &amp; Food
+              </span>
               <button
                 type="button"
                 onClick={() =>
@@ -97,7 +89,7 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
                     "student-deals-uganda"
                   )
                 }
-                className="w-8 h-8 rounded-full bg-[#181C26] border border-[#232936] hover:border-[#cef11c]/50 text-[#8E98A8] hover:text-[#cef11c] flex items-center justify-center transition-colors"
+                className="w-8 h-8 rounded-full text-[#8E98A8] hover:text-[#cef11c] hover:bg-[#181C26] flex items-center justify-center transition-colors"
                 title="Share this deal"
                 aria-label="Share this deal"
               >
@@ -117,22 +109,21 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
             </p>
 
             {/* Showcase Visual Preview */}
-            <div className="relative rounded-xl overflow-hidden border border-[#232936] bg-[#090A0E] mb-5">
+            <div className="relative rounded-xl overflow-hidden border border-[#232936]/80 bg-[#090A0E] mb-5">
               <div className="aspect-[16/9] sm:aspect-[21/9] w-full overflow-hidden relative">
                 <img
                   src={featuredDeal?.image || topDealImg}
                   alt={featuredDeal?.title || "Top Campus Meal Drop on UgaByte"}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                  className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-out"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
                 <div className="absolute top-3 left-3 z-10">
-                  <span className="text-[10px] font-black uppercase tracking-wider card-media-badge-warning bg-[#FFA800] text-[#090A0E] px-2.5 py-1 rounded-md shadow">
+                  <span className="text-[10px] font-extrabold uppercase tracking-wider card-media-badge-warning bg-[#FFA800] text-[#090A0E] px-2.5 py-1 rounded-md shadow-sm">
                     {featuredDeal?.discount || "42% OFF DROP"}
                   </span>
                 </div>
-                {/* High-Contrast Bottom Overlay for Light & Dark Modes */}
-                <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4 card-media-overlay z-10">
+                <div className="absolute inset-x-0 bottom-0 p-3.5 sm:p-4 card-media-overlay z-10">
                   <div className="flex items-end justify-between gap-3">
                     <div className="min-w-0">
                       <h4
@@ -157,7 +148,7 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
                     </div>
                     <div className="text-right shrink-0">
                       <div
-                        className="text-base sm:text-lg font-black text-[#cef11c] tabular-nums media-accent drop-shadow"
+                        className="text-base sm:text-lg font-extrabold text-[#cef11c] tabular-nums media-accent drop-shadow"
                         data-media-accent
                         style={{ color: "#CEF11C" }}
                       >
@@ -177,42 +168,38 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
           </div>
 
           {/* Action Row */}
-          <div className="pt-2 border-t border-[#232936]/60 flex items-center justify-between gap-3">
+          <div className="pt-3 border-t border-[#232936]/60 flex items-center justify-between gap-3">
             <a
               href={UGABYTE_APP_LINKS.deals}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 min-h-[38px] rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-black uppercase tracking-wider hover:brightness-105 active:scale-95 transition-all shadow-sm inline-flex items-center gap-1.5"
+              className="px-4 py-2 min-h-[38px] rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-bold tracking-tight hover:brightness-105 active:scale-95 transition-all inline-flex items-center gap-1.5"
               title="Claim Deal in UgaByte App"
             >
-              <span>Claim Deal in App</span>
-              <ExternalLink className="w-3.5 h-3.5 stroke-[2.5]" />
+              <span>View in App</span>
+              <ExternalLink className="w-3.5 h-3.5 stroke-[2.25]" />
             </a>
             <a
               href="/student-deals-uganda"
               onClick={(e) => onNavigateCategory?.("student-deals-uganda", e)}
-              className="inline-flex items-center gap-1 text-xs font-bold text-[#8E98A8] hover:text-[#cef11c] transition-colors"
+              className="group/guide px-3.5 py-2 min-h-[38px] rounded-full border border-[#323B4E] hover:border-[#cef11c] hover:bg-[#181C26] text-[#e3e2e8] hover:text-[#cef11c] text-xs font-semibold transition-all inline-flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
             >
+              <BookOpen className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
               <span>Deals Guide</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/guide:translate-x-0.5" />
             </a>
           </div>
         </div>
 
         {/* Pillar 2: Peer Marketplace (Col-Span 5) */}
-        <div className="md:col-span-5 bg-[#12151C] border border-[#232936] hover:border-[#323B4E] rounded-2xl p-5 sm:p-7 flex flex-col justify-between transition-all duration-300 relative overflow-hidden group">
+        <div className="md:col-span-5 bg-[#12151C] border border-[#232936]/80 hover:border-[#323B4E] rounded-2xl p-6 sm:p-8 flex flex-col justify-between transition-colors duration-200 relative overflow-hidden group">
           <div>
-            {/* Header / Chapter */}
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-[#181C26] border border-[#232936] flex items-center justify-center text-[#cef11c] shrink-0">
-                  <Store className="w-4 h-4 text-[#cef11c]" />
-                </div>
-                <span className="text-[11px] font-bold tracking-wider uppercase text-[#8E98A8]">
-                  02. Zero-Fee Trading
-                </span>
-              </div>
-              <span className="text-[10px] font-black uppercase tracking-wider text-[#cef11c] bg-[#181C26] border border-[#232936] px-2 py-0.5 rounded-md">
+            {/* Clean Unboxed Header Row */}
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-[11px] font-semibold tracking-wider uppercase text-[#8E98A8]">
+                02 <span aria-hidden="true" className="mx-1 text-[#8E98A8]/50">·</span> Zero-Fee Trading
+              </span>
+              <span className="text-[11px] font-semibold text-[#cef11c]">
                 0% Fee
               </span>
             </div>
@@ -225,16 +212,16 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
             </p>
 
             {/* Showcase Visual Preview */}
-            <div className="relative rounded-xl overflow-hidden border border-[#232936] bg-[#090A0E] mb-5">
+            <div className="relative rounded-xl overflow-hidden border border-[#232936]/80 bg-[#090A0E] mb-5">
               <div className="aspect-[16/10] w-full overflow-hidden relative">
                 <img
                   src={topProducts[0]?.image || topProductImg}
                   alt={topProducts[0]?.title || "Top Student Listing on UgaByte"}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                  className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-out"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
-                <div className="absolute inset-x-0 bottom-0 p-3 sm:p-3.5 card-media-overlay z-10">
+                <div className="absolute inset-x-0 bottom-0 p-3.5 card-media-overlay z-10">
                   <div className="flex items-end justify-between gap-2">
                     <div className="min-w-0">
                       <h4
@@ -254,7 +241,7 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
                     </div>
                     <div className="text-right shrink-0">
                       <span
-                        className="text-sm sm:text-base font-black text-[#cef11c] tabular-nums media-accent drop-shadow"
+                        className="text-sm sm:text-base font-extrabold text-[#cef11c] tabular-nums media-accent drop-shadow"
                         data-media-accent
                         style={{ color: "#CEF11C" }}
                       >
@@ -268,42 +255,38 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
           </div>
 
           {/* Action Row */}
-          <div className="pt-2 border-t border-[#232936]/60 flex items-center justify-between gap-3">
+          <div className="pt-3 border-t border-[#232936]/60 flex items-center justify-between gap-3">
             <a
               href={UGABYTE_APP_LINKS.marketplace}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 min-h-[38px] rounded-full bg-[#181C26] hover:bg-[#232936] border border-[#232936] hover:border-[#cef11c]/50 text-[#cef11c] text-xs font-black uppercase tracking-wider hover:brightness-105 active:scale-95 transition-all shadow-sm inline-flex items-center gap-1.5"
+              className="px-4 py-2 min-h-[38px] rounded-full bg-[#181C26] hover:bg-[#232936] border border-[#232936] hover:border-[#cef11c]/40 text-[#cef11c] text-xs font-bold tracking-tight active:scale-95 transition-all inline-flex items-center gap-1.5"
               title="Browse Marketplace in Web App"
             >
               <span>View in App</span>
-              <ExternalLink className="w-3.5 h-3.5 stroke-[2.5]" />
+              <ExternalLink className="w-3.5 h-3.5 stroke-[2.25]" />
             </a>
             <a
               href="/student-marketplace-uganda"
               onClick={(e) => onNavigateCategory?.("student-marketplace-uganda", e)}
-              className="inline-flex items-center gap-1 text-xs font-bold text-[#8E98A8] hover:text-[#cef11c] transition-colors"
+              className="group/guide px-3.5 py-2 min-h-[38px] rounded-full border border-[#323B4E] hover:border-[#cef11c] hover:bg-[#181C26] text-[#e3e2e8] hover:text-[#cef11c] text-xs font-semibold transition-all inline-flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
             >
+              <BookOpen className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
               <span>Market Guide</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/guide:translate-x-0.5" />
             </a>
           </div>
         </div>
 
         {/* Pillar 3: Campus Events (Col-Span 5) */}
-        <div className="md:col-span-5 bg-[#12151C] border border-[#232936] hover:border-[#323B4E] rounded-2xl p-5 sm:p-7 flex flex-col justify-between transition-all duration-300 relative overflow-hidden group">
+        <div className="md:col-span-5 bg-[#12151C] border border-[#232936]/80 hover:border-[#323B4E] rounded-2xl p-6 sm:p-8 flex flex-col justify-between transition-colors duration-200 relative overflow-hidden group">
           <div>
-            {/* Header / Chapter */}
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-[#181C26] border border-[#232936] flex items-center justify-center text-[#cef11c] shrink-0">
-                  <Calendar className="w-4 h-4 text-[#cef11c]" />
-                </div>
-                <span className="text-[11px] font-bold tracking-wider uppercase text-[#8E98A8]">
-                  03. Campus Events
-                </span>
-              </div>
-              <span className="text-[10px] font-black uppercase tracking-wider card-media-badge-lime text-[#cef11c] bg-[#181C26] border border-[#232936] px-2 py-0.5 rounded-md">
+            {/* Clean Unboxed Header Row */}
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-[11px] font-semibold tracking-wider uppercase text-[#8E98A8]">
+                03 <span aria-hidden="true" className="mx-1 text-[#8E98A8]/50">·</span> Campus Events
+              </span>
+              <span className="text-[11px] font-semibold text-[#cef11c]">
                 Verified
               </span>
             </div>
@@ -316,16 +299,16 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
             </p>
 
             {/* Showcase Visual Preview */}
-            <div className="relative rounded-xl overflow-hidden border border-[#232936] bg-[#090A0E] mb-5">
+            <div className="relative rounded-xl overflow-hidden border border-[#232936]/80 bg-[#090A0E] mb-5">
               <div className="aspect-[16/10] w-full overflow-hidden relative">
                 <img
                   src={featuredEvent?.image || topEventImg}
                   alt={featuredEvent?.title || "Top Campus Event on UgaByte"}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                  className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-out"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
-                <div className="absolute inset-x-0 bottom-0 p-3 sm:p-3.5 card-media-overlay z-10">
+                <div className="absolute inset-x-0 bottom-0 p-3.5 card-media-overlay z-10">
                   <div className="flex items-end justify-between gap-2">
                     <div className="min-w-0">
                       <h4
@@ -347,7 +330,7 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
                     </div>
                     <div className="text-right shrink-0">
                       <span
-                        className="text-xs sm:text-sm font-black text-[#cef11c] media-accent drop-shadow"
+                        className="text-xs sm:text-sm font-extrabold text-[#cef11c] media-accent drop-shadow"
                         data-media-accent
                         style={{ color: "#CEF11C" }}
                       >
@@ -361,42 +344,38 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
           </div>
 
           {/* Action Row */}
-          <div className="pt-2 border-t border-[#232936]/60 flex items-center justify-between gap-3">
+          <div className="pt-3 border-t border-[#232936]/60 flex items-center justify-between gap-3">
             <a
               href={UGABYTE_APP_LINKS.events}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 min-h-[38px] rounded-full bg-[#181C26] hover:bg-[#232936] border border-[#232936] hover:border-[#cef11c]/50 text-[#cef11c] text-xs font-black uppercase tracking-wider hover:brightness-105 active:scale-95 transition-all shadow-sm inline-flex items-center gap-1.5"
+              className="px-4 py-2 min-h-[38px] rounded-full bg-[#181C26] hover:bg-[#232936] border border-[#232936] hover:border-[#cef11c]/40 text-[#cef11c] text-xs font-bold tracking-tight active:scale-95 transition-all inline-flex items-center gap-1.5"
               title="Explore Events in Web App"
             >
               <span>View in App</span>
-              <ExternalLink className="w-3.5 h-3.5 stroke-[2.5]" />
+              <ExternalLink className="w-3.5 h-3.5 stroke-[2.25]" />
             </a>
             <a
               href="/campus-events-uganda"
               onClick={(e) => onNavigateCategory?.("campus-events-uganda", e)}
-              className="inline-flex items-center gap-1 text-xs font-bold text-[#8E98A8] hover:text-[#cef11c] transition-colors"
+              className="group/guide px-3.5 py-2 min-h-[38px] rounded-full border border-[#323B4E] hover:border-[#cef11c] hover:bg-[#181C26] text-[#e3e2e8] hover:text-[#cef11c] text-xs font-semibold transition-all inline-flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
             >
+              <BookOpen className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
               <span>Events Guide</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/guide:translate-x-0.5" />
             </a>
           </div>
         </div>
 
         {/* Pillar 4: Gigs & Internships (Col-Span 7) */}
-        <div className="md:col-span-7 bg-[#12151C] border border-[#232936] hover:border-[#323B4E] rounded-2xl p-5 sm:p-7 flex flex-col justify-between transition-all duration-300 relative overflow-hidden group">
+        <div className="md:col-span-7 bg-[#12151C] border border-[#232936]/80 hover:border-[#323B4E] rounded-2xl p-6 sm:p-8 flex flex-col justify-between transition-colors duration-200 relative overflow-hidden group">
           <div>
-            {/* Header / Chapter */}
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-[#cef11c]/10 border border-[#cef11c]/25 flex items-center justify-center text-[#cef11c] shrink-0">
-                  <Briefcase className="w-4 h-4 text-[#cef11c]" />
-                </div>
-                <span className="text-[11px] font-bold tracking-wider uppercase text-[#8E98A8]">
-                  04. Gigs &amp; Freelance
-                </span>
-              </div>
-              <span className="text-[10px] font-black uppercase tracking-wider card-media-badge-lime text-[#cef11c] bg-[#181C26] border border-[#232936] px-2 py-0.5 rounded-md">
+            {/* Clean Unboxed Header Row */}
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-[11px] font-semibold tracking-wider uppercase text-[#8E98A8]">
+                04 <span aria-hidden="true" className="mx-1 text-[#8E98A8]/50">·</span> Gigs &amp; Freelance
+              </span>
+              <span className="text-[11px] font-semibold text-[#cef11c]">
                 Paid Work
               </span>
             </div>
@@ -409,21 +388,21 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
             </p>
 
             {/* Showcase Visual Preview */}
-            <div className="relative rounded-xl overflow-hidden border border-[#232936] bg-[#090A0E] mb-5">
+            <div className="relative rounded-xl overflow-hidden border border-[#232936]/80 bg-[#090A0E] mb-5">
               <div className="aspect-[16/9] sm:aspect-[21/9] w-full overflow-hidden relative">
                 <img
                   src={topGigs[0]?.image || topGigImg}
                   alt={topGigs[0]?.title || "Top Campus Gig on UgaByte"}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                  className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-out"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
                 <div className="absolute top-3 left-3 z-10">
-                  <span className="text-[10px] font-black uppercase tracking-wider card-media-badge-warning bg-[#FFA800] text-[#090A0E] px-2.5 py-1 rounded-md shadow">
+                  <span className="text-[10px] font-extrabold uppercase tracking-wider card-media-badge-warning bg-[#FFA800] text-[#090A0E] px-2.5 py-1 rounded-md shadow-sm">
                     {topGigs[0]?.discount || "PAID OPPORTUNITY"}
                   </span>
                 </div>
-                <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4 card-media-overlay z-10">
+                <div className="absolute inset-x-0 bottom-0 p-3.5 sm:p-4 card-media-overlay z-10">
                   <div className="flex items-end justify-between gap-3">
                     <div className="min-w-0">
                       <h4
@@ -443,7 +422,7 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
                     </div>
                     <div className="text-right shrink-0">
                       <span
-                        className="text-base sm:text-lg font-black text-[#cef11c] tabular-nums media-accent drop-shadow"
+                        className="text-base sm:text-lg font-extrabold text-[#cef11c] tabular-nums media-accent drop-shadow"
                         data-media-accent
                         style={{ color: "#CEF11C" }}
                       >
@@ -457,24 +436,25 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
           </div>
 
           {/* Action Row */}
-          <div className="pt-2 border-t border-[#232936]/60 flex items-center justify-between gap-3">
+          <div className="pt-3 border-t border-[#232936]/60 flex items-center justify-between gap-3">
             <a
               href={UGABYTE_APP_LINKS.opportunities}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 min-h-[38px] rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-black uppercase tracking-wider hover:brightness-105 active:scale-95 transition-all shadow-sm inline-flex items-center gap-1.5"
+              className="px-4 py-2 min-h-[38px] rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-bold tracking-tight hover:brightness-105 active:scale-95 transition-all inline-flex items-center gap-1.5"
               title="Explore Gigs in Web App"
             >
-              <span>Find Gigs in App</span>
-              <ExternalLink className="w-3.5 h-3.5 stroke-[2.5]" />
+              <span>View in App</span>
+              <ExternalLink className="w-3.5 h-3.5 stroke-[2.25]" />
             </a>
             <a
               href="/student-gigs-uganda"
               onClick={(e) => onNavigateCategory?.("student-gigs-uganda", e)}
-              className="inline-flex items-center gap-1 text-xs font-bold text-[#8E98A8] hover:text-[#cef11c] transition-colors"
+              className="group/guide px-3.5 py-2 min-h-[38px] rounded-full border border-[#323B4E] hover:border-[#cef11c] hover:bg-[#181C26] text-[#e3e2e8] hover:text-[#cef11c] text-xs font-semibold transition-all inline-flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
             >
+              <BookOpen className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
               <span>Gigs Guide</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/guide:translate-x-0.5" />
             </a>
           </div>
         </div>

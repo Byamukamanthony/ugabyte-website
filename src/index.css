@@ -13,19 +13,19 @@
   --color-text-primary: #FFFFFF;
   --color-text-muted: #8E98A8;
   --color-on-surface: #e3e2e8;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-serif: 'Playfair Display', Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 @layer utilities {
   .glow-lime {
-    box-shadow: 0 0 28px rgba(206, 241, 28, 0.35);
+    box-shadow: 0 8px 24px -6px rgba(206, 241, 28, 0.28);
   }
   .glow-subtle {
-    box-shadow: 0 0 15px rgba(206, 241, 28, 0.15);
+    box-shadow: 0 0 12px rgba(206, 241, 28, 0.1);
   }
   .shadow-elegant {
-    box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.65), 0 0 24px rgba(206, 241, 28, 0.08);
+    box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.55);
   }
   .pb-safe {
     padding-bottom: env(safe-area-inset-bottom, 16px);
@@ -39,6 +39,32 @@
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+}
+
+/* Smooth Campus Marquee */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-33.3333%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 36s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
   }
 }
 
@@ -79,9 +105,11 @@ html.light .bg-\[\#090A0E\] {
   background-color: #F8FAFC !important;
 }
 html.light .bg-\[\#090A0E\]\/95,
+html.light .bg-\[\#090A0E\]\/92,
 html.light .bg-\[\#090A0E\]\/90,
 html.light .bg-\[\#090A0E\]\/85,
-html.light .bg-\[\#090A0E\]\/80 {
+html.light .bg-\[\#090A0E\]\/80,
+html.light .bg-\[\#090A0E\]\/75 {
   background-color: rgba(255, 255, 255, 0.95) !important;
 }
 html.light .bg-\[\#121317\] {
@@ -92,7 +120,8 @@ html.light .bg-\[\#12151C\] {
   box-shadow: 0 2px 14px -2px rgba(15, 23, 42, 0.06);
 }
 html.light .bg-\[\#12151C\]\/95,
-html.light .bg-\[\#12151C\]\/90 {
+html.light .bg-\[\#12151C\]\/90,
+html.light .bg-\[\#12151C\]\/80 {
   background-color: rgba(255, 255, 255, 0.96) !important;
 }
 html.light .bg-\[\#181C26\] {
@@ -106,9 +135,13 @@ html.light .hover\:bg-\[\#12151C\]:hover {
 /* Border Contrasts */
 html.light .border-\[\#232936\],
 html.light .border-\[\#232936\]\/80,
+html.light .border-\[\#232936\]\/70,
 html.light .border-\[\#232936\]\/60,
+html.light .border-\[\#232936\]\/50,
 html.light .border-\[\#232936\]\/40,
-html.light .divide-\[\#232936\] > :not([hidden]) ~ :not([hidden]) {
+html.light .divide-\[\#232936\] > :not([hidden]) ~ :not([hidden]),
+html.light .divide-\[\#232936\]\/80 > :not([hidden]) ~ :not([hidden]),
+html.light .divide-\[\#232936\]\/70 > :not([hidden]) ~ :not([hidden]) {
   border-color: #E2E8F0 !important;
 }
 html.light .border-\[\#323B4E\],
@@ -118,7 +151,8 @@ html.light .hover\:border-\[\#323B4E\]:hover {
 html.light .border-\[\#cef11c\]\/30,
 html.light .border-\[\#cef11c\]\/40,
 html.light .border-\[\#cef11c\]\/50,
-html.light .border-\[\#cef11c\]\/60 {
+html.light .border-\[\#cef11c\]\/60,
+html.light .hover\:border-\[\#cef11c\]:hover {
   border-color: #65A30D !important;
 }
 

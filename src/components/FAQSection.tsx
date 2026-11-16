@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ChevronDown, HelpCircle } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { UGABYTE_HANDLE } from "../config/ugabyte";
 
 export const FAQSection: React.FC = () => {
@@ -37,41 +37,37 @@ export const FAQSection: React.FC = () => {
   };
 
   return (
-    <section className="py-12 sm:py-20 scroll-mt-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" id="faq">
-      <div className="text-center mb-8 sm:mb-12">
-        <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-black text-[#cef11c] uppercase tracking-wider">
-          <HelpCircle className="w-3.5 h-3.5" />
-          <span>FAQ</span>
+    <section className="py-16 sm:py-24 scroll-mt-20 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8" id="faq">
+      <div className="text-center mb-10 sm:mb-12 space-y-2">
+        <span className="text-[11px] font-bold text-[#cef11c] uppercase tracking-widest">
+          FAQ
         </span>
-        <h2 className="text-xl xs:text-2xl sm:text-3xl font-extrabold text-[#FFFFFF] mt-1 tracking-tight text-balance">
+        <h2 className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-[#FFFFFF] tracking-tight text-balance">
           Common Questions
         </h2>
       </div>
 
-      <div className="space-y-2.5 sm:space-y-3">
+      <div className="border-y border-[#232936]/80 divide-y divide-[#232936]/80">
         {faqs.map((faq, idx) => {
           const isOpen = openIndex === idx;
           return (
-            <div
-              key={faq.q}
-              className="bg-[#12151C] border border-[#232936] rounded-xl overflow-hidden transition-colors hover:border-[#323B4E]"
-            >
+            <div key={faq.q}>
               <button
                 type="button"
                 onClick={() => toggle(idx)}
-                className="w-full p-4 sm:p-5 min-h-[52px] text-left flex items-center justify-between text-xs sm:text-base font-bold text-[#FFFFFF] focus:outline-none focus-visible:bg-[#181C26] active:bg-[#181C26]"
+                className="w-full py-4 sm:py-5 min-h-[52px] text-left flex items-center justify-between text-sm sm:text-base font-semibold text-[#FFFFFF] hover:text-[#cef11c] transition-colors focus:outline-none focus-visible:text-[#cef11c]"
                 aria-expanded={isOpen}
               >
                 <span>{faq.q}</span>
                 <ChevronDown
-                  className={`w-4 h-4 sm:w-5 sm:h-5 text-[#8E98A8] transition-transform duration-200 shrink-0 ml-3 sm:ml-4 ${
+                  className={`w-4 h-4 sm:w-5 sm:h-5 text-[#8E98A8] transition-transform duration-200 shrink-0 ml-4 ${
                     isOpen ? "rotate-180 text-[#cef11c]" : ""
                   }`}
                 />
               </button>
 
               {isOpen && (
-                <div className="px-4 pb-4 sm:px-5 sm:pb-5 text-xs sm:text-sm text-[#8E98A8] border-t border-[#232936]/60 pt-3 leading-relaxed">
+                <div className="pb-5 text-xs sm:text-sm text-[#8E98A8] leading-relaxed pr-8">
                   {faq.a}
                 </div>
               )}

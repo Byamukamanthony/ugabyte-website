@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { UGABYTE_WEB_APP_URL } from "../config/ugabyte";
 import { CATEGORY_PAGE_LIST, CategoryRouteSlug } from "../data/seoPages";
 import { UgaByteLogo } from "./UgaByteLogo";
@@ -13,6 +13,9 @@ import {
   Store,
   HelpCircle,
   ChevronRight,
+  ChevronDown,
+  BookOpen,
+  ArrowRight,
 } from "lucide-react";
 
 interface NavbarProps {
@@ -38,6 +41,8 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [guidesMenuOpen, setGuidesMenuOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,12 +55,36 @@ export const Navbar: React.FC<NavbarProps> = ({
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
+      setGuidesMenuOpen(false);
     } else {
       document.body.style.overflow = "";
     }
   }, [mobileMenuOpen]);
 
+  useEffect(() => {
+    if (!guidesMenuOpen) return;
+    const handlePointerDown = (e: MouseEvent | TouchEvent) => {
+      if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
+        setGuidesMenuOpen(false);
+      }
+    };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setGuidesMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("touchstart", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("touchstart", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [guidesMenuOpen]);
+
   const isHome = activeRoute === "/";
+  const isGuideActive = CATEGORY_PAGE_LIST.some((cat) => cat.path === activeRoute);
 
   const navLinks = [
     { label: "Pillars", href: isHome ? "#features" : "/#features", icon: Flame },
@@ -79,17 +108,19 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <>
       <header
+        ref={headerRef}
         className={`fixed top-0 left-0 w-full z-40 transition-all duration-200 ${
           scrolled
-            ? "bg-[#090A0E]/95 backdrop-blur-md border-b border-[#232936] shadow-lg"
-            : "bg-[#090A0E]/85 backdrop-blur-sm border-b border-[#232936]/60"
+            ? "bg-[#090A0E]/92 backdrop-blur-md border-b border-[#232936]/80"
+            : "bg-[#090A0E]/75 backdrop-blur-sm border-b border-[#232936]/40"
         }`}
       >
-        <div className="max-w-7xl mx-auto h-14 sm:h-16 px-3.5 sm:px-4 lg:px-8 flex items-center justify-between gap-2">
-          {/* Zone 1: Official UgaByte Favicon + Brand Mark */}
+        <div className="max-w-7xl mx-auto h-14 sm:h-16 px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
+          {/* Zone 1: Official UgaByte Brand Mark */}
           <a
             href="/"
             onClick={(e) => {
+              setGuidesMenuOpen(false);
               if (onNavigateHome) {
                 onNavigateHome(e);
               }
@@ -103,10 +134,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             />
           </a>
 
-          {/* Zone 2: Icon + Label Navigation (Tablet, Split-Preview & Desktop) - Centered */}
+          {/* Zone 2: Centered Navigation */}
           <div className="hidden md:flex flex-1 items-center justify-center">
             <nav
-              className="flex items-center justify-center gap-3 lg:gap-5 text-[10.5px] lg:text-[11px] font-bold tracking-wider uppercase text-[#8E98A8] whitespace-nowrap"
+              className="flex items-center justify-center gap-6 lg:gap-8 text-xs font-medium tracking-wide text-[#8E98A8] whitespace-nowrap"
               aria-label="Primary Navigation"
             >
               {navLinks.map((link) => {
@@ -115,24 +146,93 @@ export const Navbar: React.FC<NavbarProps> = ({
                   <a
                     key={link.label}
                     href={link.href}
-                    onClick={(e) => handleSectionClick(link.href, e)}
-                    className="inline-flex items-center gap-1.5 hover:text-[#cef11c] transition-colors focus:outline-none focus-visible:text-[#cef11c]"
+                    onClick={(e) => {
+                      setGuidesMenuOpen(false);
+                      handleSectionClick(link.href, e);
+                    }}
+                    className="group/nav inline-flex items-center gap-1.5 hover:text-[#FFFFFF] transition-colors focus:outline-none focus-visible:text-[#cef11c]"
                   >
-                    <Icon className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
+                    <Icon className="w-3.5 h-3.5 text-[#cef11c]/75 group-hover/nav:text-[#cef11c] transition-colors shrink-0" />
                     <span>{link.label}</span>
                   </a>
                 );
               })}
+
+              {/* Accessible Guides Gateway Dropdown */}
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={() => setGuidesMenuOpen((prev) => !prev)}
+                  aria-haspopup="menu"
+                  aria-expanded={guidesMenuOpen}
+                  className={`group/nav inline-flex items-center gap-1.5 transition-colors focus:outline-none focus-visible:text-[#cef11c] py-1 ${
+                    isGuideActive || guidesMenuOpen
+                      ? "text-[#cef11c]"
+                      : "text-[#e3e2e8] hover:text-[#FFFFFF]"
+                  }`}
+                >
+                  <BookOpen className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
+                  <span>Guides</span>
+                  <ChevronDown
+                    className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                      guidesMenuOpen ? "rotate-180 text-[#cef11c]" : "opacity-75"
+                    }`}
+                  />
+                </button>
+
+                {guidesMenuOpen && (
+                  <div
+                    role="menu"
+                    aria-label="Student Guides"
+                    className="absolute left-1/2 -translate-x-1/2 top-full mt-3 w-72 rounded-2xl bg-[#12151C] border border-[#232936] shadow-elegant p-2 z-50"
+                  >
+                    <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-[#8E98A8]">
+                      Uganda Campus Guides
+                    </div>
+                    <div className="flex flex-col gap-0.5">
+                      {CATEGORY_PAGE_LIST.map((cat) => {
+                        const isActive = activeRoute === cat.path;
+                        return (
+                          <a
+                            key={cat.slug}
+                            role="menuitem"
+                            href={cat.path}
+                            onClick={(e) => {
+                              setGuidesMenuOpen(false);
+                              if (onNavigateCategory) onNavigateCategory(cat.slug, e);
+                            }}
+                            className={`group/item px-3 py-2.5 rounded-xl transition-colors flex items-center justify-between gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c] ${
+                              isActive
+                                ? "bg-[#181C26] text-[#cef11c]"
+                                : "hover:bg-[#181C26] text-[#FFFFFF]"
+                            }`}
+                          >
+                            <div className="min-w-0">
+                              <div className="text-xs font-semibold truncate group-hover/item:text-[#cef11c] transition-colors">
+                                {cat.navLabel} Guide
+                              </div>
+                              <div className="text-[11px] text-[#8E98A8] truncate">
+                                {cat.shortBadge}
+                              </div>
+                            </div>
+                            <ArrowRight className="w-3.5 h-3.5 text-[#cef11c] shrink-0 opacity-75 group-hover/item:opacity-100 group-hover/item:translate-x-0.5 transition-all" />
+                          </a>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
             </nav>
           </div>
 
           {/* Zone 3: Theme Switcher & Action Buttons */}
-          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          <div className="flex items-center gap-2 shrink-0">
             {/* Light / Dark Mode Toggle */}
             <button
               type="button"
               onClick={onToggleTheme}
-              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-[#232936] hover:border-[#323B4E] bg-[#12151C] hover:bg-[#181C26] text-[#e3e2e8] transition-all active:scale-95 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
+              className="w-9 h-9 rounded-full border border-[#232936]/80 hover:border-[#323B4E] bg-[#12151C]/80 hover:bg-[#181C26] text-[#e3e2e8] transition-all active:scale-95 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
               title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
               aria-label={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
             >
@@ -149,7 +249,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 type="button"
                 onClick={onInstallApp}
                 title="Install UgaByte App to your device"
-                className="hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 min-h-[36px] rounded-full border border-[#232936] hover:border-[#323B4E] bg-[#12151C] hover:bg-[#181C26] text-[#8E98A8] hover:text-[#FFFFFF] text-[11px] font-bold tracking-wide transition-all active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
+                className="hidden xl:inline-flex items-center gap-1.5 px-3.5 py-1.5 min-h-[36px] rounded-full border border-[#232936]/80 hover:border-[#323B4E] bg-transparent hover:bg-[#12151C] text-[#8E98A8] hover:text-[#FFFFFF] text-xs font-semibold transition-all active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
               >
                 <Download className="w-3.5 h-3.5 text-[#cef11c]" />
                 <span>Install App</span>
@@ -162,10 +262,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               target="_blank"
               rel="noopener noreferrer"
               onClick={onOpenWebApp}
-              className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 min-h-[36px] sm:min-h-[38px] rounded-full bg-[#cef11c] text-[#090A0E] text-[11px] sm:text-[12px] font-black uppercase tracking-wider hover:brightness-105 active:scale-95 transition-all shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 min-h-[36px] sm:min-h-[38px] rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-bold tracking-tight hover:brightness-105 active:scale-95 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
               title="Open UgaByte Web App"
             >
-              <Globe className="w-3.5 h-3.5 stroke-[2.5]" />
+              <Globe className="w-3.5 h-3.5 stroke-[2.25]" />
               <span className="hidden xs:inline">Open Web App</span>
               <span className="xs:hidden">Web App</span>
             </a>
@@ -185,24 +285,90 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Top Icon + Label Strip for Narrow / Mobile Viewports (Centered) */}
         <nav
-          className="md:hidden border-t border-[#232936]/70 px-3.5 py-2 flex items-center justify-center gap-4 sm:gap-6 overflow-x-auto no-scrollbar text-[10px] font-bold tracking-wider uppercase text-[#8E98A8] whitespace-nowrap"
+          className="md:hidden border-t border-[#232936]/50 px-3.5 py-2 flex items-center justify-center gap-4 sm:gap-6 overflow-x-auto no-scrollbar text-[11px] font-medium tracking-wide text-[#8E98A8] whitespace-nowrap"
           aria-label="Quick Top Navigation"
         >
-          {navLinks.map((link) => {
+          {navLinks
+            .filter((link) => link.label !== "Download")
+            .map((link) => {
             const Icon = link.icon;
             return (
               <a
                 key={link.label}
                 href={link.href}
-                onClick={(e) => handleSectionClick(link.href, e)}
-                className="inline-flex items-center gap-1.5 hover:text-[#cef11c] transition-colors shrink-0"
+                onClick={(e) => {
+                  setGuidesMenuOpen(false);
+                  handleSectionClick(link.href, e);
+                }}
+                className="inline-flex items-center gap-1.5 hover:text-[#FFFFFF] transition-colors shrink-0"
               >
-                <Icon className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
+                <Icon className="w-3.5 h-3.5 text-[#cef11c]/80 shrink-0" />
                 <span>{link.label}</span>
               </a>
             );
           })}
+
+          <button
+            type="button"
+            onClick={() => setGuidesMenuOpen((prev) => !prev)}
+            aria-haspopup="menu"
+            aria-expanded={guidesMenuOpen}
+            className={`inline-flex items-center gap-1 transition-colors shrink-0 focus:outline-none ${
+              isGuideActive || guidesMenuOpen
+                ? "text-[#cef11c] font-semibold"
+                : "text-[#e3e2e8] hover:text-[#FFFFFF]"
+            }`}
+          >
+            <BookOpen className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
+            <span>Guides</span>
+            <ChevronDown
+              className={`w-3 h-3 transition-transform duration-200 ${
+                guidesMenuOpen ? "rotate-180" : ""
+              }`}
+            />
+          </button>
         </nav>
+
+        {/* Mobile Quick-Access Guides Panel */}
+        {guidesMenuOpen && (
+          <div
+            role="menu"
+            aria-label="Mobile Student Guides"
+            className="md:hidden border-t border-[#232936] bg-[#12151C] px-4 py-3 shadow-elegant"
+          >
+            <div className="max-w-lg mx-auto grid grid-cols-2 gap-2">
+              {CATEGORY_PAGE_LIST.map((cat) => {
+                const isActive = activeRoute === cat.path;
+                return (
+                  <a
+                    key={cat.slug}
+                    role="menuitem"
+                    href={cat.path}
+                    onClick={(e) => {
+                      setGuidesMenuOpen(false);
+                      if (onNavigateCategory) onNavigateCategory(cat.slug, e);
+                    }}
+                    className={`px-3 py-2.5 rounded-xl border transition-colors flex items-center justify-between gap-2 ${
+                      isActive
+                        ? "bg-[#181C26] border-[#cef11c]/40 text-[#cef11c]"
+                        : "bg-[#090A0E] border-[#232936] hover:border-[#323B4E] text-[#FFFFFF]"
+                    }`}
+                  >
+                    <div className="min-w-0">
+                      <div className="text-xs font-semibold truncate">
+                        {cat.navLabel} Guide
+                      </div>
+                      <div className="text-[10px] text-[#8E98A8] truncate">
+                        {cat.shortBadge}
+                      </div>
+                    </div>
+                    <ArrowRight className="w-3.5 h-3.5 text-[#cef11c] shrink-0" />
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </header>
 
       {/* Mobile Backdrop */}
@@ -266,7 +432,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Crawlable Category Landing Pages */}
           <div className="mt-4 pt-4 border-t border-[#232936]">
             <div className="px-3 mb-1.5 text-[10px] font-black uppercase tracking-wider text-[#8E98A8]">
-              Campus Hubs
+              Student Guides
             </div>
             <div className="flex flex-col gap-0.5">
               {CATEGORY_PAGE_LIST.map((cat) => (
@@ -279,7 +445,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   }}
                   className="px-3 py-2 min-h-[40px] rounded-xl text-[#e3e2e8] hover:bg-[#181C26] hover:text-[#cef11c] text-xs font-semibold transition-colors flex items-center justify-between"
                 >
-                  <span>{cat.navLabel}</span>
+                  <span>{cat.navLabel} Guide</span>
                   <ChevronRight className="w-3.5 h-3.5 text-[#cef11c]" />
                 </a>
               ))}

@@ -7,21 +7,7 @@ import {
 } from "../config/ugabyte";
 import { CATEGORY_PAGE_LIST, CategoryRouteSlug } from "../data/seoPages";
 import { UgaByteLogo } from "./UgaByteLogo";
-import {
-  ExternalLink,
-  Download,
-  AtSign,
-  Globe,
-  Shield,
-  FileText,
-  Cookie,
-  RotateCcw,
-  Flame,
-  Store,
-  Calendar,
-  Briefcase,
-  Compass,
-} from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
 interface FooterProps {
   onOpenLegal: (type: "privacy" | "terms" | "cookie" | "refund") => void;
@@ -84,11 +70,11 @@ export const Footer: React.FC<FooterProps> = ({
   onNavigateCategory,
 }) => {
   return (
-    <footer className="w-full bg-[#090A0E] border-t border-[#232936] pt-10 sm:pt-14 pb-20 sm:pb-10">
+    <footer className="w-full bg-[#090A0E] border-t border-[#232936]/80 pt-12 sm:pt-16 pb-20 sm:pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-4 lg:grid-cols-12 gap-2 sm:gap-5 lg:gap-8 pb-6 sm:pb-9 border-b border-[#232936]/80">
+        <div className="grid grid-cols-4 lg:grid-cols-12 gap-3 sm:gap-6 lg:gap-8 pb-8 sm:pb-10 border-b border-[#232936]/70">
           {/* Brand Column */}
-          <div className="col-span-4 lg:col-span-3 space-y-3 pb-2 lg:pb-0">
+          <div className="col-span-4 lg:col-span-4 space-y-3 pb-4 lg:pb-0">
             <a
               href="/"
               onClick={onNavigateHome}
@@ -96,34 +82,25 @@ export const Footer: React.FC<FooterProps> = ({
             >
               <UgaByteLogo className="h-7 sm:h-8" />
             </a>
-            <p className="text-xs sm:text-sm text-[#8E98A8] max-w-sm leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#8E98A8] max-w-xs leading-relaxed">
               Campus deals, zero-fee trading, events, and gigs for students in Uganda.
             </p>
-            <div className="pt-1 text-xs text-[#8E98A8]">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#12151C] border border-[#232936]">
-                <AtSign className="w-3.5 h-3.5 text-[#cef11c]" />
-                <span className="text-[#FFFFFF] font-mono font-semibold">
-                  {UGABYTE_HANDLE}
-                </span>
-              </div>
-            </div>
           </div>
 
           {/* Crawlable Uganda Category Guides */}
-          <div className="col-span-1 lg:col-span-3 min-w-0 space-y-1.5 sm:space-y-2.5">
-            <h5 className="text-[10px] sm:text-[11px] font-black uppercase tracking-tight sm:tracking-wider text-[#FFFFFF] leading-tight">
-              Campus Guides
+          <div className="col-span-1 lg:col-span-2 min-w-0 space-y-2.5">
+            <h5 className="text-[11px] font-bold uppercase tracking-wider text-[#FFFFFF]">
+              Guides
             </h5>
-            <ul className="space-y-0.5 sm:space-y-1 text-[11px] sm:text-xs text-[#8E98A8]">
+            <ul className="space-y-1.5 text-xs text-[#e3e2e8]">
               {CATEGORY_PAGE_LIST.map((cat) => (
                 <li key={cat.slug}>
                   <a
                     href={cat.path}
                     onClick={(e) => onNavigateCategory?.(cat.slug, e)}
-                    className="hover:text-[#cef11c] transition-colors flex items-center gap-1 sm:gap-1.5 py-1 leading-tight focus:outline-none"
+                    className="hover:text-[#cef11c] transition-colors block py-0.5 truncate focus:outline-none focus-visible:text-[#cef11c]"
                   >
-                    <Compass className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#cef11c] shrink-0" />
-                    <span className="truncate">{cat.navLabel}</span>
+                    {cat.navLabel} Guide
                   </a>
                 </li>
               ))}
@@ -131,21 +108,20 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           {/* Direct Web App Modules Column */}
-          <div className="col-span-1 lg:col-span-2 min-w-0 space-y-1.5 sm:space-y-2.5">
-            <h5 className="text-[10px] sm:text-[11px] font-black uppercase tracking-tight sm:tracking-wider text-[#FFFFFF] leading-tight">
+          <div className="col-span-1 lg:col-span-2 min-w-0 space-y-2.5">
+            <h5 className="text-[11px] font-bold uppercase tracking-wider text-[#FFFFFF]">
               Web App
             </h5>
-            <ul className="space-y-0.5 sm:space-y-1 text-[11px] sm:text-xs text-[#8E98A8]">
+            <ul className="space-y-1.5 text-xs text-[#8E98A8]">
               <li>
                 <a
                   href={UGABYTE_APP_LINKS.deals}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#cef11c] transition-colors flex items-center gap-1 sm:gap-1.5 py-1 leading-tight focus:outline-none"
+                  className="hover:text-[#cef11c] transition-colors inline-flex items-center gap-1 py-0.5 max-w-full focus:outline-none group"
                 >
-                  <Flame className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#cef11c] shrink-0" />
                   <span className="truncate">Deals</span>
-                  <ExternalLink className="hidden sm:block w-3 h-3 opacity-60 shrink-0" />
+                  <ExternalLink className="hidden sm:block w-3 h-3 opacity-0 group-hover:opacity-75 transition-opacity shrink-0" />
                 </a>
               </li>
               <li>
@@ -153,11 +129,10 @@ export const Footer: React.FC<FooterProps> = ({
                   href={UGABYTE_APP_LINKS.marketplace}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#cef11c] transition-colors flex items-center gap-1 sm:gap-1.5 py-1 leading-tight focus:outline-none"
+                  className="hover:text-[#cef11c] transition-colors inline-flex items-center gap-1 py-0.5 max-w-full focus:outline-none group"
                 >
-                  <Store className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#cef11c] shrink-0" />
                   <span className="truncate">Market</span>
-                  <ExternalLink className="hidden sm:block w-3 h-3 opacity-60 shrink-0" />
+                  <ExternalLink className="hidden sm:block w-3 h-3 opacity-0 group-hover:opacity-75 transition-opacity shrink-0" />
                 </a>
               </li>
               <li>
@@ -165,11 +140,10 @@ export const Footer: React.FC<FooterProps> = ({
                   href={UGABYTE_APP_LINKS.events}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#cef11c] transition-colors flex items-center gap-1 sm:gap-1.5 py-1 leading-tight focus:outline-none"
+                  className="hover:text-[#cef11c] transition-colors inline-flex items-center gap-1 py-0.5 max-w-full focus:outline-none group"
                 >
-                  <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#cef11c] shrink-0" />
                   <span className="truncate">Events</span>
-                  <ExternalLink className="hidden sm:block w-3 h-3 opacity-60 shrink-0" />
+                  <ExternalLink className="hidden sm:block w-3 h-3 opacity-0 group-hover:opacity-75 transition-opacity shrink-0" />
                 </a>
               </li>
               <li>
@@ -177,91 +151,84 @@ export const Footer: React.FC<FooterProps> = ({
                   href={UGABYTE_APP_LINKS.opportunities}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#cef11c] transition-colors flex items-center gap-1 sm:gap-1.5 py-1 leading-tight focus:outline-none"
+                  className="hover:text-[#cef11c] transition-colors inline-flex items-center gap-1 py-0.5 max-w-full focus:outline-none group"
                 >
-                  <Briefcase className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#cef11c] shrink-0" />
                   <span className="truncate">Gigs</span>
-                  <ExternalLink className="hidden sm:block w-3 h-3 opacity-60 shrink-0" />
+                  <ExternalLink className="hidden sm:block w-3 h-3 opacity-0 group-hover:opacity-75 transition-opacity shrink-0" />
                 </a>
               </li>
             </ul>
           </div>
 
           {/* Product Column */}
-          <div className="col-span-1 lg:col-span-2 min-w-0 space-y-1.5 sm:space-y-2.5">
-            <h5 className="text-[10px] sm:text-[11px] font-black uppercase tracking-tight sm:tracking-wider text-[#FFFFFF] leading-tight">
+          <div className="col-span-1 lg:col-span-2 min-w-0 space-y-2.5">
+            <h5 className="text-[11px] font-bold uppercase tracking-wider text-[#FFFFFF]">
               Get App
             </h5>
-            <ul className="space-y-0.5 sm:space-y-1 text-[11px] sm:text-xs text-[#8E98A8]">
+            <ul className="space-y-1.5 text-xs text-[#8E98A8]">
               <li>
                 <a
                   href={UGABYTE_WEB_APP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={onOpenWebApp}
-                  className="hover:text-[#cef11c] transition-colors flex items-center gap-1 sm:gap-1.5 py-1 leading-tight focus:outline-none"
+                  className="hover:text-[#cef11c] transition-colors block py-0.5 truncate focus:outline-none"
                 >
-                  <Globe className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#cef11c] shrink-0" />
-                  <span className="truncate">Web App</span>
+                  Web App
                 </a>
               </li>
               <li>
                 <button
                   type="button"
                   onClick={onInstallApp}
-                  className="hover:text-[#cef11c] transition-colors flex items-center gap-1 sm:gap-1.5 py-1 leading-tight focus:outline-none text-left max-w-full"
+                  className="hover:text-[#cef11c] transition-colors block py-0.5 text-left truncate max-w-full focus:outline-none"
                 >
-                  <Download className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#cef11c] shrink-0" />
-                  <span className="truncate">Install App</span>
+                  Install App
                 </button>
               </li>
             </ul>
           </div>
 
           {/* Legal Column */}
-          <div className="col-span-1 lg:col-span-2 min-w-0 space-y-1.5 sm:space-y-2.5">
-            <h5 className="text-[10px] sm:text-[11px] font-black uppercase tracking-tight sm:tracking-wider text-[#FFFFFF] leading-tight">
+          <div className="col-span-1 lg:col-span-2 min-w-0 space-y-2.5">
+            <h5 className="text-[11px] font-bold uppercase tracking-wider text-[#FFFFFF]">
               Policies
             </h5>
-            <ul className="space-y-0.5 sm:space-y-1 text-[11px] sm:text-xs text-[#8E98A8]">
+            <ul className="space-y-1.5 text-xs text-[#8E98A8]">
               <li>
                 <button
                   type="button"
                   onClick={() => onOpenLegal("privacy")}
-                  className="hover:text-[#cef11c] transition-colors flex items-center gap-1 sm:gap-1.5 py-1 leading-tight focus:outline-none text-left max-w-full"
+                  className="hover:text-[#cef11c] transition-colors block py-0.5 text-left truncate max-w-full focus:outline-none"
                 >
-                  <Shield className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#cef11c] shrink-0" />
-                  <span className="truncate">Privacy</span>
+                  Privacy
                 </button>
               </li>
               <li>
                 <button
                   type="button"
                   onClick={() => onOpenLegal("terms")}
-                  className="hover:text-[#cef11c] transition-colors flex items-center gap-1 sm:gap-1.5 py-1 leading-tight focus:outline-none text-left max-w-full"
+                  className="hover:text-[#cef11c] transition-colors block py-0.5 text-left truncate max-w-full focus:outline-none"
                 >
-                  <FileText className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#cef11c] shrink-0" />
-                  <span className="truncate">Terms</span>
+                  Terms
                 </button>
               </li>
               <li>
                 <button
                   type="button"
                   onClick={() => onOpenLegal("cookie")}
-                  className="hover:text-[#cef11c] transition-colors flex items-center gap-1 sm:gap-1.5 py-1 leading-tight focus:outline-none text-left max-w-full"
+                  className="hover:text-[#cef11c] transition-colors block py-0.5 text-left truncate max-w-full focus:outline-none"
                 >
-                  <Cookie className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#cef11c] shrink-0" />
-                  <span className="truncate">Cookies</span>
+                  Cookies
                 </button>
               </li>
               <li>
                 <button
                   type="button"
                   onClick={() => onOpenLegal("refund")}
-                  className="hover:text-[#cef11c] transition-colors flex items-center gap-1 sm:gap-1.5 py-1 leading-tight focus:outline-none text-left max-w-full"
+                  className="hover:text-[#cef11c] transition-colors block py-0.5 text-left truncate max-w-full focus:outline-none"
                 >
-                  <RotateCcw className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#cef11c] shrink-0" />
-                  <span className="truncate">Refunds</span>
+                  Refunds
                 </button>
               </li>
             </ul>
@@ -269,13 +236,13 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Official Social Media Platforms */}
-        <div className="py-5 sm:py-6 border-b border-[#232936]/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="py-6 border-b border-[#232936]/70 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-xs text-[#8E98A8] flex items-center gap-2">
-            <span>Community</span>
-            <span className="text-[#cef11c] font-mono font-semibold">{UGABYTE_HANDLE}</span>
+            <span>Follow</span>
+            <span className="text-[#e3e2e8] font-medium">{UGABYTE_HANDLE}</span>
           </div>
 
-          <div className="flex items-center gap-2.5 sm:gap-3">
+          <div className="flex items-center gap-2">
             {UGABYTE_PLATFORMS.map((platform) => (
               <a
                 key={platform.id}
@@ -284,17 +251,17 @@ export const Footer: React.FC<FooterProps> = ({
                 rel="noopener noreferrer"
                 aria-label={platform.name}
                 title={platform.name}
-                className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#12151C] hover:bg-[#181C26] border border-[#232936] hover:border-[#cef11c] text-[#8E98A8] hover:text-[#cef11c] flex items-center justify-center transition-all active:scale-95 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
+                className="w-9 h-9 rounded-full bg-transparent hover:bg-[#12151C] border border-[#232936]/80 hover:border-[#cef11c]/60 text-[#8E98A8] hover:text-[#cef11c] flex items-center justify-center transition-all active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
               >
-                <PlatformIcon id={platform.id} className="w-4 h-4 sm:w-5 sm:h-5" />
+                <PlatformIcon id={platform.id} className="w-4 h-4" />
               </a>
             ))}
           </div>
         </div>
 
         {/* Bottom copyright & attribution */}
-        <div className="pt-5 sm:pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#8E98A8]/80 gap-2 text-center sm:text-left">
-          <div>&copy; 2026 UgaByte.</div>
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#8E98A8]/80 gap-2 text-center sm:text-left">
+          <div>&copy; 2026 UgaByte</div>
           <div>MAK · MUBS · KYU · Kampala</div>
         </div>
       </div>
