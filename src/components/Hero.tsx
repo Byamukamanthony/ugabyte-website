@@ -25,7 +25,7 @@ export const Hero: React.FC<HeroProps> = ({ onInstallApp, onOpenWebApp }) => {
     const res = await shareUgaByteContent({
       title: HOMEPAGE_SEO.title,
       text: "Check out UgaByte — student deals, zero-fee campus marketplace, events & gigs across Uganda",
-      url: HOMEPAGE_SEO.canonicalUrl,
+      url: UGABYTE_WEB_APP_URL,
     });
     if (res === "copied" || res === "shared") {
       setSharedCopied(true);
