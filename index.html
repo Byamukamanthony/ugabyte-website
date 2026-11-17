@@ -26,14 +26,15 @@
     <script>
       (function () {
         try {
+          var isTopLevel = window.self === window.top;
           var params = new URLSearchParams(window.location.search);
           var isStandalone =
-            params.get("pwa") === "1" ||
-            window.navigator.standalone === true ||
-            (window.matchMedia &&
-              (window.matchMedia("(display-mode: standalone)").matches ||
-                window.matchMedia("(display-mode: fullscreen)").matches ||
-                window.matchMedia("(display-mode: minimal-ui)").matches));
+            isTopLevel &&
+            (params.get("pwa") === "1" ||
+              window.navigator.standalone === true ||
+              (window.matchMedia &&
+                (window.matchMedia("(display-mode: standalone)").matches ||
+                  window.matchMedia("(display-mode: minimal-ui)").matches)));
           if (isStandalone) {
             window.location.replace("https://ugabyte.vercel.app/");
             return;

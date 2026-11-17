@@ -101,14 +101,22 @@ export function usePWAInstall() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
+    const isTopLevel = (() => {
+      try {
+        return window.self === window.top;
+      } catch {
+        return false;
+      }
+    })();
+
     const params = new URLSearchParams(window.location.search);
     const isStandalone =
-      params.get("pwa") === "1" ||
-      window.matchMedia("(display-mode: standalone)").matches ||
-      window.matchMedia("(display-mode: fullscreen)").matches ||
-      window.matchMedia("(display-mode: minimal-ui)").matches ||
-      (window.navigator as unknown as { standalone?: boolean }).standalone ===
-        true;
+      isTopLevel &&
+      (params.get("pwa") === "1" ||
+        window.matchMedia("(display-mode: standalone)").matches ||
+        window.matchMedia("(display-mode: minimal-ui)").matches ||
+        (window.navigator as unknown as { standalone?: boolean }).standalone ===
+          true);
 
     setIsInstalled(isStandalone);
 

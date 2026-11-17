@@ -22,7 +22,7 @@ interface NavbarProps {
   onInstallApp: (e?: React.MouseEvent) => void;
   isInstalled?: boolean;
   onOpenWebApp: (e?: React.MouseEvent) => void;
-  onNavigateHome?: (e?: React.MouseEvent) => void;
+  onNavigateHome?: (e?: React.MouseEvent, skipScrollTop?: boolean) => void;
   onNavigateCategory?: (slug: CategoryRouteSlug, e?: React.MouseEvent) => void;
   activeRoute?: string;
   theme: "dark" | "light";
@@ -59,6 +59,9 @@ export const Navbar: React.FC<NavbarProps> = ({
     } else {
       document.body.style.overflow = "";
     }
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileMenuOpen]);
 
   useEffect(() => {
@@ -97,7 +100,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     if (!isHome && href.startsWith("/#") && onNavigateHome) {
       e.preventDefault();
       const targetId = href.slice(2);
-      onNavigateHome();
+      onNavigateHome(undefined, true);
       setTimeout(() => {
         const el = document.getElementById(targetId);
         if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -458,9 +461,9 @@ export const Navbar: React.FC<NavbarProps> = ({
             href={UGABYTE_WEB_APP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => {
+            onClick={(e) => {
               setMobileMenuOpen(false);
-              onOpenWebApp();
+              onOpenWebApp(e);
             }}
             className="w-full py-3 min-h-[46px] rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2 shadow-md active:scale-95 transition-all"
           >

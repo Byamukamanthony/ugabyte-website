@@ -114,17 +114,17 @@ function formatRelativeTime(dateStr?: string): string {
   }
 }
 
-async function safeSelect(tableName: string): Promise<any[]> {
+async function safeSelect(tableName: string): Promise<{ rows: any[]; ok: boolean }> {
   try {
     const { data, error } = await supabase
       .from(tableName)
       .select("*")
       .order("created_at", { ascending: false })
       .limit(12);
-    if (error || !Array.isArray(data)) return [];
-    return data.filter((r) => !isDemoRow(r));
+    if (error || !Array.isArray(data)) return { rows: [], ok: false };
+    return { rows: data.filter((r) => !isDemoRow(r)), ok: true };
   } catch {
-    return [];
+    return { rows: [], ok: false };
   }
 }
 
@@ -135,13 +135,13 @@ async function safeSelect(tableName: string): Promise<any[]> {
  */
 export async function fetchLiveAppFeed(): Promise<LiveFeedPayload> {
   const [
-    dealsRows,
-    adsRows,
-    productsRows,
-    marketRows,
-    eventsRows,
-    postsRows,
-    requestsRows,
+    dealsRes,
+    adsRes,
+    productsRes,
+    marketRes,
+    eventsRes,
+    postsRes,
+    requestsRes,
   ] = await Promise.all([
     safeSelect("deals"),
     safeSelect("advertisements"),
@@ -151,6 +151,23 @@ export async function fetchLiveAppFeed(): Promise<LiveFeedPayload> {
     safeSelect("posts"),
     safeSelect("requests"),
   ]);
+
+  const dealsRows = dealsRes.rows;
+  const adsRows = adsRes.rows;
+  const productsRows = productsRes.rows;
+  const marketRows = marketRes.rows;
+  const eventsRows = eventsRes.rows;
+  const postsRows = postsRes.rows;
+  const requestsRows = requestsRes.rows;
+  const isConnected = [
+    dealsRes,
+    adsRes,
+    productsRes,
+    marketRes,
+    eventsRes,
+    postsRes,
+    requestsRes,
+  ].some((r) => r.ok);
 
   // 1. Map real Deals
   const rawDeals = [...dealsRows, ...adsRows];
@@ -253,8 +270,8 @@ export async function fetchLiveAppFeed(): Promise<LiveFeedPayload> {
       productsCount: products.length,
       eventsCount: events.length,
       gigsCount: gigs.length,
-      isConnected: true,
-      lastSynced: "Live",
+      isConnected,
+      lastSynced: isConnected ? "Live" : "Offline",
     },
   };
 }
@@ -284,6 +301,10 @@ export function subscribeToLiveAppFeed(onUpdate: (feed: LiveFeedPayload) => void
   return () => {
     active = false;
     clearInterval(interval);
-    supabase.removeChannel(channel);
+    try {
+      void supabase.removeChannel(channel);
+    } catch {
+      // Ignore cleanup error on teardown
+    }
   };
 }

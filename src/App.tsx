@@ -158,7 +158,7 @@ export default function App() {
     return () => window.removeEventListener("popstate", syncRouteState);
   }, [syncRouteState]);
 
-  const handleNavigateHome = (e?: React.MouseEvent) => {
+  const handleNavigateHome = (e?: React.MouseEvent, skipScrollTop = false) => {
     if (e && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
       e.preventDefault();
     }
@@ -166,7 +166,9 @@ export default function App() {
       if (window.location.pathname !== "/" || window.location.hash) {
         window.history.pushState({}, "", "/");
       }
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (!skipScrollTop) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
     }
     setActiveCategory(null);
     setLegalTab(null);

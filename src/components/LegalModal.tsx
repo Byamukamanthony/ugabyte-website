@@ -76,7 +76,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({
                 onClick={() => onSelectTab(t.id)}
                 className={`flex-1 min-h-[38px] py-1.5 px-2.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all whitespace-nowrap active:scale-95 ${
                   active
-                    ? "bg-[#12151C] text-[#FFFFFF] border border-[#232936] shadow-sm text-[#cef11c]"
+                    ? "bg-[#12151C] border border-[#232936] shadow-sm text-[#cef11c]"
                     : "text-[#8E98A8] hover:text-[#FFFFFF]"
                 }`}
               >
