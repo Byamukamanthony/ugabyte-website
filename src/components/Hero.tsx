@@ -59,7 +59,7 @@ export const Hero: React.FC<HeroProps> = ({ onInstallApp, onOpenWebApp }) => {
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center w-full">
         {/* Display Headline */}
         <h1 className="text-[32px] xs:text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#FFFFFF] max-w-3xl mb-4 sm:mb-5 leading-[1.1] sm:leading-[1.06] text-balance">
-          <span className="block text-[length:clamp(30px,3.2vw_+_18px,54px)] font-extrabold tracking-tight hero-gradient-text text-transparent bg-clip-text bg-gradient-to-r from-white via-[#e3e2e8] to-[#cef11c] mb-1.5 sm:mb-2 select-none pb-1 sm:pb-2 leading-[1.25]">
+          <span className="block text-2xl xs:text-3xl sm:text-4xl font-extrabold tracking-tight hero-gradient-text text-transparent bg-clip-text bg-gradient-to-r from-white via-[#e3e2e8] to-[#cef11c] mb-1.5 sm:mb-2 select-none pb-1 sm:pb-2">
             UgaByte
           </span>
           Deals, Market &amp; Events.{" "}
