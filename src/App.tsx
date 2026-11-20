@@ -48,10 +48,10 @@ export default function App() {
 
   const [theme, setTheme] = useState<"dark" | "light">(() => {
     if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("ugabyte_theme");
+      const saved = localStorage.getItem("ugabyte_theme_user");
       if (saved === "light" || saved === "dark") return saved;
     }
-    return "dark";
+    return "light";
   });
 
   useEffect(() => {
@@ -63,7 +63,6 @@ export default function App() {
       root.classList.remove("light");
       root.classList.add("dark");
     }
-    localStorage.setItem("ugabyte_theme", theme);
   }, [theme]);
 
   useEffect(() => {
@@ -235,7 +234,13 @@ export default function App() {
   };
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+    setTheme((prev) => {
+      const next = prev === "dark" ? "light" : "dark";
+      if (typeof window !== "undefined") {
+        localStorage.setItem("ugabyte_theme_user", next);
+      }
+      return next;
+    });
   };
 
   const handleOpenWebApp = (e?: React.MouseEvent) => {
