@@ -1,12 +1,14 @@
 import React from "react";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Store } from "lucide-react";
 import { UGABYTE_APP_LINKS } from "../config/ugabyte";
 
 interface ForBusinessesProps {
   onOpenPartnerModal?: () => void;
 }
 
-export const ForBusinesses: React.FC<ForBusinessesProps> = () => {
+export const ForBusinesses: React.FC<ForBusinessesProps> = ({
+  onOpenPartnerModal,
+}) => {
   return (
     <section
       className="py-16 sm:py-24 scroll-mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-[#232936]/80"
@@ -23,6 +25,9 @@ export const ForBusinesses: React.FC<ForBusinessesProps> = () => {
             <h2 className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-[#FFFFFF] tracking-tight leading-tight text-balance">
               Sell to 10,000+ Students.
             </h2>
+            <p className="text-xs sm:text-sm text-[#8E98A8] max-w-md mx-auto leading-relaxed">
+              Reach students near Makerere, MUBS Nakawa, and Kyambogo directly with zero middleman cut.
+            </p>
           </div>
 
           {/* Hairline-divided metrics (no nested boxes) */}
@@ -55,16 +60,28 @@ export const ForBusinesses: React.FC<ForBusinessesProps> = () => {
             </div>
           </div>
 
-          <div className="pt-1">
+          <div className="pt-1 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">
+            {onOpenPartnerModal && (
+              <button
+                type="button"
+                onClick={onOpenPartnerModal}
+                className="w-full sm:w-auto px-7 py-3.5 min-h-[46px] rounded-full bg-[#cef11c] text-[#090A0E] text-sm font-bold tracking-tight glow-lime hover:brightness-105 active:scale-95 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c] inline-flex items-center justify-center gap-2"
+                title="Open Merchant Onboarding Form"
+              >
+                <Store className="w-4 h-4 stroke-[2.25]" />
+                <span>Partner with UgaByte</span>
+              </button>
+            )}
+
             <a
               href={`${UGABYTE_APP_LINKS.marketplace}#add`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-7 py-3.5 min-h-[46px] rounded-full bg-[#cef11c] text-[#090A0E] text-sm font-bold tracking-tight hover:brightness-105 active:scale-95 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c] inline-flex items-center justify-center gap-2"
-              title="Partner with UgaByte"
+              className="w-full sm:w-auto px-7 py-3.5 min-h-[46px] rounded-full bg-[#181C26] hover:bg-[#232936] border border-[#232936] hover:border-[#323B4E] text-[#FFFFFF] text-sm font-semibold tracking-tight active:scale-95 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c] inline-flex items-center justify-center gap-2"
+              title="Post an offer directly in the UgaByte Web App"
             >
-              <span>Partner with UgaByte</span>
-              <ExternalLink className="w-4 h-4 stroke-[2.25]" />
+              <span>Post in Web App</span>
+              <ExternalLink className="w-4 h-4 text-[#cef11c]" />
             </a>
           </div>
         </div>

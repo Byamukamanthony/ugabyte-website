@@ -7,7 +7,7 @@ import {
 } from "../config/ugabyte";
 import { CATEGORY_PAGE_LIST, CategoryRouteSlug } from "../data/seoPages";
 import { UgaByteLogo } from "./UgaByteLogo";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ArrowUp } from "lucide-react";
 
 interface FooterProps {
   onOpenLegal: (type: "privacy" | "terms" | "cookie" | "refund") => void;
@@ -259,10 +259,17 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
         </div>
 
-        {/* Bottom copyright & attribution */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#8E98A8]/80 gap-2 text-center sm:text-left">
-          <div>&copy; 2026 UgaByte</div>
-          <div>MAK · MUBS · KYU · Kampala</div>
+        {/* Bottom copyright, campus coverage & Back to top */}
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#8E98A8]/80 gap-3 text-center sm:text-left">
+          <div>&copy; 2026 UgaByte · MAK · MUBS · KYU · Kampala</div>
+          <button
+            type="button"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#8E98A8] hover:text-[#cef11c] transition-colors px-3 py-1.5 rounded-full border border-[#232936]/80 hover:border-[#cef11c]/50"
+          >
+            <span>Back to top</span>
+            <ArrowUp className="w-3.5 h-3.5 text-[#cef11c]" />
+          </button>
         </div>
       </div>
     </footer>

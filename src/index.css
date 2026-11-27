@@ -63,9 +63,27 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee {
-    animation: none;
+  html {
+    scroll-behavior: auto !important;
   }
+  .animate-marquee,
+  .animate-phone-orbit {
+    animation: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Accessible Focus-Visible Rings Across Light & Dark Modes */
+:focus-visible {
+  outline: 2px solid #cef11c;
+  outline-offset: 2px;
+}
+html.light :focus-visible {
+  outline-color: #4D7C0F;
 }
 
 /* Touch responsiveness improvements for smartphones */
@@ -127,6 +145,7 @@ html.light .bg-\[\#12151C\]\/80 {
 html.light .bg-\[\#181C26\] {
   background-color: #F8FAFC !important;
 }
+html.light .hover\:bg-\[\#232936\]:hover,
 html.light .hover\:bg-\[\#181C26\]:hover,
 html.light .hover\:bg-\[\#12151C\]:hover {
   background-color: #E2E8F0 !important;
@@ -156,16 +175,41 @@ html.light .hover\:border-\[\#cef11c\]:hover {
   border-color: #65A30D !important;
 }
 
-/* Hero Section in Light Mode */
-html.light .hero-portrait-img {
-  opacity: 0.16 !important;
-  mix-blend-mode: multiply !important;
-}
-html.light .hero-scrim {
-  background: linear-gradient(to bottom, rgba(248, 250, 252, 0.25), rgba(248, 250, 252, 0.88), #F8FAFC) !important;
-}
+/* Category Hub Accent Glow in Light Mode */
 html.light .hero-radial-glow {
   background-color: rgba(132, 204, 22, 0.12) !important;
+}
+
+/* Interactive Architectural Hero Grid & Cursor Spotlight */
+.hero-grid-pattern {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 45%, #000 20%, transparent 82%);
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 45%, #000 20%, transparent 82%);
+}
+
+html.light .hero-grid-pattern {
+  background-image:
+    linear-gradient(to right, rgba(15, 23, 42, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.055) 1px, transparent 1px);
+}
+
+.hero-cursor-glow {
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 40%),
+    rgba(206, 241, 28, 0.075),
+    transparent 70%
+  );
+}
+
+html.light .hero-cursor-glow {
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 40%),
+    rgba(101, 163, 13, 0.11),
+    transparent 70%
+  );
 }
 
 /* Hero Headline Gradient in Light Mode: Bold Dark Slate to Forest Green */
@@ -198,10 +242,23 @@ html.light .text-\[\#8E98A8\]\/75 {
   color: #334155 !important; /* Slate-700: High WCAG AA 8.5:1 contrast */
 }
 
+/* Semantic Error Readability in Light Mode */
+html.light .text-red-300 {
+  color: #B91C1C !important;
+}
+html.light .text-red-400 {
+  color: #DC2626 !important;
+}
+
 /* Lime Brand Text converted to Deep Forest Green for AAA Readability */
 html.light .text-\[\#cef11c\],
+html.light .text-\[\#cef11c\]\/75,
+html.light .text-\[\#cef11c\]\/80,
 html.light .hover\:text-\[\#cef11c\]:hover,
-html.light .group:hover .group-hover\:text-\[\#cef11c\] {
+html.light .group:hover .group-hover\:text-\[\#cef11c\],
+html.light .group\/nav:hover .group-hover\/nav\:text-\[\#cef11c\],
+html.light .group\/guide:hover .group-hover\/guide\:text-\[\#cef11c\],
+html.light .group\/item:hover .group-hover\/item\:text-\[\#cef11c\] {
   color: #3F6212 !important; /* 7.0:1 contrast against light background */
 }
 html.light .logo-accent {

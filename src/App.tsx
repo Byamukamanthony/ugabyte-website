@@ -3,6 +3,8 @@ import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
 import { CampusTicker } from "./components/CampusTicker";
 import { TheSolution } from "./components/TheSolution";
+import { HowItWorks } from "./components/HowItWorks";
+import { CampusTrustProof } from "./components/CampusTrustProof";
 import { ForBusinesses } from "./components/ForBusinesses";
 import { DownloadSection } from "./components/DownloadSection";
 import { FAQSection } from "./components/FAQSection";
@@ -40,6 +42,7 @@ export default function App() {
   const [legalTab, setLegalTab] = useState<"privacy" | "terms" | "cookie" | "refund" | null>(null);
   const [toastState, setToastState] = useState<"installed" | "launched" | null>(null);
   const [liveFeed, setLiveFeed] = useState<LiveFeedPayload>(EMPTY_LIVE_FEED);
+  const [notFound, setNotFound] = useState(false);
   const [activeCategory, setActiveCategory] = useState<CategoryRouteSlug | null>(() =>
     typeof window !== "undefined" ? parseCategoryFromPathname(window.location.pathname) : null
   );
@@ -63,6 +66,10 @@ export default function App() {
       root.classList.remove("light");
       root.classList.add("dark");
     }
+    const themeMeta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+    if (themeMeta) {
+      themeMeta.setAttribute("content", theme === "light" ? "#F8FAFC" : "#090A0E");
+    }
   }, [theme]);
 
   useEffect(() => {
@@ -78,6 +85,7 @@ export default function App() {
     const matchedCategory = parseCategoryFromPathname(rawPath);
 
     if (matchedCategory) {
+      setNotFound(false);
       setActiveCategory(matchedCategory);
       setLegalTab(null);
       const cfg = CATEGORY_SEO_PAGES[matchedCategory];
@@ -92,6 +100,7 @@ export default function App() {
     setActiveCategory(null);
 
     if (rawPath === "/privacy") {
+      setNotFound(false);
       setLegalTab("privacy");
       updateDocumentSeo({
         title: "Privacy Policy | UgaByte",
@@ -102,6 +111,7 @@ export default function App() {
       return;
     }
     if (rawPath === "/terms") {
+      setNotFound(false);
       setLegalTab("terms");
       updateDocumentSeo({
         title: "Terms of Use | UgaByte",
@@ -112,6 +122,7 @@ export default function App() {
       return;
     }
     if (rawPath === "/cookie" || rawPath === "/cookies") {
+      setNotFound(false);
       setLegalTab("cookie");
       updateDocumentSeo({
         title: "Cookie Policy | UgaByte",
@@ -122,6 +133,7 @@ export default function App() {
       return;
     }
     if (rawPath === "/refund" || rawPath === "/refunds") {
+      setNotFound(false);
       setLegalTab("refund");
       updateDocumentSeo({
         title: "Dispute & Refund Policy | UgaByte",
@@ -133,6 +145,20 @@ export default function App() {
     }
 
     setLegalTab(null);
+
+    const knownAliases = new Set(["/", "/download", "/install", "/faq", "/about"]);
+    if (!knownAliases.has(rawPath)) {
+      setNotFound(true);
+      updateDocumentSeo({
+        title: "Page Not Found | UgaByte",
+        description: HOMEPAGE_SEO.metaDescription,
+        canonicalUrl: HOMEPAGE_SEO.canonicalUrl,
+        robots: "noindex, follow",
+      });
+      return;
+    }
+
+    setNotFound(false);
     updateDocumentSeo({
       title: HOMEPAGE_SEO.title,
       description: HOMEPAGE_SEO.metaDescription,
@@ -169,6 +195,7 @@ export default function App() {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
     }
+    setNotFound(false);
     setActiveCategory(null);
     setLegalTab(null);
     updateDocumentSeo({
@@ -187,6 +214,7 @@ export default function App() {
       window.history.pushState({}, "", cfg.path);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
+    setNotFound(false);
     setActiveCategory(slug);
     setLegalTab(null);
     updateDocumentSeo({
@@ -272,6 +300,14 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#090A0E] text-[#e3e2e8] flex flex-col font-sans selection:bg-[#cef11c] selection:text-[#090A0E] transition-colors duration-200">
+      {/* Skip to Main Content Accessibility Link */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2.5 focus:rounded-full focus:bg-[#cef11c] focus:text-[#090A0E] focus:text-xs focus:font-bold focus:shadow-lg"
+      >
+        Skip to main content
+      </a>
+
       {/* Sticky Navbar with Theme Switcher & Crawlable Navigation */}
       <Navbar
         onInstallApp={handleInstallApp}
@@ -284,8 +320,43 @@ export default function App() {
         onToggleTheme={toggleTheme}
       />
 
-      <main className="flex-1">
-        {activeCategoryConfig ? (
+      <main id="main-content" tabIndex={-1} className="flex-1 focus:outline-none">
+        {notFound ? (
+          <section className="pt-36 pb-24 max-w-2xl mx-auto px-4 sm:px-6 text-center space-y-6">
+            <span className="text-[11px] font-bold text-[#cef11c] uppercase tracking-widest">
+              404 · Not Found
+            </span>
+            <h1 className="text-3xl sm:text-5xl font-extrabold text-[#FFFFFF] tracking-tight text-balance">
+              We couldn&apos;t find that page.
+            </h1>
+            <p className="text-sm sm:text-base text-[#8E98A8] leading-relaxed">
+              The link may have moved or contains a typo. Return to the UgaByte homepage or jump directly into one of our campus guides below.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+              <a
+                href="/"
+                onClick={(e) => handleNavigateHome(e)}
+                className="px-6 py-3 min-h-[44px] rounded-full bg-[#cef11c] text-[#090A0E] text-xs font-bold tracking-tight hover:brightness-105 transition-all inline-flex items-center justify-center"
+              >
+                Back to Homepage
+              </a>
+              <a
+                href="/student-deals-uganda"
+                onClick={(e) => handleNavigateCategory("student-deals-uganda", e)}
+                className="px-5 py-3 min-h-[44px] rounded-full bg-[#12151C] border border-[#232936] hover:border-[#323B4E] text-[#FFFFFF] text-xs font-semibold transition-all inline-flex items-center justify-center"
+              >
+                Deals Guide
+              </a>
+              <a
+                href="/student-marketplace-uganda"
+                onClick={(e) => handleNavigateCategory("student-marketplace-uganda", e)}
+                className="px-5 py-3 min-h-[44px] rounded-full bg-[#12151C] border border-[#232936] hover:border-[#323B4E] text-[#FFFFFF] text-xs font-semibold transition-all inline-flex items-center justify-center"
+              >
+                Market Guide
+              </a>
+            </div>
+          </section>
+        ) : activeCategoryConfig ? (
           <CategoryHubPage
             page={activeCategoryConfig}
             feed={liveFeed}
@@ -313,7 +384,13 @@ export default function App() {
               feed={liveFeed}
             />
 
-            {/* 4. For Campus Businesses & Sellers (#sellers) */}
+            {/* 4. Clear 3-Step Mechanism */}
+            <HowItWorks />
+
+            {/* 5. Campus Safety Standards & Student Social Proof */}
+            <CampusTrustProof />
+
+            {/* 6. For Campus Businesses & Sellers (#sellers) */}
             <ForBusinesses onOpenPartnerModal={() => setPartnerModalOpen(true)} />
 
             {/* 7. App Shortcut & Web App Install Section (#download) */}

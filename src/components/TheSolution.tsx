@@ -23,6 +23,49 @@ interface TheSolutionProps {
   feed?: LiveFeedPayload;
 }
 
+interface PillarImageProps {
+  src: string;
+  fallbackSrc: string;
+  alt: string;
+  label: string;
+}
+
+const PillarImage: React.FC<PillarImageProps> = ({
+  src,
+  fallbackSrc,
+  alt,
+  label,
+}) => {
+  const [imgSrc, setImgSrc] = useState(src);
+  const [failed, setFailed] = useState(false);
+
+  if (failed) {
+    return (
+      <div className="w-full h-full bg-gradient-to-br from-[#181C26] via-[#12151C] to-[#090A0E] flex flex-col items-center justify-center p-4 text-center">
+        <MapPin className="w-6 h-6 text-[#cef11c] mb-1.5" />
+        <span className="text-xs font-bold text-[#FFFFFF]">{label}</span>
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={imgSrc}
+      alt={alt}
+      referrerPolicy="no-referrer"
+      onError={() => {
+        if (imgSrc !== fallbackSrc) {
+          setImgSrc(fallbackSrc);
+        } else {
+          setFailed(true);
+        }
+      }}
+      className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-out"
+      loading="lazy"
+    />
+  );
+};
+
 export const TheSolution: React.FC<TheSolutionProps> = ({
   onNavigateCategory,
   feed = EMPTY_LIVE_FEED,
@@ -111,11 +154,11 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
             {/* Showcase Visual Preview */}
             <div className="relative rounded-xl overflow-hidden border border-[#232936]/80 bg-[#090A0E] mb-5">
               <div className="aspect-[16/9] sm:aspect-[21/9] w-full overflow-hidden relative">
-                <img
+                <PillarImage
                   src={featuredDeal?.image || topDealImg}
+                  fallbackSrc={topDealImg}
                   alt={featuredDeal?.title || "Top Campus Meal Drop on UgaByte"}
-                  className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-out"
-                  loading="lazy"
+                  label="Student Deals & Campus Food"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
                 <div className="absolute top-3 left-3 z-10">
@@ -214,11 +257,11 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
             {/* Showcase Visual Preview */}
             <div className="relative rounded-xl overflow-hidden border border-[#232936]/80 bg-[#090A0E] mb-5">
               <div className="aspect-[16/10] w-full overflow-hidden relative">
-                <img
+                <PillarImage
                   src={topProducts[0]?.image || topProductImg}
+                  fallbackSrc={topProductImg}
                   alt={topProducts[0]?.title || "Top Student Listing on UgaByte"}
-                  className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-out"
-                  loading="lazy"
+                  label="Zero-Fee Campus Marketplace"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
                 <div className="absolute inset-x-0 bottom-0 p-3.5 card-media-overlay z-10">
@@ -301,11 +344,11 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
             {/* Showcase Visual Preview */}
             <div className="relative rounded-xl overflow-hidden border border-[#232936]/80 bg-[#090A0E] mb-5">
               <div className="aspect-[16/10] w-full overflow-hidden relative">
-                <img
+                <PillarImage
                   src={featuredEvent?.image || topEventImg}
+                  fallbackSrc={topEventImg}
                   alt={featuredEvent?.title || "Top Campus Event on UgaByte"}
-                  className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-out"
-                  loading="lazy"
+                  label="Campus Events & Hubs"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
                 <div className="absolute inset-x-0 bottom-0 p-3.5 card-media-overlay z-10">
@@ -390,11 +433,11 @@ export const TheSolution: React.FC<TheSolutionProps> = ({
             {/* Showcase Visual Preview */}
             <div className="relative rounded-xl overflow-hidden border border-[#232936]/80 bg-[#090A0E] mb-5">
               <div className="aspect-[16/9] sm:aspect-[21/9] w-full overflow-hidden relative">
-                <img
+                <PillarImage
                   src={topGigs[0]?.image || topGigImg}
+                  fallbackSrc={topGigImg}
                   alt={topGigs[0]?.title || "Top Campus Gig on UgaByte"}
-                  className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-out"
-                  loading="lazy"
+                  label="Student Gigs & Internships"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
                 <div className="absolute top-3 left-3 z-10">

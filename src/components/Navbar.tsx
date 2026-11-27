@@ -16,6 +16,7 @@ import {
   ChevronDown,
   BookOpen,
   ArrowRight,
+  Compass,
 } from "lucide-react";
 
 interface NavbarProps {
@@ -42,25 +43,69 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [guidesMenuOpen, setGuidesMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("");
   const headerRef = useRef<HTMLElement>(null);
+
+  const isHome = activeRoute === "/";
+  const isGuideActive = CATEGORY_PAGE_LIST.some((cat) => cat.path === activeRoute);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+      if (window.scrollY < 160) {
+        setActiveSection("");
+      }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
+    if (!isHome) {
+      setActiveSection("");
+      return;
+    }
+    const sectionIds = ["features", "how-it-works", "sellers", "download", "faq"];
+    const elements = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    if (elements.length === 0 || typeof IntersectionObserver === "undefined") {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible.length > 0) {
+          setActiveSection(visible[0].target.id);
+        }
+      },
+      { rootMargin: "-25% 0px -55% 0px", threshold: [0.1, 0.35] }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [isHome]);
+
+  useEffect(() => {
+    const handleDrawerEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMobileMenuOpen(false);
+      }
+    };
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
       setGuidesMenuOpen(false);
+      window.addEventListener("keydown", handleDrawerEscape);
     } else {
       document.body.style.overflow = "";
     }
     return () => {
       document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleDrawerEscape);
     };
   }, [mobileMenuOpen]);
 
@@ -86,14 +131,11 @@ export const Navbar: React.FC<NavbarProps> = ({
     };
   }, [guidesMenuOpen]);
 
-  const isHome = activeRoute === "/";
-  const isGuideActive = CATEGORY_PAGE_LIST.some((cat) => cat.path === activeRoute);
-
   const navLinks = [
-    { label: "Pillars", href: isHome ? "#features" : "/#features", icon: Flame },
-    { label: "Sell", href: isHome ? "#sellers" : "/#sellers", icon: Store },
-    { label: "Download", href: isHome ? "#download" : "/#download", icon: Download },
-    { label: "FAQ", href: isHome ? "#faq" : "/#faq", icon: HelpCircle },
+    { id: "features", label: "Pillars", href: isHome ? "#features" : "/#features", icon: Flame },
+    { id: "how-it-works", label: "How It Works", href: isHome ? "#how-it-works" : "/#how-it-works", icon: Compass },
+    { id: "sellers", label: "Sell", href: isHome ? "#sellers" : "/#sellers", icon: Store },
+    { id: "faq", label: "FAQ", href: isHome ? "#faq" : "/#faq", icon: HelpCircle },
   ];
 
   const handleSectionClick = (href: string, e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -145,6 +187,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               {navLinks.map((link) => {
                 const Icon = link.icon;
+                const isActive = isHome && activeSection === link.id;
                 return (
                   <a
                     key={link.label}
@@ -153,9 +196,20 @@ export const Navbar: React.FC<NavbarProps> = ({
                       setGuidesMenuOpen(false);
                       handleSectionClick(link.href, e);
                     }}
-                    className="group/nav inline-flex items-center gap-1.5 hover:text-[#FFFFFF] transition-colors focus:outline-none focus-visible:text-[#cef11c]"
+                    aria-current={isActive ? "location" : undefined}
+                    className={`group/nav inline-flex items-center gap-1.5 transition-colors focus:outline-none focus-visible:text-[#cef11c] py-1 border-b-2 ${
+                      isActive
+                        ? "text-[#FFFFFF] border-[#cef11c]"
+                        : "border-transparent hover:text-[#FFFFFF]"
+                    }`}
                   >
-                    <Icon className="w-3.5 h-3.5 text-[#cef11c]/75 group-hover/nav:text-[#cef11c] transition-colors shrink-0" />
+                    <Icon
+                      className={`w-3.5 h-3.5 transition-colors shrink-0 ${
+                        isActive
+                          ? "text-[#cef11c]"
+                          : "text-[#cef11c]/75 group-hover/nav:text-[#cef11c]"
+                      }`}
+                    />
                     <span>{link.label}</span>
                   </a>
                 );
@@ -292,9 +346,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           aria-label="Quick Top Navigation"
         >
           {navLinks
-            .filter((link) => link.label !== "Download")
+            .filter((link) => link.id !== "how-it-works")
             .map((link) => {
             const Icon = link.icon;
+            const isActive = isHome && activeSection === link.id;
             return (
               <a
                 key={link.label}
@@ -303,7 +358,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                   setGuidesMenuOpen(false);
                   handleSectionClick(link.href, e);
                 }}
-                className="inline-flex items-center gap-1.5 hover:text-[#FFFFFF] transition-colors shrink-0"
+                aria-current={isActive ? "location" : undefined}
+                className={`inline-flex items-center gap-1.5 transition-colors shrink-0 ${
+                  isActive ? "text-[#FFFFFF] font-semibold" : "hover:text-[#FFFFFF]"
+                }`}
               >
                 <Icon className="w-3.5 h-3.5 text-[#cef11c]/80 shrink-0" />
                 <span>{link.label}</span>
@@ -386,6 +444,8 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* Mobile Drawer */}
       <aside
         id="mobile-drawer"
+        role="dialog"
+        aria-modal="true"
         aria-label="Mobile Navigation"
         className={`fixed inset-y-0 right-0 z-50 w-72 max-w-[84vw] bg-[#12151C] border-l border-[#232936] shadow-2xl p-5 sm:p-6 flex flex-col justify-between transform transition-transform duration-300 ease-in-out md:hidden overflow-y-auto ${
           mobileMenuOpen ? "translate-x-0" : "translate-x-full"

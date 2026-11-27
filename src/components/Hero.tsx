@@ -1,8 +1,5 @@
-import React, { useState } from "react";
-import {
-  BRAND_ASSETS,
-  UGABYTE_WEB_APP_URL,
-} from "../config/ugabyte";
+import React, { useState, useRef } from "react";
+import { UGABYTE_WEB_APP_URL } from "../config/ugabyte";
 import { HOMEPAGE_SEO } from "../data/seoPages";
 import { shareUgaByteContent } from "../utils/share";
 import {
@@ -17,9 +14,28 @@ interface HeroProps {
   onOpenWebApp: (e?: React.MouseEvent) => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onInstallApp, onOpenWebApp }) => {
-  const [heroImgFailed, setHeroImgFailed] = useState(false);
+export const Hero: React.FC<HeroProps> = ({
+  onInstallApp,
+  onOpenWebApp,
+}) => {
   const [sharedCopied, setSharedCopied] = useState(false);
+  const [pointerActive, setPointerActive] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLElement>) => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    el.style.setProperty("--mx", `${x.toFixed(2)}%`);
+    el.style.setProperty("--my", `${y.toFixed(2)}%`);
+    if (!pointerActive) setPointerActive(true);
+  };
+
+  const handlePointerLeave = () => {
+    setPointerActive(false);
+  };
 
   const handleShareUgaByte = async () => {
     const res = await shareUgaByteContent({
@@ -34,26 +50,23 @@ export const Hero: React.FC<HeroProps> = ({ onInstallApp, onOpenWebApp }) => {
   };
 
   return (
-    <section className="relative min-h-[82vh] sm:min-h-[86vh] flex items-center justify-center overflow-hidden border-b border-[#232936]/80 pt-28 md:pt-24 pb-14 sm:pb-20">
-      {/* Cinematic Portrait Backdrop with Subtle Glow & Graceful Fallback */}
-      <div className="absolute inset-0 z-0 pointer-events-none select-none">
-        {!heroImgFailed && (
-          <img
-            src={BRAND_ASSETS.heroPortrait}
-            alt="Ugandan university student discovering campus deals and opportunities on UgaByte"
-            width={1200}
-            height={800}
-            fetchPriority="high"
-            decoding="async"
-            referrerPolicy="no-referrer"
-            onError={() => setHeroImgFailed(true)}
-            className="hero-portrait-img w-full h-full object-cover object-top opacity-35 sm:opacity-45 mix-blend-screen scale-105"
-            loading="eager"
-          />
-        )}
-        <div className="hero-scrim absolute inset-0 bg-gradient-to-b from-[#090A0E]/35 via-[#090A0E]/85 to-[#090A0E]" />
-        <div className="hero-radial-glow absolute -top-28 left-1/2 -translate-x-1/2 w-[320px] sm:w-[640px] h-[300px] sm:h-[420px] bg-[#cef11c]/8 rounded-full blur-[110px] sm:blur-[150px]" />
-      </div>
+    <section
+      ref={sectionRef}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
+      className="relative min-h-[72vh] sm:min-h-[76vh] flex items-center justify-center overflow-hidden bg-[#090A0E] border-b border-[#232936]/80 pt-28 md:pt-28 pb-16 sm:pb-24"
+    >
+      {/* Subtle Interactive Architectural Grid & Cursor Spotlight on Solid Canvas */}
+      <div
+        aria-hidden="true"
+        className="hero-grid-pattern absolute inset-0 pointer-events-none select-none"
+      />
+      <div
+        aria-hidden="true"
+        className={`hero-cursor-glow absolute inset-0 pointer-events-none select-none transition-opacity duration-300 ${
+          pointerActive ? "opacity-100" : "opacity-60"
+        }`}
+      />
 
       {/* Main Hero Container */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center w-full">
@@ -91,7 +104,7 @@ export const Hero: React.FC<HeroProps> = ({ onInstallApp, onOpenWebApp }) => {
             type="button"
             onClick={onInstallApp}
             title="Install UgaByte App to your phone via Google Chrome"
-            className="w-full sm:w-auto px-7 py-3.5 min-h-[46px] rounded-full bg-[#12151C]/90 hover:bg-[#181C26] border border-[#232936] hover:border-[#323B4E] text-[#FFFFFF] text-sm font-semibold tracking-tight active:scale-[0.98] transition-all flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
+            className="w-full sm:w-auto px-7 py-3.5 min-h-[46px] rounded-full bg-[#12151C] hover:bg-[#181C26] border border-[#232936] hover:border-[#323B4E] text-[#FFFFFF] text-sm font-semibold tracking-tight active:scale-[0.98] transition-all flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#cef11c]"
           >
             <Download className="w-4 h-4 text-[#cef11c]" />
             <span>Install App</span>
