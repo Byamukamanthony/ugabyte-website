@@ -25,30 +25,6 @@ export const CampusTrustProof: React.FC = () => {
     },
   ];
 
-  const campusVoices = [
-    {
-      quote:
-        "Sold my second-year scientific calculator and picked up a study desk at Kikoni Gate within two hours — zero listing fee.",
-      author: "Brian Ssemakula",
-      context: "BSc Computer Science · Makerere University",
-      outcome: "Saved UGX 45,000 in 1 trade",
-    },
-    {
-      quote:
-        "Checking lunch drops between lectures cut my weekly food spending at Nakawa without scrolling dozens of WhatsApp statuses.",
-      author: "Patricia Namukasa",
-      context: "BBA Student · MUBS Nakawa",
-      outcome: "UGX 18,000 saved weekly on meals",
-    },
-    {
-      quote:
-        "Posting our daily student combo on UgaByte brought consistent walk-in lunch orders straight from hostel blocks.",
-      author: "Ronald Kaggwa",
-      context: "Hostel Café Vendor · Banda / Kyambogo",
-      outcome: "Direct walk-in orders · 0% commission",
-    },
-  ];
-
   return (
     <section
       className="py-16 sm:py-24 scroll-mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-[#232936]/80"
@@ -56,18 +32,18 @@ export const CampusTrustProof: React.FC = () => {
     >
       <div className="text-center max-w-xl mx-auto mb-10 sm:mb-14 space-y-2">
         <span className="text-[11px] font-bold text-[#cef11c] uppercase tracking-widest">
-          Trust &amp; Proof
+          Trust &amp; Safety
         </span>
         <h2 className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-[#FFFFFF] tracking-tight text-balance">
-          Safe Campus Trading, Real Student Results
+          Safe Campus Trading
         </h2>
         <p className="text-xs sm:text-sm text-[#8E98A8] leading-relaxed">
-          Clear safety standards backed by everyday savings across MAK, MUBS, and Kyambogo.
+          Clear safety standards across MAK, MUBS, and Kyambogo.
         </p>
       </div>
 
       {/* Campus Safety Standards Strip */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-8 sm:mb-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
         {trustStandards.map((item) => {
           const Icon = item.icon;
           return (
@@ -87,32 +63,6 @@ export const CampusTrustProof: React.FC = () => {
             </div>
           );
         })}
-      </div>
-
-      {/* Attributable Student & Vendor Proof */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
-        {campusVoices.map((voice) => (
-          <figure
-            key={voice.author}
-            className="p-6 sm:p-7 rounded-2xl bg-[#12151C] border border-[#232936]/80 flex flex-col justify-between gap-5"
-          >
-            <blockquote className="text-xs sm:text-sm text-[#e3e2e8] leading-relaxed">
-              &ldquo;{voice.quote}&rdquo;
-            </blockquote>
-
-            <figcaption className="pt-4 border-t border-[#232936]/60 space-y-1">
-              <div className="text-xs sm:text-sm font-bold text-[#FFFFFF]">
-                {voice.author}
-              </div>
-              <div className="text-[11px] text-[#8E98A8]">
-                {voice.context}
-              </div>
-              <div className="text-[11px] font-semibold text-[#cef11c] pt-0.5 tabular-nums">
-                {voice.outcome}
-              </div>
-            </figcaption>
-          </figure>
-        ))}
       </div>
     </section>
   );

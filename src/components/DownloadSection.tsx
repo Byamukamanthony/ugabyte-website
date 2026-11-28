@@ -28,7 +28,7 @@ export const DownloadSection: React.FC<DownloadSectionProps> = ({
           </div>
 
           <p className="text-xs sm:text-sm text-[#8E98A8] max-w-md mx-auto leading-relaxed">
-            Open immediately in your browser or install <span className="text-[#e3e2e8] font-medium">ugabyte.vercel.app</span> straight to your home screen.
+            Open immediately in your browser or install the <span className="text-[#e3e2e8] font-medium">UgaByte Web App</span> straight to your home screen.
           </p>
 
           {/* Action Buttons */}
@@ -56,7 +56,7 @@ export const DownloadSection: React.FC<DownloadSectionProps> = ({
 
           {/* Quiet Platform Metadata */}
           <p className="pt-4 border-t border-[#232936]/70 text-xs text-[#8E98A8] font-medium">
-            ugabyte.vercel.app <span aria-hidden="true">·</span> Android &amp; iOS
+            Web App <span aria-hidden="true">·</span> Android &amp; iOS
           </p>
         </div>
       </div>

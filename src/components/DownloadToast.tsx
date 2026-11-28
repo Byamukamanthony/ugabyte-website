@@ -52,8 +52,8 @@ export const DownloadToast: React.FC<DownloadToastProps> = ({
         </div>
         <p className="text-[11px] text-[#8E98A8] mt-0.5 truncate">
           {isInstalledMode
-            ? "Shortcut added · Opens ugabyte.vercel.app"
-            : "Launching ugabyte.vercel.app"}
+            ? "Shortcut added to your home screen"
+            : "Launching the UgaByte Web App"}
         </p>
 
         <a

@@ -24,7 +24,7 @@ export const FAQSection: React.FC = () => {
     },
     {
       q: "How do I install the UgaByte App?",
-      a: "Tap 'Install App' anywhere on this page for one-tap installation to your phone, or open ugabyte.vercel.app directly in your browser.",
+      a: "Tap 'Install App' anywhere on this page for one-tap installation to your phone, or tap 'Open Web App' directly in your browser.",
     },
     {
       q: "How do I contact UgaByte?",

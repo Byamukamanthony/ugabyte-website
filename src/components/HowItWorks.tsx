@@ -7,7 +7,7 @@ export const HowItWorks: React.FC = () => {
       num: "01.",
       title: "Open or Install in Seconds",
       desc: "Browse live campus feeds immediately on the Web App or add the shortcut straight to your phone with zero app-store wait.",
-      meta: "ugabyte.vercel.app · Android & iOS",
+      meta: "Web App · Android & iOS",
       icon: Globe,
     },
     {
